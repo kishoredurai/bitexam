@@ -42,7 +42,7 @@ if (isset($_REQUEST['id']))
 					</tr>
                 </thead>
                 <tbody>
-				<?php $exam->query = "SELECT * FROM feedback_table where feed_type='Staff'";
+				<?php $exam->query = "SELECT * FROM feedback_table where feed_type='Faculty'";
 
 $result = $exam->query_result();
 

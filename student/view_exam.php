@@ -111,7 +111,8 @@ $remaining_minutes = '';
 
 if(isset($_GET['code']))
 {
-	
+	echo "<script type='text/javascript'>window.alert('Reminder ! start Recording');</script>";
+
 	$exam_id = $exam->Get_exam_id($_GET["code"]);
 	$exam->query = "
 	SELECT online_exam_status, online_exam_datetime, online_exam_duration FROM online_exam_table 
@@ -418,6 +419,18 @@ $(document).ready(function(){
 		if(remaining_second < 1)
 		{
 			window.location = 'enroll_exam.php';
+		}
+		if(remaining_second == 30 )
+		{
+			window.alert('please stop recording');
+		}
+		if(remaining_second == 20 )
+		{
+			window.alert('please stop recording');
+		}
+		if(remaining_second == 10 )
+		{
+			window.alert('please stop recording');
 		}
 	}, 1000);
 

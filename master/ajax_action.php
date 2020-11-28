@@ -44,7 +44,6 @@ if(isset($_POST['page']))
 			$admin_name = $_POST['admin_name'];
 			$admin_gender = $_POST['admin_gender'];
 			$admin_mobile_no = $_POST['admin_mobile_no'];
-			$admin_dob = $_POST['admin_dob'];
 			$admin_course = $_POST['admin_course'];
 			$admin_level = $_POST['admin_level'];
 
@@ -57,16 +56,15 @@ if(isset($_POST['page']))
 				':admin_name'				=>	$admin_name,
 				':admin_gender'				=>	$admin_gender,
 				':admin_course'				=>	$admin_course,
-				':admin_DOB'				=>	$admin_dob,
 				':admin_contact'			=>	$admin_mobile_no,
 				':admin_level'			    =>	$admin_level
 			);
 
 			$exam->query = "
 			INSERT INTO admin_table 
-			(admin_name, admin_email_address, admin_password, admin_gender,  admin_course, admin_DOB, admin_contact, admin_level, admin_verfication_code, admin_type, admin_created_on) 
+			(admin_name, admin_email_address, admin_password, admin_gender,  admin_course, admin_contact, admin_level, admin_verfication_code, admin_type, admin_created_on) 
 			VALUES 
-			(:admin_name, :admin_email_address, :admin_password, :admin_gender,  :admin_course, :admin_DOB, :admin_contact, :admin_level, :admin_verfication_code, :admin_type, :admin_created_on)
+			(:admin_name, :admin_email_address, :admin_password, :admin_gender,  :admin_course, :admin_contact, :admin_level, :admin_verfication_code, :admin_type, :admin_created_on)
 			";
 
 			$exam->execute_query();

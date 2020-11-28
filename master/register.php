@@ -71,11 +71,7 @@ include('../include/db.php');
                 <label><b>Enter Mobile Number :</b></label>
                 <input type="text" name="admin_mobile_no" id="admin_mobile_no" class="form-control" required>
               </div>
-              <div class="form-group">
-                <label><b>Enter Date of Birth :</b></label>
-                <input type="date" name="admin_dob" id="admin_dob" class="form-control" required>
-              </div>
-             
+              
               <div class="form-group">
                 <label><b>Select Course :</b></label>
                 <select name="admin_course" id="admin_course" class="form-control">
