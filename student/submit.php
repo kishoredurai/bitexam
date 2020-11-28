@@ -35,7 +35,7 @@ $subject="Online Examination Application";
 $body = '<html><body><head>       
     <meta name="viewport" content="width=device-width, initial-scale=1"></head>
     <center><img src="https://img.collegedekhocdn.com/media/img/institute/logo/BIT-Tamilnadu-logo_1.png" width="750" height="160" ></center><br>
-    <h3 style="font-size:180%;color:black;">Dear <b>'.$user_name.'</b></h3><p style="font-size:150%;">As your are tried to do malpractice on your '.$online_exam_title.' online examination . If there is any feedback regarding on  this , send your feedback through this <a href="http://localhost/bitexam/student/mal_fed.php?examid='.$examid.'">link</a> </p>
+    <h3 style="font-size:180%;color:black;">Dear <b>'.$user_name.'</b></h3><p style="font-size:150%;">As your are tried to do malpractice on your '.$online_exam_title.' online examination . If there is any feedback regarding on  this , send your feedback through this <a href="http://localhost/bitexam/student/mal_feedback.php?examid='.$examid.'">link</a> </p>
     <p style="font-size:150%;color:black;"><b>Thank you,</b></p>
 	<p style="font-size:150%;color:black;">BIT Online Examination System</p>
     </body></html>';
