@@ -13,19 +13,35 @@ require_once '../include/db.php';
 
 include('../include/db.php');
 
+$id = $_SESSION['user_id'];
 $examid=intval($_GET['examid']);
+$user_id="";
+$exam->query ="Select * from malpractice_feedback where exam_id = '$examid';";
+$results = $exam->query_result();
+foreach($results as $rows)
+{
+    $user_id=$rows["user_id"];
+    
+}
+
+if($user_id==$id)
+{
+    echo '<script>alert("Feedback Already Updated")</script>';
+
+    echo "<script>window.location.href='enroll_exam.php'</script>";  
+}
 
 if(isset($_POST['change']))
 { 
 
-$id = $_SESSION['user_id'];
-$reason=$_POST['reason'];
+
+$reason=$_POST['Reason'];
 
 $result = mysqli_query($db,"Insert into `malpractice_feedback`(user_id,exam_id,feedback) VALUES ('$id','$examid','$reason');");
 
 echo '<script>alert("Feedback Updated")</script>';
 
-echo "<script>window.location.href='index.php'</script>"; 
+echo "<script>window.location.href='enroll_exam.php'</script>"; 
 
 }
 
@@ -34,8 +50,11 @@ echo "<script>window.location.href='index.php'</script>";
 
 
 <link href="../style/button.css" rel="stylesheet" type="text/css">
-<hr>
+
+
+<br>
   <div class="container">
+  <h1 style="align-content: center;font-size:50px;font-family:cursive;" align="center">Exam Feedback</h1><br>
 
       <div class="row">
         <div class="col-md-3">
@@ -51,7 +70,7 @@ echo "<script>window.location.href='index.php'</script>";
                        </div>
               <!-- <div class="card-header" style="font-family:comic sans MS;color:blue;font-size:larger;"><center>Student Login</center></div> -->
               <div class="card-body">
-                <form method="post" id="user_login_form">
+                <form method="post" id="mal_feedback">
                   <div class="form-group">
                     <label style="top:5px;">Exam ID : </label>
                     <div style="margin-bottom: 25px;top:5px" class="input-group" >
