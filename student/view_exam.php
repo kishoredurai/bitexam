@@ -337,7 +337,7 @@ document.addEventListener("visibilitychange", event => {
 	// ["online_exam_status"] == 'Completed'
 	window.close();
     //   console.log(camtest);
-	window.location.assign("submit.php?id="+exam_id);
+	window.location.assign("submit.php?del="+exam_id);
   }
 })
 
@@ -420,18 +420,11 @@ $(document).ready(function(){
 		{
 			window.location = 'enroll_exam.php';
 		}
-		if(remaining_second == 30 )
+		if(remaining_second == 30)
 		{
 			window.alert('please stop recording');
 		}
-		if(remaining_second == 20 )
-		{
-			window.alert('please stop recording');
-		}
-		if(remaining_second == 10 )
-		{
-			window.alert('please stop recording');
-		}
+		
 	}, 1000);
 
 	$(document).on('click', '.answer_option', function(){

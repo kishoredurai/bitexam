@@ -365,7 +365,7 @@ class Examination
 
 					$this->execute_query();
 
-					$this->query = "UPDATE user_exam_enroll_table SET exam_status = 'Present' WHERE exam_id = ".$row['online_exam_id']."AND user_id=".$user_id."	";
+					$this->query = "UPDATE user_exam_enroll_table SET exam_status = 'Present' WHERE exam_id = ".$row['online_exam_id']."AND user_id=".$user_id.";";
 
 					$this->execute_query();
 				}					

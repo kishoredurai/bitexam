@@ -561,7 +561,7 @@ if(isset($_POST['page']))
 					<br /><br />
 				  	<div align="center">
 				   		<button type="button" name="previous" class="btn blue previous" id="'.$previous_id.'" '.$if_previous_disable.'>PREVIOUS</button>&nbsp;
-						   <button type="button" name="next" class="btn info next" id="'.$next_id.'" '.$if_next_disable.'>  NEXT  </button>'.' <br> <hr> <a class="btn success" href="submit.php?id='.$ex_id.'">SUBMIT</a>
+						   <button type="button" name="next" class="btn info next" id="'.$next_id.'" '.$if_next_disable.'>  NEXT  </button>'.' <br> <hr> <a class="btn success"  href="submit.php?id='.$ex_id.'">SUBMIT</a>
 						</br></hr>
 				  	</div>
 					  <br /><br />';
