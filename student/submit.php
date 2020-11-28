@@ -10,7 +10,7 @@ include('../include/db.php');
 require_once '../include/db.php';
 
 
-
+$current_datetime = date("Y-m-d") . ' ' . date("H:i:s", STRTOTIME(date('h:i:sa')));
 
 if(intval($_GET['del']))
 {
@@ -40,10 +40,10 @@ $body = '<html><body><head>
 	<p style="font-size:150%;color:black;">BIT Online Examination System</p>
     </body></html>';
 
+    
 
 
-
-$sql= "UPDATE user_exam_enroll_table SET exam_status='Completed',attendance_status='Present' ,remark='tabswitching' WHERE user_id = $id and exam_id= $examid;";
+$sql= "UPDATE user_exam_enroll_table SET exam_status='Completed',attendance_status='Present' ,remark='tabswitching',exam_outtime=CURRENT_TIMESTAMP() WHERE user_id = $id and exam_id= $examid;";
 $result = mysqli_query($db, $sql);
 
 $exam->send_email($receiver_email,$subject,$body);
@@ -55,7 +55,7 @@ if(intval($_GET['id']))
 {	
 $examid=intval($_GET['id']);
 $id = $_SESSION['user_id'];
-$sql= "UPDATE user_exam_enroll_table SET exam_status='Completed',attendance_status='Present',remark='submitted' WHERE user_id = $id and exam_id= $examid;";
+$sql= "UPDATE user_exam_enroll_table SET exam_status='Completed',attendance_status='Present',remark='submitted',exam_outtime=CURRENT_TIMESTAMP() WHERE user_id = $id and exam_id= $examid;";
 $result = mysqli_query($db, $sql);
 }
 

@@ -149,17 +149,13 @@ if($exam_status == 'Started')
 	$exam->data = array(
 		':user_id'		=>	$_SESSION['user_id'],
 		':exam_id'		=>	$exam_id,
-		':intime'		=>	$current_datetime,
 		':attendance_status'	=>	'Present'
 		
 	);
 
 	$exam->query = "
 	UPDATE user_exam_enroll_table 
-	SET attendance_status = :attendance_status,intime=:intime 
-	WHERE user_id = :user_id 
-	AND exam_id = :exam_id
-	";
+	SET attendance_status = :attendance_status,exam_status='Completed' 	WHERE user_id = :user_id AND exam_id = :exam_id	";
 
 	$exam->execute_query();
 
@@ -417,8 +413,8 @@ $(document).ready(function(){
 	setInterval(function(){
 		var remaining_second = $("#exam_timer").TimeCircles().getTime();
 		if(remaining_second < 1 )
-		{			
-			window.location = 'submit.php';
+		{		
+		window.location = 'index.php';
 		}
 		if(remaining_second < 30 && remaining_second > 28)
 		{
