@@ -20,6 +20,7 @@ include('header.php');
 			</div>
 			<div class="col-md-3" align="right">
 				<a href="pdf_exam_result.php?code=<?php echo $_GET['code']; ?>" class="btn btn-danger btn-sm" target="_blank">PDF</a>
+				<a href="xls_exam_result.php?code=<?php echo $_GET['code']; ?>" s class="btn btn-success btn-sm" target="_blank">EXCEL</a>
 			</div>
 		</div>
 	</div>
