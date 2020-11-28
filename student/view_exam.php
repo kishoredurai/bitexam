@@ -1,5 +1,4 @@
 <head>
-    
     <script src='https://meet.jit.si/external_api.js'></script>
     <div id="jitsi-container" style="padding-right:20px" align="right"></div>
     
@@ -112,6 +111,7 @@ $remaining_minutes = '';
 
 if(isset($_GET['code']))
 {
+	
 	$exam_id = $exam->Get_exam_id($_GET["code"]);
 	$exam->query = "
 	SELECT online_exam_status, online_exam_datetime, online_exam_duration FROM online_exam_table 
