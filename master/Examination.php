@@ -361,13 +361,13 @@ class Examination
 						':online_exam_status'	=>	'Completed'
 					);
 
-					$this->query = "UPDATE online_exam_table SET online_exam_status = :online_exam_status WHERE online_exam_id = '".$row['online_exam_id']."'";
+					 $this->query = "UPDATE online_exam_table SET online_exam_status = :online_exam_status WHERE online_exam_id = '".$row['online_exam_id']."'";
 
-					$this->execute_query();
+					 $this->execute_query();
 
-					$this->query = "UPDATE user_exam_enroll_table SET exam_status = 'Present' WHERE exam_id = ".$row['online_exam_id']."AND user_id=".$user_id.";";
+					 $this->query = "UPDATE user_exam_enroll_table SET exam_status = 'Present' WHERE exam_id = ".$row['online_exam_id']."AND user_id=".$user_id.";";
 
-					$this->execute_query();
+					 $this->execute_query();
 				}					
 			}
 			// if($_SESSION['start'])

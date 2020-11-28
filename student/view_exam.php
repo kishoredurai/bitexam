@@ -1,4 +1,5 @@
 <head>
+    
     <script src='https://meet.jit.si/external_api.js'></script>
     <div id="jitsi-container" style="padding-right:20px" align="right"></div>
     
@@ -111,8 +112,6 @@ $remaining_minutes = '';
 
 if(isset($_GET['code']))
 {
-	echo "<script type='text/javascript'>window.alert('Reminder ! start Recording');</script>";
-
 	$exam_id = $exam->Get_exam_id($_GET["code"]);
 	$exam->query = "
 	SELECT online_exam_status, online_exam_datetime, online_exam_duration FROM online_exam_table 
@@ -337,7 +336,7 @@ document.addEventListener("visibilitychange", event => {
 	// ["online_exam_status"] == 'Completed'
 	window.close();
     //   console.log(camtest);
-	window.location.assign("submit.php?del="+exam_id);
+	window.location.assign("submit.php?id="+exam_id);
   }
 })
 
@@ -418,13 +417,8 @@ $(document).ready(function(){
 		var remaining_second = $("#exam_timer").TimeCircles().getTime();
 		if(remaining_second < 1)
 		{
-			window.location = 'enroll_exam.php';
+			window.location = 'submit.php';
 		}
-		if(remaining_second == 30)
-		{
-			window.alert('please stop recording');
-		}
-		
 	}, 1000);
 
 	$(document).on('click', '.answer_option', function(){
