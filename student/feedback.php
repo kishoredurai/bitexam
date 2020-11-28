@@ -30,7 +30,7 @@ if(isset($_REQUEST['del']))
 
 <div class="card border border-success" >
     <div class="card-header" style="font-size: 30px;font-family:Times;">Feedback List
-    <div style="float:right; font-size: 50%; position: relative;" ><a class="btn info" href="feedback_add.php">Add Feed</a></div></div>
+    <div style="float:right; font-size: 50%; position: relative;" ><a class="btn info" href="feedback_add.php">Submit Feedback</a></div></div>
 
 	<div class="card-body">
 		<div class="table-responsive">

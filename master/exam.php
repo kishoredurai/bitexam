@@ -36,6 +36,7 @@ include('../include/db.php');
 						<th>Enroll</th>
 						<th>Question</th>
 						<th>Result</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 			</table>
@@ -166,10 +167,7 @@ include('../include/db.php');
 	                			<select name="marks_per_wrong_answer" id="marks_per_wrong_answer" class="form-control">
 									<option value="">Select</option>
 									<option value="0">0 Mark</option>
-	                				<option value="1">-1 Mark</option>
-	                				<option value="1.25">-1.25 Mark</option>
-	                				<option value="1.50">-1.50 Mark</option>
-	                				<option value="2">-2 Mark</option>
+	                				
 	                			</select>
 	                		</div>
             			</div>

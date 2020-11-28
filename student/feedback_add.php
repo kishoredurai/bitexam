@@ -53,7 +53,8 @@ move_uploaded_file($profiletmpname, '../feedback_image/'.$profilename);
                             <label for="sel1"><b>Feedback TO :</b></label>
                             <select class="form-control" name="type" id="sel1">
                                 <option value="Administrator">Administrator</option>
-                                <option value="Staff">Staff</option>
+                                <option value="COE">Controller of Examination</option>
+                                <option value="Faculty">Faculty</option>
                             </select>
                         </div>
                         <div class="form-group">

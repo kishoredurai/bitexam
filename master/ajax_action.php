@@ -270,7 +270,7 @@ if(isset($_POST['page']))
 				if($exam->Is_allowed_add_question($row['online_exam_id']))
 				{
 					$question_button = '
-					<button type="button" name="add_question" class="btn btn-info btn-sm add_question" id="'.$row['online_exam_id'].'">Add Question</button>
+					<button type="button" name="add_question" class="btn btn-info btn-sm add_question" id="'.$row['online_exam_id'].'">Add Question</button>&nbsp;<a href="question.php?code='.$row['online_exam_code'].'" class="btn btn-warning btn-sm">View Question</a>
 					';
 				}
 				else

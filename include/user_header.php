@@ -46,9 +46,7 @@
           <li class="nav-item">
             <div class="topnav"><a style="color: black;" class="nav-link" href="../student/feedback.php">Feedback</a></div>
           </li>
-          <li class="nav-item">
-            <div class="topnav"> <a style="color: black;" class="nav-link" href="../student/event_calender.php">Upcoming Events</a></div>
-          </li>
+         
         </ul>
 
         <?php
