@@ -416,11 +416,11 @@ $(document).ready(function(){
 
 	setInterval(function(){
 		var remaining_second = $("#exam_timer").TimeCircles().getTime();
-		if(remaining_second < 3)
-		{
-			window.location = 'enroll_exam.php';
+		if(remaining_second < 1 )
+		{			
+			window.location = 'submit.php';
 		}
-		if(remaining_second > 30 && remaining_second < 28)
+		if(remaining_second < 30 && remaining_second > 28)
 		{
 			window.alert('please stop recording');
 		}
