@@ -1,10 +1,26 @@
 <?php
 
 //exam.php 
+require_once '../include/db.php';
 
+include('../include/db.php');
 include('header.php');
 
 
+if(isset($_POST['button_action'])) 
+{
+	$coursename = $_POST["course"];
+	$result = mysqli_query($db, "insert into course_table(course_name) values ('$coursename');");
+    echo '<script>alert("Course Added")</script>';
+}
+
+// if(intval($_GET['del']))
+// {
+// 	$courseid=intval($_GET['del']);
+// 	$exam->query ="DELETE FROM course_table WHERE course_id='$courseid';";
+// 	$results = $exam->query_result();
+// 	echo '<script>alert("Course Deleted Successfully")</script>';
+// }
 ?>
 <br ><br>
 <div class="card">
@@ -14,7 +30,7 @@ include('header.php');
 				<h3 class="panel-title">Course Table</h3>
 			</div>
 			<div class="col-md-3" align="right">
-				<!-- <button type="button" id="add_button" class="btn btn-info btn-sm">Add</button> -->
+			<button type="button" id="add_button" class="btn info btn-sm">Add</button>
 			</div>
 		</div>
 	</div>
@@ -27,7 +43,7 @@ include('header.php');
 						<th>Course ID</th>
 						<th>Course Name</th>
 						<th>Created Date</th>
-					
+						<th>Action</th>
 					</tr>
                 </thead>
                 <tbody>
@@ -41,7 +57,8 @@ foreach($result as $row)
                 <tr>
                 <td><?php echo $row['course_id'];?></td>
 				<td><?php echo $row['course_name'];?></td>
-                <td><?php echo $row['create_date'];?></td>
+				<td><?php echo $row['create_date'];?></td>
+				<td><a class="btn danger" href="course.php?del=<?php echo $row['course_id'];?>">delete</a></td>
                 </tr>
                 </tbody>
                 <?php }  ?>
@@ -50,118 +67,45 @@ foreach($result as $row)
 	</div>
 </div>
 
-<!-- <div class="modal" id="formModal">
+<div class="modal" id="formModal">
   	<div class="modal-dialog modal-lg">
     	<form method="post" id="exam_form">
-      		<div class="modal-content"> -->
+      		<div class="modal-content">
       			<!-- Modal Header -->
-        		<!-- <div class="modal-header">
+        		<div class="modal-header">
           			<h4 class="modal-title" id="modal_title"></h4>
           			<button type="button" class="close" data-dismiss="modal">&times;</button>
-        		</div> -->
+        		</div>
 
         		<!-- Modal body -->
-        		<!-- <div class="modal-body">
+        		<div class="modal-body">
           			<div class="form-group">
             			<div class="row">
-              				<label class="col-md-4 text-right">Exam Title <span class="text-danger">*</span></label>
+              				<label class="col-md-4 text-right">Course Name <span class="text-danger">*</span></label>
 	              			<div class="col-md-8">
-	                			<input type="text" name="online_exam_title" id="online_exam_title" class="form-control" />
+	                			<input type="text" name="course" id="online_exam_title" class="form-control" />
 								
 	                		</div>
             			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Exam Date & Time <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<input type="text" name="online_exam_datetime" id="online_exam_datetime" class="form-control" readonly />
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Exam Duration <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<select name="online_exam_duration" id="online_exam_duration" class="form-control">
-									<option value="">Select</option>
-									<option value="2">1 Minute</option>
-									<option value="3">2 Minute</option>
-	                				<option value="6">5 Minute</option>
-	                				<option value="31">30 Minute</option>
-	                				<option value="61">1 Hour</option>
-	                				<option value="121">2 Hour</option>
-	                				<option value="181">3 Hour</option>
-	                			</select>
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Total Question <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<select name="total_question" id="total_question" class="form-control">
-									<option value="">Select</option>
-									<option value="2">2 Question</option>
-	                				<option value="5">5 Question</option>
-	                				<option value="10">10 Question</option>
-	                				<option value="25">25 Question</option>
-	                				<option value="50">50 Question</option>
-	                				<option value="100">100 Question</option>
-	                				<option value="200">200 Question</option>
-	                				<option value="300">300 Question</option>
-	                			</select>
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Marks for Right Answer <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<select name="marks_per_right_answer" id="marks_per_right_answer" class="form-control">
-	                				<option value="">Select</option>
-	                				<option value="1">+1 Mark</option>
-	                				<option value="2">+2 Mark</option>
-	                				<option value="3">+3 Mark</option>
-	                				<option value="4">+4 Mark</option>
-	                				<option value="5">+5 Mark</option>
-	                			</select>
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Marks for Wrong Answer <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<select name="marks_per_wrong_answer" id="marks_per_wrong_answer" class="form-control">
-									<option value="">Select</option>
-									<option value="0">0 Mark</option>
-	                				<option value="1">-1 Mark</option>
-	                				<option value="1.25">-1.25 Mark</option>
-	                				<option value="1.50">-1.50 Mark</option>
-	                				<option value="2">-2 Mark</option>
-	                			</select>
-	                		</div>
-            			</div>
-          			</div>
-        		</div> -->
+					  </div>
 
 	        	<!-- Modal footer -->
-	        	<!-- <div class="modal-footer">
+	        	<div class="modal-footer">
 	        		<input type="hidden" name="online_exam_id" id="online_exam_id" />
 
 	        		<input type="hidden" name="page" value="exam" />
 
 	        		<input type="hidden" name="action" id="action" value="Add" />
 
-	        		<input type="submit" name="button_action" id="button_action" class="btn success btn-sm" value="Add" />
+	        		<input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Add" />
 
-	          		<button type="button" class="btn danger btn-sm" data-dismiss="modal">Close</button>
+	          		<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
 	        	</div>
         	</div>
     	</form>
   	</div>
-</div> -->
+</div>
+
 
 
 <script>

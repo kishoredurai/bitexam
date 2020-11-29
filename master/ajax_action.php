@@ -214,6 +214,10 @@ if(isset($_POST['page']))
 
 				$sub_array[] = $row['online_exam_datetime'];
 
+				$sub_array[] = $row['user_year'];
+
+				$sub_array[] = $row['user_course'];
+
 				$sub_array[] = $row['online_exam_duration'] . ' Minute';
 
 				$sub_array[] = $row['total_question'] . ' Question';
@@ -350,7 +354,9 @@ if(isset($_POST['page']))
 
 				$output['online_exam_datetime'] = $row['online_exam_datetime'];
 
-				$output['online_exam_duration'] = $row['online_exam_duration'];
+				$output['online_exam_year'] = $row['user_year'];
+
+				$output['online_exam_course'] = $row['user_course'];
 
 				$output['total_question'] = $row['total_question'];
 
@@ -368,6 +374,8 @@ if(isset($_POST['page']))
 				':online_exam_title'	=>	$_POST['online_exam_title'],
 				':online_exam_datetime'	=>	$_POST['online_exam_datetime'] . ':00',
 				':online_exam_duration'	=>	$_POST['online_exam_duration'],
+				':exam_year'			=>	$_POST['exam_year'],
+				':exam_course'			=>	$_POST['exam_course'],
 				':total_question'		=>	$_POST['total_question'],
 				':marks_per_right_answer'=>	$_POST['marks_per_right_answer'],
 				':marks_per_wrong_answer'=>	$_POST['marks_per_wrong_answer'],
@@ -376,7 +384,7 @@ if(isset($_POST['page']))
 
 			$exam->query = "
 			UPDATE online_exam_table 
-			SET online_exam_title = :online_exam_title, online_exam_datetime = :online_exam_datetime, online_exam_duration = :online_exam_duration, total_question = :total_question, marks_per_right_answer = :marks_per_right_answer, marks_per_wrong_answer = :marks_per_wrong_answer  
+			SET online_exam_title = :online_exam_title, online_exam_datetime = :online_exam_datetime, user_year = :exam_year, user_course = :exam_course, online_exam_duration = :online_exam_duration, total_question = :total_question, marks_per_right_answer = :marks_per_right_answer, marks_per_wrong_answer = :marks_per_wrong_answer  
 			WHERE online_exam_id = :online_exam_id
 			";
 

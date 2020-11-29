@@ -28,6 +28,8 @@ include('../include/db.php');
 					<tr>
 						<th>Exam Title</th>
 						<th>Date & Time</th>
+						<th>Student Year</th>
+						<th>Student Course</th>
 						<th>Duration</th>
 						<th>Total Question</th>
 						<th>Right Answer Mark</th>
@@ -69,7 +71,7 @@ include('../include/db.php');
             			<div class="row">
               				<label class="col-md-4 text-right">Exam Year<span class="text-danger">*</span></label>
 	              			<div class="col-md-8">
-	                			<select name="exam_year" id="online_exam_duration" class="form-control">
+	                			<select name="exam_year" id="online_exam_year" class="form-control">
 									<option value="">Select</option>
 									<option value="I">I</option>
 									<option value="II">II</option>
@@ -85,7 +87,7 @@ include('../include/db.php');
             			<div class="row">
               				<label class="col-md-4 text-right">Course : <span class="text-danger">*</span></label>
 	              			<div class="col-md-8">
-	                			<select name="exam_course" id="online_exam_duration" class="form-control">
+	                			<select name="exam_course" id="online_exam_course" class="form-control">
 								<?php
 							require_once '../include/db.php';
 									
@@ -427,6 +429,10 @@ $(document).ready(function(){
 				$('#online_exam_title').val(data.online_exam_title);
 
 				$('#online_exam_datetime').val(data.online_exam_datetime);
+
+				$('#online_exam_year').val(data.online_exam_year);
+
+				$('#online_exam_course').val(data.online_exam_course);
 
 				$('#online_exam_duration').val(data.online_exam_duration);
 
