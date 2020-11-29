@@ -16,7 +16,7 @@ include('../include/db.php');
 				<h3 class="panel-title">Online Exam List</h3>
 			</div>
 			<div class="col-md-3" align="right">
-				<button type="button" id="add_button" class="btn btn-info btn-sm">Add</button>
+				<button type="button" id="add_button" class="btn info btn-sm">Add</button>
 			</div>
 		</div>
 	</div>
@@ -33,8 +33,8 @@ include('../include/db.php');
 						<th>Right Answer Mark</th>
 						<th>Wrong Answer Mark</th>
 						<th>Status</th>
-						<th>Enroll</th>
 						<th>Question</th>
+						<th>Enrolled student</th>
 						<th>Result</th>
 						<th>Action</th>
 					</tr>

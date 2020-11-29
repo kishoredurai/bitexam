@@ -162,6 +162,7 @@ if (isset($_SESSION["user_id"])) {
 						$('#enroll_button').attr('disabled', false);
 						$('#enroll_button').removeClass('btn-warning');
 						$('#enroll_button').addClass('btn-success');
+						$('#enroll_button').attr('disabled', 'disabled');
 						$('#enroll_button').text('Enroll success');
 						window.location.href='enroll_exam.php';
 					}

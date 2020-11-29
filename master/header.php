@@ -14,8 +14,9 @@ $exam->admin_session_private();
 <html lang="en">
 
 <head>
-    <title>Online Examination System in PHP</title>
-    <meta charset="utf-8">
+<link rel="icon" href="../include/bit1.png " type="image/icon type">
+  	<title>Online Examination System - datastack</title>
+          <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style1/bootstrap.min.css">
     <link rel="stylesheet" href="style1/Datatables.bootstrap4.min.css">
@@ -72,7 +73,7 @@ WHERE admin_id = '" . $_SESSION['admin_id'] . "'
         ?>
             <form class="form-inline my-2 my-lg-0">
             <div class="dropdown "> &emsp;&nbsp;&nbsp;&nbsp;
-              <a class="dropdown-toggle" padding="10dp" type="button" data-toggle="dropdown">&nbsp;&nbsp;&nbsp;&nbsp; <img class="rounded-circle" width="30" height="30" alt="100x100" src="https://upload.wikimedia.org/wikipedia/en/7/77/Bannari_Amman_Institute_of_Technology_logo.png" data-holder-rendered="true">&nbsp;<?php echo $row["admin_name"]; ?>
+              <a class="dropdown-toggle" padding="10dp" type="button" data-toggle="dropdown">&nbsp;&nbsp;&nbsp;&nbsp; <img class="rounded-circle" width="35" height="30" alt="100x100" src="../include/bit1.png" data-holder-rendered="true">&nbsp;&nbsp;<b><?php echo $row["admin_name"]; ?></b>
                 <span class="caret"></span></a>
               <ul class="dropdown-menu ">
                 <a class="dropdown-item " href="profile.php">Profile</a>

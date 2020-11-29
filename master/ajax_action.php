@@ -262,7 +262,7 @@ if(isset($_POST['page']))
 				}
 				else
 				{
-					$result_button = '<a href="exam_result.php?code='.$row["online_exam_code"].'" class="btn btn-dark btn-sm">Result</a>';
+					$result_button = '<a href="exam_result.php?code='.$row["online_exam_code"].'" class="btn success btn-sm">Result</a>';
 				}
 
 				if($exam->Is_allowed_add_question($row['online_exam_id']))
@@ -283,7 +283,7 @@ if(isset($_POST['page']))
 
 				$sub_array[] = $question_button;
 
-				$sub_array[] = '<a href="exam_enroll.php?code='.$row['online_exam_code'].'" class="btn btn-secondary btn-sm">Enroll</a>';
+				$sub_array[] = '<a href="exam_enroll.php?code='.$row['online_exam_code'].'" class="btn warning btn-sm">Enrolled</a>';
 
 				$sub_array[] = $result_button;
 

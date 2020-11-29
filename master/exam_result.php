@@ -19,8 +19,8 @@ include('header.php');
 				<h3 class="panel-title">Exam Result</h3>
 			</div>
 			<div class="col-md-3" align="right">
-				<a href="pdf_exam_result.php?code=<?php echo $_GET['code']; ?>" class="btn btn-danger btn-sm" target="_blank">PDF</a>
-				<a href="xls_exam_result.php?code=<?php echo $_GET['code']; ?>" s class="btn btn-success btn-sm" target="_blank">EXCEL</a>
+				<a href="pdf_exam_result.php?code=<?php echo $_GET['code']; ?>" class="btn danger btn-sm" target="_blank">PDF</a>
+				<a href="xls_exam_result.php?code=<?php echo $_GET['code']; ?>" s class="btn success btn-sm" target="_blank">EXCEL</a>
 			</div>
 		</div>
 	</div>

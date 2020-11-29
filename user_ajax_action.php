@@ -421,6 +421,8 @@ if(isset($_POST['page']))
 				if($row["online_exam_status"] == 'Completed')
 				{
 					//$view_exam = '<a href="view.php?code='.$row["online_exam_code"].'" class="btn warning btn-sm">View Exam</a>';
+					$view_exam = '<span class="badge badge-success">Exam Completed</span>';
+
 				}
 				if($row["online_exam_status"] == 'Started' and $row["exam_status"] == 'Completed')
 				{

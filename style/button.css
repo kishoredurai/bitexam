@@ -1,5 +1,5 @@
 .btn {
-    border: 2px solid white;
+    border: 3px solid white;
     border-radius: 5px;
     padding: 6px 20px;
     font-size: 20px;
@@ -59,4 +59,15 @@
 .danger:hover {
     background-color: white;
     color: #dd0b0b;
+}
+
+.yellow {
+    background-color: #e6d819;
+    border-color: #e6d819;
+    color: white;
+}
+
+.yello:hover {
+    background-color: white;
+    color: #e6d819;
 }

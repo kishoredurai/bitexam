@@ -19,7 +19,7 @@ if (isset($_REQUEST['id']))
 	<div class="card-header">
 		<div class="row">
 			<div class="col-md-9">
-				<h3 class="panel-title">Course Table</h3>
+				<h3 class="panel-title">Feedback Table</h3>
 			</div>
 			<div class="col-md-3" align="right">
 				<!-- <button type="button" id="add_button" class="btn btn-info btn-sm">Add</button> -->
@@ -30,6 +30,8 @@ if (isset($_REQUEST['id']))
 		<span id="message_operation"></span>
 		<div class="table-responsive">
 			<table id="exam_data_table" class="table table-bordered table-striped table-hover">
+	
+    
 				<thead>
 					<tr>
 						<th>Feedback ID</th>
@@ -49,19 +51,20 @@ $result = $exam->query_result();
 foreach($result as $row)
 {
 ?>
-                <tr>
+            <tr>
                 <td><?php echo $row['f_id'];?></td>
 				<td><?php echo $row['user_id'];?></td>
 				<td><?php echo $row['feed'];?></td>
-				<td><?php echo $row['feed_status'];?></td>
+				<td><?php if($row['feed_status']=="Pending")
+				{?><span class="badge badge-primary">Pending</span><?php } else { ?><span class="badge badge-success">Solved</span></td><?php } ?>
 				<td><?php echo $row['feed_timestamp'];?></td>
 				<td>
           <?php if($row['feed_image']!=NULL){?>
           <img src="../feedback_image/<?php echo $row['feed_image'];?>" class="img-thumbnail" width="150" /><?php }else{?>
 			<div class="badge badge-danger text-wrap font-weight-bold" style="width: 8rem;height: 25px;font-size: 18px;"> No Image </div></td>
 			<?php	} if($row['feed_status']=="Pending") {?>
-				<td><button type="submit" class="btn info" id="add_button" >View</button></td><?php }else{ ?>
-					<td><div class="badge badge-success text-wrap font-weight-bold" style="width: 8rem;height: 25px;font-size: 18px;">Solved</div></td> <?php }   ?>
+				<td><a type="submit" class="btn info" href="feedback_add.php?examid=<?php echo $row['f_id'];?>" >View</a></td><?php }else{ ?>
+				<td><div class="badge badge-success text-wrap font-weight-bold" style="width: 8rem;height: 25px;font-size: 18px;">Solved</div></td> <?php }  } ?>
                 </tr>
 				</tbody>
 				
@@ -76,13 +79,23 @@ foreach($result as $row)
         		</div>
 
         		<!-- Modal body -->
+				<div class="modal-body">
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Feedback ID:<span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" placeholder="<?php echo $row['f_id'];?>" value="<?php echo $row['f_id'];?>" name="feedid" id="online_exam_title" class="form-control" disabled/>
+								
+	                		</div>
+            			</div>
+          			</div>
         		<div class="modal-body">
           			<div class="form-group">
             			<div class="row">
               				<label class="col-md-4 text-right">Feeback Remark <span class="text-danger">*</span></label>
 	              			<div class="col-md-8">
 	                			<textarea type="text" row="15" cols="50" name="remark" id="online_exam_title" class="form-control" ></textarea>
-								
+							 		
 	                		</div>
             			</div>
           			</div>
@@ -106,7 +119,7 @@ foreach($result as $row)
 	        	<div class="modal-footer">
 	        		
 
-	        	<input align="center" name="Done" type="submit" id="button_action" class="btn success btn-sm" value="Done" href="staff_feedback.php?id=<?php echo $row['f_id'];?>" value="Done">
+	        	<button align="center" name="Done" type="submit" id="button_action" class="btn success btn-sm">Done</a></button>
 
 	          		<button type="button" class="btn danger btn-sm" data-dismiss="modal">Close</button>
 	        	</div>
@@ -116,7 +129,7 @@ foreach($result as $row)
 			
   	</div>
 </div>
-				<?php }   ?>  
+
 			</table>
 		</div>
 	</div>

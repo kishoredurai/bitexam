@@ -45,9 +45,9 @@ $body = '<html><body><head>
 
 $sql= "UPDATE user_exam_enroll_table SET exam_status='Completed',attendance_status='Present' ,remark='tabswitching',exam_outtime=CURRENT_TIMESTAMP() WHERE user_id = $id and exam_id= $examid;";
 $result = mysqli_query($db, $sql);
+echo "<script>window.location.href='index.php'</script>";  
 
 $exam->send_email($receiver_email,$subject,$body);
-header("location:enroll_exam.php");
 }
 
 
@@ -59,5 +59,5 @@ $sql= "UPDATE user_exam_enroll_table SET exam_status='Completed',attendance_stat
 $result = mysqli_query($db, $sql);
 }
 
-header("location:enroll_exam.php");
+echo "<script>window.location.href='index.php'</script>";  
 ?>

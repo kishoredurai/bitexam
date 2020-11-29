@@ -1,9 +1,9 @@
-<!--// source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  	<title>Online Examination System in PHP</title>
-  	<meta charset="utf-8">
+<link rel="icon" href="../include/bit1.png " type="image/icon type">
+  	<title>Online Examination System - datastack</title>
+      	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="../style1/bootstrap.min.css">
     <link rel="stylesheet" href="../style1/dataTables.bootstrap4.min.css">

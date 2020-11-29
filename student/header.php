@@ -1,8 +1,6 @@
-<!--// source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  	<title>Online Examination System in PHP</title>
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="../style1/bootstrap.min.css">
@@ -14,6 +12,8 @@
     <script src="../style1/dataTables.min.js"></script>
     <script src="../style1/dataTables.bootstrap4.min.js"></script>
   	<link rel="stylesheet" href="../style/style.css" />
+
+
     <link rel="stylesheet" href="../style/TimeCircles.css" />
     <script src="../style/TimeCircles.js"></script>
     <link href="../style/button.css" rel="stylesheet" type="text/css">
