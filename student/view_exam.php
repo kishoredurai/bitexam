@@ -160,6 +160,8 @@ if($exam_status == 'Started')
 	$exam->execute_query();
 
 ?>
+
+<meta http-equiv="refresh" content="10">
 <div class="row">
 	<div class="col-md-8" onmousedown="return false" onselectstart="return false">
 		<div class="card border border-success">

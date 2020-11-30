@@ -21,9 +21,11 @@ if(isset($_POST['reset']))
  
   if(mysqli_num_rows($result) == 1)
   {
+
     $row=mysqli_fetch_array($result);
     $email=$row["user_email_address"];
     $id=$row["user_id"];
+    $name=$row["user_name"];
     require 'vendor/autoload.php';
     $mail = new PHPMailer(true);
     //Server settings
@@ -31,21 +33,24 @@ if(isset($_POST['reset']))
     $mail->isSMTP();                                            // Set mailer to use SMTP
     $mail->Host       = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'kishoredurai7@gmail.com';                     // SMTP username
-    $mail->Password   = 'kishore@2709';                               // SMTP password
+    $mail->Username   = 'cloud@bitsathy.ac.in';                     // SMTP username
+    $mail->Password   = 'Cloud@987';                               // SMTP password
     $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
     $mail->Port       = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('kishoredurai7@gmail.com', 'Kishore D');
+    $mail->setFrom('cloud@bitsathy.ac.in', 'Datastack');
     $mail->addAddress($email);
 
-    $body="reset password verification";
+    $body="password reset verification";
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject= $body;
-    $mail->Body =$message="You activation link is:http://localhost/examination-application/student/password_change.php?id=$id";
+    $mail->Body =$message='<center><img src="https://img.collegedekhocdn.com/media/img/institute/logo/BIT-Tamilnadu-logo_1.png" width="750" height="160" ></center><br>
+    <h3 style="font-size:180%;color:black;">Dear <b>'.$name.',</b></h3><p style="font-size:150%;">          Your Password Reset <a href="http://localhost/examination-application/student/password_change.php?id='.$id.'">link</a></p>
+    <p style="font-size:150%;color:black;"><b>Thank you,</b></p>
+	  <p style="font-size:150%;color:black;">BIT Online Examination System</p>';
     $mail->send();
  //   Message();
     echo '<script>alert("Verification Link is send to your Email")</script>'; 

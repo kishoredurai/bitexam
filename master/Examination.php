@@ -92,13 +92,13 @@ class Examination
 			$mail->isSMTP();                                            // Set mailer to use SMTP
 			$mail->Host       = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
 			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-			$mail->Username   = 'kishoredurai7@gmail.com';                     // SMTP username
-			$mail->Password   = 'kishore@2709';                               // SMTP password
+			$mail->Username   = 'cloud@bitsathy.ac.in';                     // SMTP username
+			$mail->Password   = 'Cloud@987';                               // SMTP password
 			$mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
 			$mail->Port       = 587;                                    // TCP port to connect to
 		
 			//Recipients
-			$mail->setFrom('kishoredurai7@gmail.com', 'Kishore D');
+			$mail->setFrom('cloud@bitsathy.ac.in', 'Datastack');
 			$mail->addAddress($receiver_email);
 		
 			// $file_name = $_FILES["file"]["name"];
