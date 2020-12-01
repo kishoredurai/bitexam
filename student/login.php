@@ -2,15 +2,18 @@
 
 //login.php
 
-include('../master/Examination.php');
+    include('../master/Examination.php');
 
-$exam = new Examination;
+    $exam = new Examination;
 
-$exam->user_session_public();
+    $exam->user_session_public();
 
 include('header.php');
 
 ?>
+ <!-- google oauth client id -->
+ <meta name="google-signin-client_id" content="89638810968-hpv4ge9br3be84musd50ooa273k6l5up.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
@@ -73,10 +76,12 @@ include('header.php');
                     <input type="hidden" name="page" value="login" />
                     <input type="hidden" name="action" value="login" />
                     <input type="submit" name="user_login" id="user_login" class="btn success" value=" Login " />&nbsp;
-                    <a class="btn blue" href="register.php">Register</a>
+                    <a class="btn blue" href="register.php">Register</a><br>
+                    
                   </div>
                 </form>
-               
+                <div align="center"><p style="font-size: 150%;">-- or -- </p>
+                  <div id="my-signin2"></div></div>
                   
                 
               </div>
@@ -141,6 +146,61 @@ $(document).ready(function(){
   });
 
 });
-
 </script>
+<script>
+        function onSuccess(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log(profile);
+            signOut();
+
+            var id_token = googleUser.getAuthResponse().id_token;
+            window.location.replace('./verify.php?token=' + id_token);
+            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+        }
+
+        function onFailure(error) {
+            console.log(error);
+        }
+
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        }
+    </script>
+
+    <script src=" https://apis.google.com/js/platform.js?onload=renderButton " async defer></script>
+
+    <!-- body END -->
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="./assets/jquery.js "></script>
+
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log(profile);
+
+            var id_token = googleUser.getAuthResponse().id_token;
+            //signing out user after getting id token;
+            signOut();
+            //redirecting..
+            window.location.replace('./verify.php?token=' + id_token);
+        }
+
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.disconnect();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
+        }
+    </script>
 

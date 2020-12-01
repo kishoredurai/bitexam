@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google oauth client id -->
+    <meta name="google-signin-client_id" content="89638810968-hpv4ge9br3be84musd50ooa273k6l5up.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+
+    <center>
+        <h4>
+            <b>
+                Application
+            </b>
+        </h4>
+    </center>
+
+    <center>
+        <div id="my-signin2"></div>
+
+
+        <!-- <div class="my-signin2" id="loginSubmit" data-onsuccess="onSignIn"></div> -->
+    </center>
+    <script>
+        function onSuccess(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log(profile);
+            signOut();
+
+            var id_token = googleUser.getAuthResponse().id_token;
+            window.location.replace('./verify.php?token=' + id_token);
+            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+        }
+
+        function onFailure(error) {
+            console.log(error);
+        }
+
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        }
+    </script>
+
+    <script src=" https://apis.google.com/js/platform.js?onload=renderButton " async defer></script>
+
+    <!-- body END -->
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="./assets/jquery.js "></script>
+
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log(profile);
+
+            var id_token = googleUser.getAuthResponse().id_token;
+            //signing out user after getting id token;
+            signOut();
+            //redirecting..
+            window.location.replace('./verify.php?token=' + id_token);
+        }
+
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.disconnect();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
