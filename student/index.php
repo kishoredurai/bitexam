@@ -23,10 +23,7 @@ $row_comp = $row['cnt'];
 ?>
 <div class="containter">
 	<br />
-	<?php
-    $url1=$_SERVER['REQUEST_URI'];
-    header("Refresh: 10; URL=$url1");
-?>
+	<meta http-equiv="refresh" content="10">
 
 
 <?php

@@ -96,13 +96,59 @@ if(isset($_POST['page']))
 			$exam->data = array(
 				':user_email_address'	=>	$_POST['user_email_address']
 			);
+			
+// student login checking
+$exam->query = "
+SELECT * FROM user_table 
+WHERE user_email_address = :user_email_address
+";
 
+$total_row = $exam->total_row();
+
+
+if($total_row > 0)
+{
+	$result = $exam->query_result();
+
+	foreach($result as $row)
+	{
+		if($row['user_email_verified'] == 'yes')
+		{
+			if(password_verify($_POST['user_password'], $row['user_password']))
+			{
+				$_SESSION['user_id'] = $row['user_id'];
+				//echo "<script>window.location.href='index.php'</script>";  
+				$output = array(
+					'success'	=>	true
+				);
+				
+
+			}
+			else
+			{
+				$output = array(
+					'error'	=>	'Wrong Password'
+				);
+			}
+		}
+		else
+		{
+			$output = array(
+				'error'		=>	'Your Email is not verify'
+			);
+		}
+	
+	}
+}
+
+		//admin
 			$exam->query = "
-			SELECT * FROM user_table 
-			WHERE user_email_address = :user_email_address
+			SELECT * FROM admin_table 
+			WHERE admin_email_address = :user_email_address
 			";
 
 			$total_row = $exam->total_row();
+
 
 			if($total_row > 0)
 			{
@@ -110,11 +156,11 @@ if(isset($_POST['page']))
 
 				foreach($result as $row)
 				{
-					if($row['user_email_verified'] == 'yes')
+					if($row['email_verified'] == 'yes')
 					{
-						if(password_verify($_POST['user_password'], $row['user_password']))
+						if(password_verify($_POST['user_password'], $row['admin_password']))
 						{
-							$_SESSION['user_id'] = $row['user_id'];
+							$_SESSION['admin_id'] = $row['admin_id'];
 
 							$output = array(
 								'success'	=>	true
@@ -127,12 +173,7 @@ if(isset($_POST['page']))
 							);
 						}
 					}
-					else
-					{
-						$output = array(
-							'error'		=>	'Your Email is not verify'
-						);
-					}
+				
 				}
 			}
 			else
@@ -141,6 +182,9 @@ if(isset($_POST['page']))
 					'error'		=>	'Wrong Email Address'
 				);
 			}
+
+			
+			
 
 			echo json_encode($output);
 		}

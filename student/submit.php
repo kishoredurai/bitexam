@@ -9,9 +9,6 @@ $exam->user_session_private();
 include('../include/db.php');
 require_once '../include/db.php';
 
-
-$current_datetime = date("Y-m-d") . ' ' . date("H:i:s", STRTOTIME(date('h:i:sa')));
-
 if(intval($_GET['del']))
 {
 $examid=intval($_GET['del']);
@@ -23,13 +20,7 @@ foreach($results as $rows)
     $receiver_email=$rows["user_email_address"];
     $user_name=$rows["user_name"];
 }
-$exam->query ="Select * from online_exam_table where online_exam_id = '$examid';";
-$results = $exam->query_result();
-foreach($results as $rows)
-{
-    $online_exam_title=$rows["online_exam_title"];
-    
-}
+
 $subject="Online Examination Application";
 
 $body = '<html><body><head>       
@@ -39,11 +30,6 @@ $body = '<html><body><head>
     <p style="font-size:150%;color:black;"><b>Thank you,</b></p>
 	<p style="font-size:150%;color:black;">BIT Online Examination System</p>
     </body></html>';
-
-    
-
-
-
 
 $sql= "UPDATE user_exam_enroll_table SET exam_status='Completed',attendance_status='Present' ,remark='tabswitching',exam_outtime=CURRENT_TIMESTAMP() WHERE user_id = $id and exam_id= $examid;";
 $result = mysqli_query($db, $sql);

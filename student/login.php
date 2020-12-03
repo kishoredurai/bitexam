@@ -20,6 +20,7 @@ include('header.php');
 <link href="../style/button.css" rel="stylesheet" type="text/css">
 <hr>
   <div class="container">
+	<h1 style="align-content: center;font-size:50px;font-family:Comic Sans MS;color:blue;" align="center">Online Examination System</h1>
 
       <div class="row">
         <div class="col-md-3">
@@ -41,8 +42,8 @@ include('header.php');
             ?>   
             </span>
             <div class="card border border-success">
-            <div class="card-header">Sign In
-                        <div style="float:right; font-size: 80%; position: relative; top:5px;" ><a href="../master/forgot_password.php">Forgot password?</a></div></div>
+            <div class="card-header"><a style="font-size:30px;font-family:cursive;">LOGIN</a>
+                        <div style="float:right; font-size: 80%; position: relative;" ><a class="btn btn-link btn-sm" href="../master/forgot_password.php">  Forgot password?  </a></div></div>
               <!-- <div class="card-header" style="font-family:comic sans MS;color:blue;font-size:larger;"><center>Student Login</center></div> -->
               <div class="card-body">
                 <form method="post" id="user_login_form">
@@ -64,25 +65,21 @@ include('header.php');
                                     
                     <!-- <input type="password" name="user_password" id="user_password" class="form-control" /> -->
                   </div>
-                  <div class="input-group">
-                                      <div class="checkbox">
-                                        <label>
-                                          <input id="remember_me" type="checkbox" name="_remember_me" checked value="1"> Remember me
-                                        </label>
-                                      </div>
-                                    </div>
+                  
                   <div class="form-group" align="center">
                     <br>
                     <input type="hidden" name="page" value="login" />
                     <input type="hidden" name="action" value="login" />
-                    <input type="submit" name="user_login" id="user_login" class="btn success" value=" Login " />&nbsp;
-                    <a class="btn blue" href="register.php">Register</a><br>
+                    <input type="submit" name="user_login" id="user_login" class="btn success" value="  Login  " />&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="btn blue" href="register.php">Register</a>
                     
+
                   </div>
+                  
                 </form>
                 <div align="center"><p style="font-size: 150%;">-- or -- </p>
                   <div id="my-signin2"></div></div>
-                  
+                  <br><Br>
                 
               </div>
             </div>
@@ -92,6 +89,7 @@ include('header.php');
         </div>
       </div>
   </div>
+  <br><Br>
 <style>
 
   </style>
@@ -129,7 +127,7 @@ $(document).ready(function(){
         {
           if(data.success)
           {
-            location.href='index.php';
+            location.href='../master/index.php';
           }
           else
           {

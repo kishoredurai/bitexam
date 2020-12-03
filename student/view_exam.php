@@ -122,9 +122,9 @@ if(isset($_GET['code']))
 
 	foreach($results as $rows)
 	{
-		$remarks = $rows['remark'];
+		$remarks = $rows['exam_status'];
 	}
-	if($remarks=='tabswitching')
+	if($remarks=='Completed')
 	{
 		echo "<script>window.location.href='index.php'</script>";  
 	}

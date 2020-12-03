@@ -29,7 +29,9 @@ $mail = verifyToken($_GET['token']);
 $exam->data = array(
     ':user_email_address'	=>	$mail
 );
+
 $exam->query = "SELECT * FROM user_table WHERE user_email_address = :user_email_address	";
+
 
 $total_row = $exam->total_row();
 
@@ -47,11 +49,29 @@ foreach($result as $row)
     echo "<script>window.location.href='index.php'</script>"; 
 }
 }
+
+
+$exam->query = "SELECT * FROM admin_table WHERE admin_email_address = :user_email_address	";
+
+$total_rows = $exam->total_row();
+
+if($total_rows > 0)
+{
+				
+$result = $exam->query_result();
+
+foreach($result as $row)
+{
+    $_SESSION['admin_id'] = $row['admin_id'];
+    $output = array(
+        'success'	=>	true
+    );
+    echo "<script>window.location.href='../master/index.php'</script>"; 
+}
+}
 else
 {
     echo "<script type='text/javascript'>window.alert('Email ID Does not exsist');</script>";
 
     echo "<script>window.location.href='login.php'</script>"; 
 }
-
-

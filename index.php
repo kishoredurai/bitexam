@@ -31,7 +31,7 @@ include('student/header.php');
 
 <div class="form-group" align="center">
 
-	<a href="master/login.php" class="btn success">Login</a>&nbsp;
+	<a href="student/login.php" class="btn success">Login</a>&nbsp;
 	<a class="btn blue" href="master/register.php">Register</a>
 </div>
 
