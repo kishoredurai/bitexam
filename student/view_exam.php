@@ -111,14 +111,32 @@ $remaining_minutes = '';
 
 if(isset($_GET['code']))
 {
-	echo "<script type='text/javascript'>window.alert('Reminder ! start Recording');</script>";
+	
+	
 
 	$exam_id = $exam->Get_exam_id($_GET["code"]);
+
+	$id=$_SESSION['user_id'];
+	$exam->query = "SELECT * FROM user_exam_enroll_table WHERE user_id = '$id' and exam_id = '$exam_id;'";
+	$results = $exam->query_result();
+
+	foreach($results as $rows)
+	{
+		$remarks = $rows['remark'];
+	}
+	if($remarks=='tabswitching')
+	{
+		echo "<script>window.location.href='index.php'</script>";  
+	}
+
+	echo "<script type='text/javascript'>window.alert('Reminder ! start Recording');</script>";
+
 	$exam->query = "
 	SELECT online_exam_status, online_exam_datetime, online_exam_duration FROM online_exam_table 
 	WHERE online_exam_id = '$exam_id'
 	";
 
+	
 	$result = $exam->query_result();
 
 	foreach($result as $row)

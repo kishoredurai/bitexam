@@ -24,7 +24,7 @@ function verifyToken($token): string
 
 $mail = verifyToken($_GET['token']);
 
-echo 'logged in as ' . $mail;
+//echo 'logged in as ' . $mail;
 
 $exam->data = array(
     ':user_email_address'	=>	$mail
