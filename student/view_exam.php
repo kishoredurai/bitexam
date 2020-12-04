@@ -128,6 +128,29 @@ if(isset($_GET['code']))
 	{
 		echo "<script>window.location.href='index.php'</script>";  
 	}
+	
+	$exam->query = "
+			SELECT question_id FROM question_table 
+			WHERE online_exam_id = '".$exam_id."'
+			";
+			$result = $exam->query_result();
+			foreach($result as $row)
+			{
+				$exam->data = array(
+					':user_id'				=>	$_SESSION['user_id'],
+					':exam_id'				=>	$exam_id,
+					':question_id'			=>	$row['question_id'],
+					':user_answer_option'	=>	'0',
+					':marks'				=>	'0'	
+				);
+
+				$exam->query = "
+				INSERT INTO user_exam_question_answer 
+				(user_id, exam_id, question_id, user_answer_option, marks) 
+				VALUES (:user_id, :exam_id, :question_id, :user_answer_option, :marks)
+				";
+				$exam->execute_query();
+			}
 
 	echo "<script type='text/javascript'>window.alert('Reminder ! start Recording');</script>";
 
@@ -171,9 +194,7 @@ if($exam_status == 'Started')
 		
 	);
 
-	$exam->query = "
-	UPDATE user_exam_enroll_table 
-	SET attendance_status = :attendance_status,exam_status='Completed' 	WHERE user_id = :user_id AND exam_id = :exam_id	";
+	$exam->query = "UPDATE user_exam_enroll_table SET attendance_status = :attendance_status,exam_status='Completed',exam_intime=CURRENT_TIMESTAMP() WHERE user_id = :user_id AND exam_id = :exam_id";
 
 	$exam->execute_query();
 
@@ -352,7 +373,7 @@ document.addEventListener("visibilitychange", event => {
 	// ["online_exam_status"] == 'Completed'
 	window.close();
     //   console.log(camtest);
-	window.location.assign("submit.php?del="+exam_id);
+//	window.location.assign("submit.php?del="+exam_id);
   }
 })
 

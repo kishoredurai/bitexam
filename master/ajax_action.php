@@ -346,20 +346,12 @@ if(isset($_POST['page']))
 				$examid=$rows["online_exam_id"];
 			}
 
-			// $exam->query = "
-			// INSERT INTO user_exam_enroll_table (user_id, exam_id) SELECT user_id, $examid FROM user_table WHERE user_year= $user_year and user_course = $user_course;
-			// ";
-
-			// $exam->execute_query();
-			
 			$results = mysqli_query($db,"INSERT INTO user_exam_enroll_table (user_id, exam_id) SELECT user_id, '$examid' FROM user_table WHERE user_year= '$user_year' and user_course = '$user_course';");
 
-			//$last_id = $Examination->lastInsertId();
-			//echo '<script>alert("Feedback '.$_SESSION['admin_id'].'")</script>';
-
+			
 
 			$output = array(
-				'success'	=>	$examid
+				'success'	=>	'New Exam Added Successfully'
 			);
 
 			echo json_encode($output);
@@ -432,8 +424,12 @@ if(isset($_POST['page']))
 			DELETE FROM online_exam_table 
 			WHERE online_exam_id = :online_exam_id
 			";
+			$e_id=$_POST['exam_id'];
 
 			$exam->execute_query();
+
+			$results = mysqli_query($db,"DELETE FROM user_exam_enroll_table	WHERE exam_id = '$e_id';");
+
 
 			$output = array(
 				'success'	=>	'Exam Details has been removed'
