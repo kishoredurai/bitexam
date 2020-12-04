@@ -1,5 +1,7 @@
 <?php
 
+include('../include/db.php');
+require_once'../include/db.php';
 //ajax_action.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
 
 include('Examination.php');
@@ -309,6 +311,10 @@ if(isset($_POST['page']))
 
 		if($_POST['action'] == 'Add')
 		{
+			$exam_code=md5(rand());
+			$user_year=$_POST['exam_year'];
+			$user_course=$_POST['exam_course'];
+
 			$exam->data = array(
 				':admin_id'				=>	$_SESSION['admin_id'],
 				':online_exam_title'	=>	$exam->clean_data($_POST['online_exam_title']),
@@ -321,7 +327,7 @@ if(isset($_POST['page']))
 				':marks_per_wrong_answer'=>	$_POST['marks_per_wrong_answer'],
 				':online_exam_created_on'=>	$current_datetime,
 				':online_exam_status'	=>	'Pending',
-				':online_exam_code'		=>	md5(rand())
+				':online_exam_code'		=>	$exam_code
 			);
 
 			$exam->query = "
@@ -329,11 +335,31 @@ if(isset($_POST['page']))
 			(admin_id, user_year, user_course, online_exam_title, online_exam_datetime, online_exam_duration, total_question, marks_per_right_answer, marks_per_wrong_answer, online_exam_created_on, online_exam_status, online_exam_code) 
 			VALUES (:admin_id, :user_year, :user_course, :online_exam_title, :online_exam_datetime, :online_exam_duration, :total_question, :marks_per_right_answer, :marks_per_wrong_answer, :online_exam_created_on, :online_exam_status, :online_exam_code)
 			";
-
+			$examid="";
 			$exam->execute_query();
+			
+			$results = mysqli_query($db,"SELECT * FROM online_exam_table where online_exam_code ='$exam_code';");
+ 
+			if(mysqli_num_rows($results) == 1)
+			{
+				$rows=mysqli_fetch_array($results);
+				$examid=$rows["online_exam_id"];
+			}
+
+			// $exam->query = "
+			// INSERT INTO user_exam_enroll_table (user_id, exam_id) SELECT user_id, $examid FROM user_table WHERE user_year= $user_year and user_course = $user_course;
+			// ";
+
+			// $exam->execute_query();
+			
+			$results = mysqli_query($db,"INSERT INTO user_exam_enroll_table (user_id, exam_id) SELECT user_id, '$examid' FROM user_table WHERE user_year= '$user_year' and user_course = '$user_course';");
+
+			//$last_id = $Examination->lastInsertId();
+			//echo '<script>alert("Feedback '.$_SESSION['admin_id'].'")</script>';
+
 
 			$output = array(
-				'success'	=>	'New Exam Details Added'
+				'success'	=>	$examid
 			);
 
 			echo json_encode($output);
