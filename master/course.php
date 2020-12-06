@@ -11,16 +11,20 @@ if(isset($_POST['button_action']))
 {
 	$coursename = $_POST["course"];
 	$result = mysqli_query($db, "insert into course_table(course_name) values ('$coursename');");
-    echo '<script>alert("Course Added")</script>';
+	echo '<script>alert("Course Added")</script>';
+	echo "<script>window.location.href='course.php'</script>"; 
+
 }
 
-// if(intval($_GET['del']))
-// {
-// 	$courseid=intval($_GET['del']);
-// 	$exam->query ="DELETE FROM course_table WHERE course_id='$courseid';";
-// 	$results = $exam->query_result();
-// 	echo '<script>alert("Course Deleted Successfully")</script>';
-// }
+if(isset($_REQUEST['del']))
+{
+	$courseid=intval($_GET['del']);
+	$exam->query ="DELETE FROM course_table WHERE course_id='$courseid';";
+	$results = $exam->query_result();
+	echo '<script>alert("Course Deleted Successfully")</script>';
+	echo "<script>window.location.href='course.php'</script>"; 
+
+}
 ?>
 <br ><br>
 <div class="card">

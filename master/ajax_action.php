@@ -925,24 +925,46 @@ if(isset($_POST['page']))
 				$sub_array = array();
 				$sub_array[] = "<img src='../upload/".$row["user_image"]."' class='img-thumbnail' width='75' />";
 				$sub_array[] = $row["user_name"];
+				$sub_array[] = $row["user_rollno"];
+				$sub_array[] = $row["user_email_address"];
 				$sub_array[] = $row["user_gender"];
-				$sub_array[] = $row["user_mobile_no"];
-				$is_email_verified = '';
+								
+				$attendace = '';
 
-				if($row['user_email_verified'] == 'yes')
+				if($row["attendance_status"] == 'Present')
 				{
-					$is_email_verified = '<label class="badge badge-success">Yes</label>';
+					$attendace = '<label class="badge badge-success">Present</label>';
 				}
 				else
 				{
-					$is_email_verified = '<label class="badge badge-danger">No</label>';
+					$attendace = '<label class="badge badge-danger">Absent</label>';
 				}
-				$sub_array[] = $is_email_verified;
+				$sub_array[] = $attendace;
+
+				$sub_array[] = $row["exam_intime"];
+				$sub_array[] = $row["exam_outtime"];
+
+				$examstatus = '';
+
+				if($row["exam_status"] == 'Completed')
+				{
+					$examstatus = '<label class="badge badge-success">Exam Completed</label>';
+				}
+				else
+				{
+					$examstatus = '<label class="badge badge-danger">Exam Not Completed</label>';
+				}
+				$sub_array[] = $examstatus;
+
+
+				$sub_array[] = $row["remark"];
+
 				$result = '';
+
 
 				if($exam->Get_exam_status($exam_id) == 'Completed')
 				{
-					$result = '<a href="user_exam_result.php?code='.$_POST['code'].'&id='.$row['user_id'].'" class="btn btn-info btn-sm" target="_blank">Result</a>';
+					$result = '<a href="user_exam_result.php?code='.$_POST['code'].'&id='.$row['user_id'].'" class="btn blue btn-sm" target="_blank">Result</a>';
 				}
 				$sub_array[] = $result;
 

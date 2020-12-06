@@ -31,9 +31,14 @@ include('header.php');
 					<tr>
 						<th>Image</th>
 						<th>Name</th>
+						<th>Rollno</th>
+						<th>Email ID</th>
 						<th>Gender</th>
-						<th>Mobile No.</th>
-						<th>Email Status</th>
+						<th>Attendance</th>
+						<th>Exam Intime</th>
+						<th>Exam Outtime</th>
+						<th>Exam Status</th>
+						<th>Remark</th>						
 						<th>Result</th>
 					</tr>
 				</thead>

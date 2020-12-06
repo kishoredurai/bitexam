@@ -129,7 +129,20 @@ if(isset($_GET['code']))
 		echo "<script>window.location.href='index.php'</script>";  
 	}
 	
-	$exam->query = "
+	$id=$_SESSION['user_id'];
+
+			$exam->query = "SELECT * FROM user_exam_question_answer WHERE user_id = '$id' and exam_id = '$exam_id'";
+
+			$total_row = $exam->total_row();
+
+			if($total_row > 0)
+			{
+	
+			
+			}
+			else
+			{
+				$exam->query = "
 			SELECT question_id FROM question_table 
 			WHERE online_exam_id = '".$exam_id."'
 			";
@@ -151,6 +164,7 @@ if(isset($_GET['code']))
 				";
 				$exam->execute_query();
 			}
+		}
 
 	echo "<script type='text/javascript'>window.alert('Reminder ! start Recording');</script>";
 
@@ -373,7 +387,7 @@ document.addEventListener("visibilitychange", event => {
 	// ["online_exam_status"] == 'Completed'
 	window.close();
     //   console.log(camtest);
-//	window.location.assign("submit.php?del="+exam_id);
+	window.location.assign("submit.php?del="+exam_id);
   }
 })
 

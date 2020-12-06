@@ -1,6 +1,5 @@
 <?php
 
-//index.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
 
 include('../master/Examination.php');
 
@@ -23,7 +22,7 @@ $row_comp = $row['cnt'];
 ?>
 <div class="containter">
 	<br />
-	<meta http-equiv="refresh" content="10">
+	<!-- <meta http-equiv="refresh" content="10"> -->
 
 
 <?php

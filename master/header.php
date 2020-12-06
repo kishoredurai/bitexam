@@ -52,11 +52,11 @@ $exam->admin_session_private();
                     <div class="topnav"> <a style="color: black;" class="nav-link" href="course.php">Student Courses</a></div>
                 </li>
                 <li class="nav-item">
-                    <div class="topnav"><a style="color: black;" class="nav-link" href="user.php">User</a></div>
+                    <div class="topnav"><a style="color: black;" class="nav-link" href="user.php">Student List</a></div>
                 </li>
                
                 <li class="nav-item">
-                    <div class="topnav"> <a style="color: black;" class="nav-link" href="staff_feedback.php">Feedback</a></div>
+                    <div class="topnav"> <a style="color: black;" class="nav-link" href="staff_feedback.php"> Student Feedback</a></div>
                 </li>
             </ul>
         <?php
