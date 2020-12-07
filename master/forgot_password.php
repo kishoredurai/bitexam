@@ -102,7 +102,7 @@ if(isset($_POST['reset']))
                   <div class="form-group" align="center">
                     <br>
                     <input type="submit"  name="reset"  class="btn success" value=" Reset " />&nbsp;
-                    <a class="btn blue" href="../student/login.php">Back</a>
+                    <a class="btn blue" href="../login.php">Back</a>
                   </div>
                 </form>
                

@@ -47,13 +47,30 @@ $result = $exam->query_result();
 					    <div class="form-group">
 					        <label>Enter Name</label>
 					        <input type="text" name="user_name" id="user_name" class="form-control" value="<?php echo $row["user_name"]; ?>" />
-					    </div>
+						</div>
+						<div class="form-group">
+					        <label>Enter Rollno</label>
+					        <input type="text"  class="form-control" value="<?php echo $row["user_rollno"]; ?>" disabled>
+						</div>
+						<div class="form-group">
+					        <label>Enter User Year</label>
+					        <input type="text"  class="form-control" value="<?php echo $row["user_year"]; ?>" disabled>
+						</div>
+						<div class="form-group">
+					        <label>Enter User Course</label>
+					        <input type="text"  class="form-control" value="<?php echo $row["user_course"]; ?>" disabled>
+						</div>
+						
 					    <div class="form-group">
 					        <label>Select Gender</label>
 					        <select name="user_gender" id="user_gender" class="form-control">
 					          	<option value="Male">Male</option>
 					          	<option value="Female">Female</option>
 					        </select>
+						</div>
+						<div class="form-group">
+					        <label>Enter Date Of Birth</label>
+					        <input type="date" name="user_dob" id="user_dob" class="form-control" value="<?php echo $row["user_dob"]; ?>" />
 					    </div>
 					    <div class="form-group">
 					        <label>Enter Address</label>
@@ -100,6 +117,7 @@ $(document).ready(function(){
 		$('#user_name').attr('data-parsley-pattern', '^[a-zA-Z ]+$');
 
 		$('#user_address').attr('required', 'required');
+		$('#user_dob').attr('required', 'required');
 
 		$('#user_mobile_no').attr('required', 'required');
 

@@ -1,0 +1,122 @@
+body {
+    font-family: "Karla", sans-serif;
+    background-color: #ecf7ed;
+    min-height: 100vh;
+}
+
+.brand-wrapper {
+    margin-bottom: 19px;
+}
+
+.brand-wrapper .logo {
+    height: 54px;
+}
+
+.login-card {
+    border: 0;
+    border-radius: 27.5px;
+    box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+    overflow: hidden;
+}
+
+.login-card-img {
+    border-radius: 0;
+    position: absolute;
+    width: 110%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.login-card .card-body {
+    padding: 50px 80px 60px;
+}
+
+@media (max-width: 422px) {
+    .login-card .card-body {
+        padding: 35px 24px;
+    }
+}
+
+.login-card-description {
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    font-weight: normal;
+    margin-bottom: 23px;
+}
+
+.login-card form {
+    max-width: 326px;
+}
+
+.login-card .form-control {
+    border: 1px solid #4e8bec;
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    min-height: 45px;
+    font-size: 14px;
+    line-height: 15;
+    font-weight: normal;
+}
+
+.login-card .form-control::-webkit-input-placeholder {
+    color: #09539c;
+}
+
+.login-card .form-control::-moz-placeholder {
+    color: #919aa3;
+}
+
+.login-card .form-control:-ms-input-placeholder {
+    color: #919aa3;
+}
+
+.login-card .form-control::-ms-input-placeholder {
+    color: #919aa3;
+}
+
+.login-card .form-control::placeholder {
+    color: #919aa3;
+}
+
+.login-card .login-btn {
+    padding: 13px 20px 12px;
+    background-color: rgb(11, 165, 11);
+    border-radius: 4px;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #fff;
+    margin-bottom: 14px;
+}
+
+.login-card .login-btn:hover {
+    border: 3px solid rgb(11, 165, 11);
+    background-color: transparent;
+    color: rgb(11, 165, 11);
+}
+
+.login-card .forgot-password-link {
+    font-size: 14px;
+    color: #717477;
+}
+
+.login-card-footer-text {
+    font-size: 16px;
+    color: #0d2366;
+    margin-bottom: 00px;
+}
+
+@media (max-width: 767px) {
+    .login-card-footer-text {
+        margin-bottom: 0px;
+    }
+}
+
+.login-card-footer-nav a {
+    font-size: 12px;
+    color: #919aa3;
+}
+
+
+/*# sourceMappingURL=login.css.map */

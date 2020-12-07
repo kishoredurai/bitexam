@@ -208,13 +208,14 @@ if($total_row > 0)
 				':user_gender'				=>	$_POST['user_gender'],
 				':user_address'				=>	$exam->clean_data($_POST['user_address']),
 				':user_mobile_no'			=>	$_POST['user_mobile_no'],
+				':user_dob'					=>	$_POST['user_dob'],
 				':user_image'				=>	$user_image,
 				':user_id'					=>	$_SESSION['user_id']		
 			);
 
 			$exam->query = "
 			UPDATE user_table 
-			SET user_name = :user_name, user_gender = :user_gender, user_address = :user_address, user_mobile_no = :user_mobile_no, user_image = :user_image 
+			SET user_name = :user_name, user_gender = :user_gender, user_dob = :user_dob, user_address = :user_address, user_mobile_no = :user_mobile_no, user_image = :user_image 
 			WHERE user_id = :user_id
 			";
 			$exam->execute_query();

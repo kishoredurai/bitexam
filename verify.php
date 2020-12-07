@@ -1,5 +1,5 @@
 <?php
-    include('../master/Examination.php');
+    include('master/Examination.php');
 
     $exam = new Examination;
 
@@ -46,7 +46,7 @@ foreach($result as $row)
     $output = array(
         'success'	=>	true
     );
-    echo "<script>window.location.href='index.php'</script>"; 
+    echo "<script>window.location.href='student/index.php'</script>"; 
 }
 }
 
@@ -66,7 +66,7 @@ foreach($result as $row)
     $output = array(
         'success'	=>	true
     );
-    echo "<script>window.location.href='../master/index.php'</script>"; 
+    echo "<script>window.location.href='master/index.php'</script>"; 
 }
 }
 else

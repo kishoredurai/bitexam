@@ -4,7 +4,8 @@
 include('student/header.php');
 
 ?>
-
+<link rel="icon" href="include/bit1.png" type="image/icon type">
+  	<title>Online Examination System - datastack</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
@@ -23,18 +24,9 @@ include('student/header.php');
 
 			<div class="form-group" align="center">
 
-				<a href="student/login.php" class="btn success">Login</a>&nbsp;
+				<a href="login.php" class="btn success">Login</a>&nbsp;
 				<a class="btn blue" href="student/register.php">Register</a>
 			</div>
-			<br><br>
-			<h1 style="align-content: center;font-size:50px;font-family:Comic Sans MS;" align="center">Faculty Login</h1><br>
-
-<div class="form-group" align="center">
-
-	<a href="student/login.php" class="btn success">Login</a>&nbsp;
-	<a class="btn blue" href="master/register.php">Register</a>
-</div>
-
 			<div class="col-md-3">
 
 			</div>
