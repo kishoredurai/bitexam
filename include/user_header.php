@@ -70,7 +70,7 @@ WHERE user_id = '" . $_SESSION['user_id'] . "'
                 <span class="caret"></span></a>
               <ul class="dropdown-menu ">
                 <a class="dropdown-item " href="profile.php">Profile</a>
-                <a class="dropdown-item " href="change_password.php">Change Password</a>
+                <a class="dropdown-item " href="https://myaccount.google.com/signinoptions/password">Change Password</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item " href="logout.php">Logout</a>
             </div>

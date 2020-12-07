@@ -10,17 +10,13 @@ $exam->user_session_private();
 
 include('../include/user_header.php');
 
-require_once'../include/db.php';
-
-include('../include/db.php');
-
 $exam->query = "
 	SELECT * FROM user_table 
 	WHERE user_id = '".$_SESSION['user_id']."'
 ";
 
 $result = $exam->query_result();
-$image=$row["user_image"];
+
 ?>
 <br><br>
 
@@ -36,12 +32,12 @@ $image=$row["user_image"];
               
 
       <div class="text-center">
-        <img src="../upload/<?php echo $row["user_image"];?>" class="avatar img-circle img-thumbnail" alt="avatar" width="200" style="border-radius: 10%;">
+        <img src="../upload/<?php echo $row["user_image"]; ?>" class="avatar img-circle img-thumbnail" alt="avatar" width="200" style="border-radius: 10%;">
        
       </div></hr><br>
       <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item"><strong>Total Exam :</strong></li>
+            <li class="list-group-item text-right"><span class="list-group-item text-left "><strong>Shares</strong></span> 125</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
