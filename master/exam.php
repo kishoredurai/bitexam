@@ -13,7 +13,7 @@ include('../include/db.php');
 	<div class="card-header">
 		<div class="row">
 			<div class="col-md-9">
-				<h3 class="panel-title">Online Exam List</h3>
+				<h3 class="panel-title"> <?php echo $row["admin_name"]; ?> Online Exam List</h3>
 			</div>
 			<div class="col-md-3" align="right">
 				<button type="button" id="add_button" class="btn info btn-sm">Add</button>
@@ -121,10 +121,11 @@ include('../include/db.php');
 									<option value="2">1 Minute</option>
 									<option value="3">2 Minute</option>
 	                				<option value="6">5 Minute</option>
-	                				<option value="31">30 Minute</option>
-	                				<option value="61">1 Hour</option>
+									<option value="31">30 Minute</option>
+									<option value="91">1 Hour 30 Minute</option>
+	                				<!-- <option value="61">1 Hour</option>
 	                				<option value="121">2 Hour</option>
-	                				<option value="181">3 Hour</option>
+	                				<option value="181">3 Hour</option> -->
 	                			</select>
 	                		</div>
             			</div>
@@ -140,9 +141,9 @@ include('../include/db.php');
 	                				<option value="10">10 Question</option>
 	                				<option value="25">25 Question</option>
 	                				<option value="50">50 Question</option>
-	                				<option value="100">100 Question</option>
+	                				<!-- <option value="100">100 Question</option>
 	                				<option value="200">200 Question</option>
-	                				<option value="300">300 Question</option>
+	                				<option value="300">300 Question</option> -->
 	                			</select>
 	                		</div>
             			</div>

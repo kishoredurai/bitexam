@@ -41,7 +41,7 @@ if(isset($_REQUEST['del']))
 	<div class="card-body">
 		<span id="message_operation"></span>
 		<div class="table-responsive">
-			<table id="exam_data_table" class="table table-bordered table-striped table-hover">
+		<table class="table table-bordered table-striped table-hover" id="exam_data_table">
 				<thead>
 					<tr>
 						<th>Course ID</th>
@@ -110,7 +110,16 @@ foreach($result as $row)
   	</div>
 </div>
 
+<script>
+$(document).ready(function(){
 
+var dataTable = $('#exam_data_table').DataTable({
+	
+});
+
+});
+
+</script>
 
 <script>
 

@@ -22,7 +22,7 @@ $row_comp = $row['cnt'];
 ?>
 <div class="containter">
 	<br />
-	<!-- <meta http-equiv="refresh" content="10"> -->
+	<br><br>	<br><br><!-- <meta http-equiv="refresh" content="10"> -->
 
 
 <?php
@@ -46,7 +46,7 @@ if (isset($_SESSION["user_id"])) {
 <br>
 </div>
 
-	<br><br>
+<br><br>
 
 
 

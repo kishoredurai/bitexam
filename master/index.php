@@ -38,13 +38,15 @@ require_once '../include/db.php';
 	</div>
 </div>
 <?php
-
+if($row["admin_name"])
+{
 $exam->query = "SELECT `online_exam_title`, `online_exam_datetime`, `online_exam_duration`, `total_question`, `marks_per_right_answer`, `marks_per_wrong_answer` ,`admin_email_address` FROM `online_exam_table`, `admin_table` ";
 $results = $exam->query_result();
 foreach($results as $row)
 {
 echo "<tr><td>" . $row["online_exam_title"]. "</td><td>" . $row["online_exam_datetime"] . "</td><td>". $row["online_exam_duration"]. "</td><td>" . $row["total_question"] . "</td><td>" . $row["marks_per_right_answer"] . "</td><td>" . $row["marks_per_wrong_answer"] . "</td><td>" . $row["admin_email_address"] . "</td></tr>";
 }
-echo "</table>";
 
+echo "</table>";
+}
 ?>

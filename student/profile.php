@@ -22,14 +22,15 @@ $exam->query = "
 $result = $exam->query_result();
 $image=$row["user_image"];
 ?>
-<br><br>
+<br><br><Br><br>
+<h1 style="align-content: center;font-size:50px;font-family:cursive;" align="center">Profile</h1>
 
 
-<div class="container bootstrap snippet"><div class="card border border-success" style="margin-top:20px;margin-bottom: 100px;">
+<div class="container bootstrap snippet"><div class="card border border-success" style="margin-top:50px;margin-bottom: 100px;">
         		<div class="card-body">
     <div class="row">
-  		<div class="col-sm-7"><h1>Profile Dashboard</h1></div>
-    	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive"  width="240%" src="https://www.bitsathy.ac.in/assets/images/logo.png"></a></div>
+  		<div class="col-sm-4"><h1 align ="center" style="font-size:35px;">Profile Dashboard</h1></div>
+    	<!-- <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive"  width="50%" src="https://upload.wikimedia.org/wikipedia/en/7/77/Bannari_Amman_Institute_of_Technology_logo.png"></a></div> -->
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
@@ -40,11 +41,11 @@ $image=$row["user_image"];
        
       </div></hr><br>
       <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item"><strong>Total Exam :</strong></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+            <!-- <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li> -->
+            <li class="list-group-item"><center><strong  style="color:blue;font-size:#425af5"><?php echo $row["user_name"]; ?></strong></center></li>
+            <!-- <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li> -->
           </ul> 
         </div><!--/col-3-->
     	<div class="col-sm-9">
@@ -126,7 +127,7 @@ $image=$row["user_image"];
                                 <br>
                                 <input type="hidden" name="page" value="profile" />
 					        <input type="hidden" name="action" value="profile" />
-					        <input type="submit" name="user_profile" id="user_profile" class="btn success" value="Save" />
+					        <center><input type="submit" align="center" name="user_profile" id="user_profile" class="btn success" value="Save" /></center>
                             </div>
                       </div>
               	</form>

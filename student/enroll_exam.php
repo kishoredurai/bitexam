@@ -16,7 +16,7 @@ include('../include/user_header.php');
 ?>
  <meta http-equiv="refresh" content="10">
 <br />
-<h1 style="align-content: center;font-size:50px;font-family:cursive;" align="center">Enrolled Exam</h1><br>
+<h1 style="align-content: center;padding-top:80px;font-size:50px;font-family:cursive;" align="center">Enrolled Exam</h1><br>
 
 <div class="card">
 	<div class="card-header">Online Exam List of user </div>
