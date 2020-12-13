@@ -112,16 +112,13 @@ if($total_row > 0)
 
 	foreach($result as $row)
 	{
-		if($row['user_email_verified'] == 'yes')
-		{
+		
 			if(password_verify($_POST['user_password'], $row['user_password']))
 			{
-				$_SESSION['user_id'] = $row['user_id'];
-				//echo "<script>window.location.href='index.php'</script>";  
+				$_SESSION['user_id'] = $row['user_id']; 
 				$output = array(
 					'success'	=>	true
 				);
-				
 
 			}
 			else
@@ -130,13 +127,7 @@ if($total_row > 0)
 					'error'	=>	'Wrong Password'
 				);
 			}
-		}
-		else
-		{
-			$output = array(
-				'error'		=>	'Your Email is not verify'
-			);
-		}
+		return $output;
 	
 	}
 }
@@ -156,12 +147,10 @@ if($total_row > 0)
 
 				foreach($result as $row)
 				{
-					if($row['email_verified'] == 'yes')
-					{
+					
 						if(password_verify($_POST['user_password'], $row['admin_password']))
 						{
 							$_SESSION['admin_id'] = $row['admin_id'];
-
 							$output = array(
 								'success'	=>	true
 							);
@@ -172,7 +161,7 @@ if($total_row > 0)
 								'error'		=>	'Wrong Password'
 							);
 						}
-					}
+					
 				
 				}
 			}
@@ -428,10 +417,13 @@ if($total_row > 0)
 			$total_rows = $exam->total_row();
 
 			$data = array();
+			$scount = 1;
 
 			foreach($result as $row)
 			{
 				$sub_array = array();
+				$sub_array[] = $scount;
+				$scount += 1;
 				$sub_array[] = html_entity_decode($row["online_exam_title"]);
 				$sub_array[] = $row["online_exam_datetime"];
 				$sub_array[] = $row["online_exam_duration"] . ' Minute';
@@ -597,17 +589,19 @@ if($total_row > 0)
 				{
 					$if_previous_disable = 'disabled';
 				}
-				
+				$hide_submit = 'd-none';
 				if($next_id == "")
 				{
 					$if_next_disable = 'disabled';
+					$hide_submit = '';
 				}
 				$exam_id= '4' ;
 				$output .= '
 					<br /><br />
 				  	<div align="center">
 				   		<button type="button" name="previous" class="btn blue previous" id="'.$previous_id.'" '.$if_previous_disable.'>PREVIOUS</button>&nbsp;
-						   <button type="button" name="next" class="btn info next" id="'.$next_id.'" '.$if_next_disable.'>  NEXT  </button>'.' <br> <hr> <a class="btn success"  href="submit.php?id='.$ex_id.'">SUBMIT</a>
+						   <button type="button" name="next" class="btn info next" id="'.$next_id.'" '.$if_next_disable.'>  NEXT  </button>'.' <br> <hr>
+						   <a class="btn success '.$hide_submit  .'" href="submit.php?id='.$ex_id.'">SUBMIT</a>
 						</br></hr>
 				  	</div>
 					  <br /><br />';

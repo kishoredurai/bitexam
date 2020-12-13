@@ -39,15 +39,15 @@ function stop(){
         var api = null;
 
         
-            var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            var stringLength = 30;
+            // var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            // var stringLength = 30;
 
-            function pickRandom() {
-                return possible[Math.floor(Math.random() * possible.length)];
-            }
+            // function pickRandom() {
+            //     return possible[Math.floor(Math.random() * possible.length)];
+            // }
 
-            var randomString = Array.apply(null, Array(stringLength)).map(pickRandom).join('');
-
+            // var randomString = Array.apply(null, Array(stringLength)).map(pickRandom).join('');
+            var randomString = '191CS151';    
             var domain = "meet.jit.si";
             var options = {
                 "roomName": randomString,
@@ -208,7 +208,7 @@ if($exam_status == 'Started')
 		
 	);
 
-	$exam->query = "UPDATE user_exam_enroll_table SET attendance_status = :attendance_status,exam_status='Completed',exam_intime=CURRENT_TIMESTAMP() WHERE user_id = :user_id AND exam_id = :exam_id";
+	$exam->query = "UPDATE user_exam_enroll_table SET attendance_status = :attendance_status,exam_status='Started',exam_intime=CURRENT_TIMESTAMP() WHERE user_id = :user_id AND exam_id = :exam_id";
 
 	$exam->execute_query();
 
@@ -481,7 +481,15 @@ $(document).ready(function(){
 		var question_id = $(this).data('question_id');
 
 		var answer_option = $(this).data('id');
-        alert(answer_option);
+
+		if(answer_option==1)
+        alert("Option A");
+		else if(answer_option==2)
+        alert("Option B");
+		else if(answer_option==3)
+        alert("Option C");
+		else if(answer_option==4)
+        alert("Option D");
         
 		$.ajax({
 			url:"../user_ajax_action.php",

@@ -57,7 +57,7 @@ if (isset($_SESSION["user_id"])) {
 			<div class="col-sm-12">
 				<div class="card border border-success">
 					<div class="card-header" style="font-family:monospace;font-size:20px;">
-						<center>Register for Exam</center>
+						<center> View Your Exam </center>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">

@@ -29,6 +29,7 @@ include('header.php');
 			<table class="table table-bordered table-striped table-hover" id="result_table">
 				<thead>
 					<tr>
+						<th>S.No</th>
 						<th>Image</th>
 						<th>User Name</th>
 						<th>Attendance Status</th>

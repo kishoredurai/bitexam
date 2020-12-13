@@ -18,18 +18,19 @@ $exam->admin_session_private();
   	<title>Online Examination System - datastack</title>
           <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../STYLE1/bootstrap.min.css">
-  <link rel="stylesheet" href="../STYLE1/dataTables.bootstrap4.min.css">
-  <script src="../STYLE1/jquery.min.js"></script>
-  <script src="../STYLE1/parsley.js"></script>
-  <script src="../STYLE1/popper.min.js"></script>
-  <script src="../STYLE1/bootstrap.min.js"></script>
-  <script src="../STYLE1/dataTables.min.js"></script>
-  <script src="../STYLE1/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="../style1/bootstrap.min.css">
+  <link rel="stylesheet" href="../style1/dataTables.bootstrap4.min.css">
+  <script src="../style1/jquery.min.js"></script>
+  <script src="../style1/parsley.js"></script>
+  <script src="../style1/popper.min.js"></script>
+  <script src="../style1/bootstrap.min.js"></script>
+  <script src="../style1/dataTables.min.js"></script>
+  <script src="../style1/dataTables.bootstrap4.min.js"></script>
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="../style/TimeCircles.css" />
   <script src="../style/TimeCircles.js"></script>
   <link href="../style/button.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="../style/bootstrap-datetimepicker.css" />
     <script src="../style/bootstrap-datetimepicker.js"></script>

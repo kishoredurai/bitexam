@@ -44,25 +44,26 @@ if(isset($_REQUEST['del']))
 		<table class="table table-bordered table-striped table-hover" id="exam_data_table">
 				<thead>
 					<tr>
+						<th>Sn no</th>
 						<th>Course ID</th>
 						<th>Course Name</th>
 						<th>Created Date</th>
-						<th>Action</th>
 					</tr>
                 </thead>
                 <tbody>
                     <?php $exam->query = "SELECT * FROM course_table";
 
 $result = $exam->query_result();
-
+$cnt=0;
 foreach($result as $row)
-{
+{$cnt++;
 ?>
                 <tr>
+				<td><?php echo $cnt;?></td>
                 <td><?php echo $row['course_id'];?></td>
 				<td><?php echo $row['course_name'];?></td>
 				<td><?php echo $row['create_date'];?></td>
-				<td><a class="btn danger" href="course.php?del=<?php echo $row['course_id'];?>">delete</a></td>
+				<!-- <td><a class="btn danger" href="course.php?del=<?php echo $row['course_id'];?>">delete</a></td> -->
                 </tr>
                 </tbody>
                 <?php }  ?>

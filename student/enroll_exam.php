@@ -19,12 +19,13 @@ include('../include/user_header.php');
 <h1 style="align-content: center;padding-top:80px;font-size:50px;font-family:cursive;" align="center">Enrolled Exam</h1><br>
 
 <div class="card">
-	<div class="card-header">Online Exam List of user </div>
+	<div class="card-header">List of Enrolled exams</div>
 	<div class="card-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped table-hover" id="exam_data_table">
 				<thead>
 					<tr>
+						<th>S.No.</th>
 						<th>Exam Title</th>
 						<th>Date & Time</th>
 						<th>Duration</th>
@@ -58,7 +59,7 @@ $(document).ready(function(){
 		},
 		"columnDefs":[
 			{
-				"targets":[7],
+				"targets":[8],
 				"orderable":false,
 			},
 		],

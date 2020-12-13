@@ -24,8 +24,8 @@ class Examination
 	function __construct()
 	{
 		$this->host = 'localhost';
-		$this->username = 'root';
-		$this->password = '';
+		$this->username = 'test';
+		$this->password = 'test';
 		$this->database = 'online_examination';
 		$this->home_page = 'http://localhost/examination-application/student/';
 

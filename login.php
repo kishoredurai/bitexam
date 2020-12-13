@@ -115,7 +115,7 @@ $exam->user_session_public();
                     dataType: "json",
                     beforeSend: function() {
                         $('#user_login').attr('disabled', 'disabled');
-                        $('#user_login').val('please wait...');
+                        $('#user_login').val('Please wait...');
                     },
                     success: function(data) {
                         if (data.success) {

@@ -4,7 +4,20 @@
 
 include('header.php');
 
+
+
+$exam_id = $exam->Get_exam_id($_GET['code']);
+
+
+include('../include/db.php');
+require_once'../include/db.php';
+
+$result = mysqli_query($db,"SELECT count(*) as cnt from question_table WHERE online_exam_id='$exam_id';");
+$row=mysqli_fetch_array($result);
+$total=$row["cnt"];
+
 ?>
+
 <br />
 <nav aria-label="breadcrumb">
   	<ol class="breadcrumb">
@@ -12,14 +25,16 @@ include('header.php');
     	<li class="breadcrumb-item active" aria-current="page">Question List</li>
   	</ol>
 </nav>
+
+
 <div class="card">
 	<div class="card-header">
 		<div class="row">
 			<div class="col-md-9">
 				<h3 class="panel-title">Question List</h3>
 			</div>
-			<div class="col-md-3" align="right">
-				
+			<div class="col-md-3" align="right" style="padding-top:6px;color:blue;">
+			<h5 class="panel-title">Total Questions : <?php echo $total ?></h>
 			</div>
 		</div>
 	</div>
@@ -29,6 +44,7 @@ include('header.php');
 			<table id="question_data_table" class="table table-bordered table-striped table-hover">
 				<thead>
 					<tr>
+					<th>S.No</th>
 						<th>Question Title</th>
 						<th>Right Option</th>
 						<th>Action</th>

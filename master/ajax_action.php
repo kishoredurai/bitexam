@@ -209,9 +209,15 @@ if(isset($_POST['page']))
 
 			$data = array();
 
+			$cnt=0;
+
 			foreach($result as $row)
-			{
+
+			{ $cnt++;
 				$sub_array = array();
+
+				$sub_array[] = $cnt;
+
 				$sub_array[] = html_entity_decode($row['online_exam_title']);
 
 				$sub_array[] = $row['online_exam_datetime'];
@@ -335,7 +341,7 @@ if(isset($_POST['page']))
 			(admin_id, user_year, user_course, online_exam_title, online_exam_datetime, online_exam_duration, total_question, marks_per_right_answer, marks_per_wrong_answer, online_exam_created_on, online_exam_status, online_exam_code) 
 			VALUES (:admin_id, :user_year, :user_course, :online_exam_title, :online_exam_datetime, :online_exam_duration, :total_question, :marks_per_right_answer, :marks_per_wrong_answer, :online_exam_created_on, :online_exam_status, :online_exam_code)
 			";
-			$examid="";
+			$examid = "";
 			$exam->execute_query();
 			
 			$results = mysqli_query($db,"SELECT * FROM online_exam_table where online_exam_code ='$exam_code';");
@@ -492,7 +498,7 @@ if(isset($_POST['page']))
 		{
 			$exam->data = array(
 				':online_exam_id'		=>	$_POST['online_exam_id'],
-				':question_title'		=>	$exam->clean_data($_POST['question_title']),
+				':question_title'		=>	$_POST['question_title'],
 				':answer_option'		=>	$_POST['answer_option']
 			);
 
@@ -522,7 +528,7 @@ if(isset($_POST['page']))
 			}
 
 			$output = array(
-				'success'		=>	'Question Added'
+				'success'		=>	'Question Added',
 			);
 
 			echo json_encode($output);
@@ -583,12 +589,15 @@ if(isset($_POST['page']))
 
 			$data = array();
 
+			$cnt=0;
+
 			foreach($result as $row)
 			{
+				$cnt++;
 				$sub_array = array();
-
+				$sub_array[] = $cnt;
 				$sub_array[] = $row['question_title'];
-
+				
 				$sub_array[] = 'Option ' . $row['answer_option'];
 
 				$edit_button = '';
@@ -605,6 +614,7 @@ if(isset($_POST['page']))
 
 				$data[] = $sub_array;
 			}
+			
 
 			$output = array(
 				"draw"		=>	intval($_POST["draw"]),
@@ -614,6 +624,8 @@ if(isset($_POST['page']))
 			);
 
 			echo json_encode($output);
+			
+		
 		}
 
 		if($_POST['action'] == 'edit_fetch')
@@ -767,10 +779,11 @@ if(isset($_POST['page']))
 			$total_rows = $exam->total_row();
 
 			$data = array();
-
+			$cnt=0;
 			foreach($result as $row)
-			{
+			{$cnt++;
 				$sub_array = array();
+				$sub_array[] = $cnt;
 				$sub_array[] = '<img src="../upload/'.$row["user_image"].'" class="img-thumbnail" width="75" />';
 				$sub_array[] = $row["user_name"];
 				$sub_array[] = $row["user_email_address"];
@@ -920,9 +933,14 @@ if(isset($_POST['page']))
 
 			$data = array();
 
+			$cnt=0;
+
 			foreach($result as $row)
+
 			{
+$cnt++;
 				$sub_array = array();
+				$sub_array[] = $cnt;
 				$sub_array[] = "<img src='../upload/".$row["user_image"]."' class='img-thumbnail' width='75' />";
 				$sub_array[] = $row["user_name"];
 				$sub_array[] = $row["user_rollno"];
@@ -1042,10 +1060,12 @@ if(isset($_POST['page']))
 			$total_rows = $exam->total_row();
 
 			$data = array();
-
+			$cnt=0;
 			foreach($result as $row)
 			{
+				$cnt++;
 				$sub_array = array();
+				$sub_array[] = $cnt;
 				$sub_array[] = '<img src="../upload/'.$row["user_image"].'" class="img-thumbnail" width="75" />';
 				$sub_array[] = $row["user_name"];
 				$sub_array[] = $exam->Get_user_exam_status($exam_id, $row["user_id"]);
