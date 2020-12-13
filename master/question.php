@@ -27,152 +27,146 @@ $total=$row["cnt"];
 </nav>
 
 
-<div class="card">
-	<div class="card-header">
-		<div class="row">
-			<div class="col-md-9">
-				<h3 class="panel-title">Question List</h3>
+<div class="wrapper container">
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-9">
+					<h3 class="panel-title">Question List</h3>
+				</div>
+				<div class="col-md-3" align="right" style="padding-top:6px;color:blue;">
+				<h5 class="panel-title">Total Questions : <?php echo $total ?></h>
+				</div>
 			</div>
-			<div class="col-md-3" align="right" style="padding-top:6px;color:blue;">
-			<h5 class="panel-title">Total Questions : <?php echo $total ?></h>
+		</div>
+		<div class="card-body">
+			<span id="message_operation"></span>
+			<div class="table-responsive">
+				<table id="question_data_table" class="table table-bordered table-striped table-hover">
+					<thead>
+						<tr>
+							<th style="max-width: 10%;">S.No</th>
+							<th style="max-width: auto;">Question</th>
+							<th style="max-width: 15%;">Correct Answer</th>
+							<th style="max-width: 20%;">Action</th>
+						</tr>
+					</thead>
+				</table>
 			</div>
 		</div>
 	</div>
-	<div class="card-body">
-		<span id="message_operation"></span>
-		<div class="table-responsive">
-			<table id="question_data_table" class="table table-bordered table-striped table-hover">
-				<thead>
-					<tr>
-					<th>S.No</th>
-						<th>Question Title</th>
-						<th>Right Option</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-			</table>
-		</div>
-	</div>
-</div>
-
-<div class="modal" id="questionModal">
-  	<div class="modal-dialog modal-lg">
-    	<form method="post" id="question_form">
-      		<div class="modal-content">
-      			<!-- Modal Header -->
-        		<div class="modal-header">
-          			<h4 class="modal-title" id="question_modal_title"></h4>
-          			<button type="button" class="close" data-dismiss="modal">&times;</button>
-        		</div>
-
-        		<!-- Modal body -->
-        		<div class="modal-body">
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Question Title <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<!-- <input type="text" name="question_title" id="question_title" autocomplete="off" class="form-control" /> -->
-								<!-- question -->	
-								<textarea name="question_title" id="question_title" autocomplete="off" class="form-control" rows="5" cols="30"></textarea>
-	                		</div>
-            			</div>
-          			</div>
-                     
-					  <div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Image for question </span></label>
-	              			<div class="col-md-8">
-	                			<input type="file" accept="image/*" name="image_title" id="image_title" autocomplete="off" class="form-control" />
-								<!-- question -->
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Option 1 <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<input type="text" name="option_title_1" id="option_title_1" autocomplete="off" class="form-control" />
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Option 2 <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<input type="text" name="option_title_2" id="option_title_2" autocomplete="off" class="form-control" />
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Option 3 <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<input type="text" name="option_title_3" id="option_title_3" autocomplete="off" class="form-control" />
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Option 4 <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<input type="text" name="option_title_4" id="option_title_4" autocomplete="off" class="form-control" />
-	                		</div>
-            			</div>
-          			</div>
-          			<div class="form-group">
-            			<div class="row">
-              				<label class="col-md-4 text-right">Answer <span class="text-danger">*</span></label>
-	              			<div class="col-md-8">
-	                			<select name="answer_option" id="answer_option" class="form-control">
-	                				<option value="">Select</option>
-	                				<option value="1">1 Option</option>
-	                				<option value="2">2 Option</option>
-	                				<option value="3">3 Option</option>
-	                				<option value="4">4 Option</option>
-	                			</select>
-	                		</div>
-            			</div>
-          			</div>
-        		</div>
-
-	        	<!-- Modal footer -->
-	        	<div class="modal-footer">
-	        		<input type="hidden" name="question_id" id="question_id" />
-	          		<input type="hidden" name="online_exam_id" id="hidden_online_exam_id" />
-	          		<input type="hidden" name="page" value="question" />
-	          		<input type="hidden" name="action" id="hidden_action" value="Edit" />
-	          		<input type="submit" name="question_button_action" id="question_button_action" class="btn btn-success btn-sm" value="Add" />
-	          		<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+	
+	<div class="modal" id="questionModal">
+	  	<div class="modal-dialog modal-lg">
+	    	<form method="post" id="question_form">
+	      		<div class="modal-content">
+	      			<!-- Modal Header -->
+	        		<div class="modal-header">
+	          			<h4 class="modal-title" id="question_modal_title"></h4>
+	          			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	        		</div>
+	
+	        		<!-- Modal body -->
+	        		<div class="modal-body">
+	          			<div class="form-group">
+	            			<div class="row">
+	              				<label class="col-md-4 text-right">Question<span class="text-danger">*</span></label>
+		              			<div class="col-md-8">
+		                			<!-- <input type="text" name="question_title" id="question_title" autocomplete="off" class="form-control" /> -->
+									<!-- question -->	
+									<textarea id="question_text" autocomplete="off" class="form-control question_textarea" rows="5" cols="30"></textarea>
+									<input type="hidden" name="question_title" id="question_title">
+		                		</div>
+	            			</div>
+	          			</div>
+	                     
+	          			<div class="form-group">
+	            			<div class="row">
+	              				<label class="col-md-4 text-right">Option 1 <span class="text-danger">*</span></label>
+		              			<div class="col-md-8">
+		                			<input type="text" name="option_title_1" id="option_title_1" autocomplete="off" class="form-control" />
+		                		</div>
+	            			</div>
+	          			</div>
+	          			<div class="form-group">
+	            			<div class="row">
+	              				<label class="col-md-4 text-right">Option 2 <span class="text-danger">*</span></label>
+		              			<div class="col-md-8">
+		                			<input type="text" name="option_title_2" id="option_title_2" autocomplete="off" class="form-control" />
+		                		</div>
+	            			</div>
+	          			</div>
+	          			<div class="form-group">
+	            			<div class="row">
+	              				<label class="col-md-4 text-right">Option 3 <span class="text-danger">*</span></label>
+		              			<div class="col-md-8">
+		                			<input type="text" name="option_title_3" id="option_title_3" autocomplete="off" class="form-control" />
+		                		</div>
+	            			</div>
+	          			</div>
+	          			<div class="form-group">
+	            			<div class="row">
+	              				<label class="col-md-4 text-right">Option 4 <span class="text-danger">*</span></label>
+		              			<div class="col-md-8">
+		                			<input type="text" name="option_title_4" id="option_title_4" autocomplete="off" class="form-control" />
+		                		</div>
+	            			</div>
+	          			</div>
+	          			<div class="form-group">
+	            			<div class="row">
+	              				<label class="col-md-4 text-right">Answer <span class="text-danger">*</span></label>
+		              			<div class="col-md-8">
+		                			<select name="answer_option" id="answer_option" class="form-control">
+		                				<option value="">Select</option>
+		                				<option value="1">1 Option</option>
+		                				<option value="2">2 Option</option>
+		                				<option value="3">3 Option</option>
+		                				<option value="4">4 Option</option>
+		                			</select>
+		                		</div>
+	            			</div>
+	          			</div>
+	        		</div>
+	
+		        	<!-- Modal footer -->
+		        	<div class="modal-footer">
+		        		<input type="hidden" name="question_id" id="question_id" />
+		          		<input type="hidden" name="online_exam_id" id="hidden_online_exam_id" />
+		          		<input type="hidden" name="page" value="question" />
+		          		<input type="hidden" name="action" id="hidden_action" value="Edit" />
+		          		<input type="submit" name="question_button_action" id="question_button_action" class="btn btn-success btn-sm" value="Add" />
+		          		<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+		        	</div>
 	        	</div>
-        	</div>
-    	</form>
-  	</div>
-</div>
-<!-- delete question -->
-<div class="modal" id="deleteModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-
-			<!-- Modal Header -->
-			<div class="modal-header">
-				<h4 class="modal-title">Delete Confirmation</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+	    	</form>
+	  	</div>
+	</div>
+	<!-- delete question -->
+	<div class="modal" id="deleteModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+	
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Delete Confirmation</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>	
+				<!-- Modal body -->
+				<div class="modal-body">
+					<h3 align="center">Are you sure you want to remove this?</h3>
+				</div>
+	
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" name="ok_button" id="ok_button" class="btn-primary btn-sm">OK</button>
+					<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
 				</div>	
-			<!-- Modal body -->
-			<div class="modal-body">
-				<h3 align="center">Are you sure you want to remove this?</h3>
-			</div>
-
-			<!-- Modal footer -->
-			<div class="modal-footer">
-				<button type="button" name="ok_button" id="ok_button" class="btn-primary btn-sm">OK</button>
-				<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-			</div>	
-		</div >
+			</div >
+		</div>
 	</div>
 </div>
 
-
+<script src="./textboxio/textboxio.js"></script>
 <script>
 
 $(document).ready(function(){
@@ -200,21 +194,20 @@ var dataTable = $('#question_data_table').DataTable({
 
 	$('#question_form').on('submit', function(event){
 		event.preventDefault();
-
-		$('#question_title').attr('required', 'required');
-		 
-		// $('#image_title').attr('required', 'required');
-
-		$('#option_title_1').attr('required', 'required');
-
+		var editors = textboxio.get('#question_text');
+		var content = ''
+		editors.forEach(function(ed){
+			content = ed.content.get();
+		});
+		console.log(document.getElementById('question_text'));
+		document.getElementById('question_title').value = content;
 		
 
+		$('#question_title').attr('required', 'required');
+		$('#option_title_1').attr('required', 'required');
 		$('#option_title_2').attr('required', 'required');
-
 		$('#option_title_3').attr('required', 'required');
-
 		$('#option_title_4').attr('required', 'required');
-
 		$('#answer_option').attr('required', 'required');
 
 		if($('#question_form').parsley().validate())
@@ -267,6 +260,7 @@ var dataTable = $('#question_data_table').DataTable({
 			dataType:"json",
 			success:function(data)
 			{
+				editor.content.set(data.question_title);
 				$('#question_title').val(data.question_title);
 				$('#option_title_1').val(data.option_title_1);
 				$('#option_title_2').val(data.option_title_2);
@@ -300,8 +294,36 @@ var dataTable = $('#question_data_table').DataTable({
             });
          });
     });      
-  
-</script> 
+	var editor = textboxio.replace('.question_textarea');
+	// editor.message('info', 3000, 'This editor can be used to add images, mathematical symbols and also you can change font size, font style, etc.');
+</script>
+<style>
+	question_text {
+		margin: 10px 0;
+		height: 400px !important;
+	}
+	#ephox_question_text{
+		min-height: 50px !important;
+	}
+	.btn {
+		font-size: 0.875rem;
+		font-weight: 500;
+		width: 140px;
+	}
+	/* #question_data_table {
+		width: 100px;
+	} */
+	table{
+		table-layout: fixed;
+		text-align: center;
+	}
+	td {
+		/* border: 1px solid blue; */
+		overflow: hidden;
+		/* white-space: nowrap; */
+		/* text-overflow: ellipsis; */
+	}
+</style>
 
 <?php
 

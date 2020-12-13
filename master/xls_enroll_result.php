@@ -81,7 +81,7 @@ if(isset($_GET["code"]))
 			$output .= '
 			<tr>
 				<td>'.$count.'</td>
-				<td><img src="../upload/'.$row["user_image"].'" width="75" /></td>
+				<td><img src="../upload/'.$row["user_image"].'" width="15" /></td>
 				<td>'.$row["user_name"].'</td>
 				<td>'.$row["user_rollno"].'</td>
 				<td>'.$row["attendance_status"].'</td>

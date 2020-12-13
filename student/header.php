@@ -38,9 +38,9 @@
         <li class="nav-item">
           <a class="nav-link" href="enroll_exam.php">Enroll Exam</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="profile.php">Profile</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="change_password.php">Change Password</a>
         </li>

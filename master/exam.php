@@ -491,7 +491,6 @@ $(document).ready(function(){
 	$('#question_form').parsley();
 
 	$('#question_form').on('submit', function(event){
-		alert("Hi5545");
 		event.preventDefault();
 		var editors = textboxio.get('#question_text');
 		var content = ''
@@ -500,8 +499,6 @@ $(document).ready(function(){
 		});
 		console.log(document.getElementById('question_text'));
 		document.getElementById('question_title').value = content;
-		console.log($('#question_title'));
-		alert("The paragraph was clicked.");
 		
 		
 		$('#question_title').attr('required', 'required');
@@ -517,10 +514,8 @@ $(document).ready(function(){
 		$('#option_title_4').attr('required', 'required');
 
 		$('#answer_option').attr('required', 'required');
-		alert("before validate");
 		if($('#question_form').parsley().validate())
 		{
-			alert("after");
 			$.ajax({
 				url:"ajax_action.php",
 				method:"POST",
@@ -535,7 +530,7 @@ $(document).ready(function(){
 				{
 					if(data.success)
 					{
-						alert("success");
+						alert("Question Added successfully");
 						$('#message_operation').html('<div class="alert alert-success">'+data.success+'</div>');
 
 						reset_question_form();
@@ -552,6 +547,7 @@ $(document).ready(function(){
 	});
 
 	var editor = textboxio.replace('.question_textarea');
+	// editor.message('info', 3000, 'This editor can be used to add images, mathematical symbols and also you can change font size, font style, etc.');
 	
 
 });
@@ -561,6 +557,11 @@ $(document).ready(function(){
 	.question_textarea {
 	margin:10px 0;
 	height:300px !important;
+	}
+	.btn {
+		font-size: 0.875rem;
+		font-weight: 500;
+		width: 140px;
 	}
 </style>
 

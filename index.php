@@ -1,7 +1,13 @@
 <?php
 
+include('master/Examination.php');
+
+$exam = new Examination;
+
 
 include('student/header.php');
+
+
 
 ?>
 <link rel="icon" href="include/bit1.png" type="image/icon type">

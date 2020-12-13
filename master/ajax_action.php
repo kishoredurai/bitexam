@@ -91,6 +91,36 @@ if(isset($_POST['page']))
 		}
 	}
 
+	//change password
+	if ($_POST['page'] == 'change_password') {
+		if ($_POST['action'] == 'change_password') {
+			$exam->data = array(
+				':admin_password'	=>	password_hash($_POST['user_password'], PASSWORD_DEFAULT),
+				':admin_id'			=>	$_SESSION['admin_id']
+			);
+
+			$exam->query = "
+			UPDATE admin_table 
+			SET admin_password = :admin_password 
+			WHERE admin_id = :admin_id
+			";
+
+			$exam->execute_query();
+
+		//	session_destroy();
+
+			//header('location:../login.php');
+
+			$output = array(
+				'success'		=>	'Password has been change'
+			);
+
+			echo json_encode($output);
+		}
+	}
+
+
+	//login staff
 	if($_POST['page'] == 'login')
 	{
 		if($_POST['action'] == 'login')
@@ -597,8 +627,10 @@ if(isset($_POST['page']))
 				$sub_array = array();
 				$sub_array[] = $cnt;
 				$sub_array[] = $row['question_title'];
-				
-				$sub_array[] = 'Option ' . $row['answer_option'];
+				$exam->query = "select option_title from option_table where question_id=".$row['question_id']." and option_number=".$row['answer_option'];
+				$option_result = $exam->query_result();
+				// die(var_dump($option_result[0]['option_title']));
+				$sub_array[] = '' . $option_result[0]['option_title'];
 
 				$edit_button = '';
 				$delete_button = '';

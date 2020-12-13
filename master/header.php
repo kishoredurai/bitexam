@@ -53,9 +53,9 @@ $exam->admin_session_private();
                 <li class="nav-item">
                     <div class="topnav"><a style="color: black;" class="nav-link" href="exam.php">Add  Exam</a></div>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <div class="topnav"> <a style="color: black;" class="nav-link" href="course.php">Student Courses</a></div>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <div class="topnav"><a style="color: black;" class="nav-link" href="user.php">Student List</a></div>
                 </li>
@@ -81,7 +81,7 @@ WHERE admin_id = '" . $_SESSION['admin_id'] . "'
               <a class="dropdown-toggle" padding="10dp" type="button" data-toggle="dropdown">&nbsp;&nbsp;&nbsp;&nbsp; <img class="rounded-circle" width="35" height="30" alt="100x100" src="../include/bit1.png" data-holder-rendered="true">&nbsp;&nbsp;<b><?php echo $row["admin_name"]; ?></b>
                 <span class="caret"></span></a>
               <ul class="dropdown-menu ">
-                <a class="dropdown-item " href="profile.php">Profile</a>
+                <!-- <a class="dropdown-item " href="profile.php">Profile</a> -->
                 <a class="dropdown-item " href="change_password.php">Change Password</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item " href="logout.php">Logout</a>

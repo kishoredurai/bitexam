@@ -42,7 +42,7 @@ if (isset($_SESSION["user_id"])) {
 	  
 ?>
 	<h1 style="align-content: center;font-size:60px;font-family:Cursive;" align="center"><?php echo $row["user_name"]; ?> Dashboard</h1><br>
-	<? php } ?>
+	<?php }  ?>
 <br>
 </div>
 
@@ -92,7 +92,7 @@ if (isset($_SESSION["user_id"])) {
 
 
 
-	<?php }?>
+	
 
 
 
@@ -171,17 +171,12 @@ if (isset($_SESSION["user_id"])) {
 		});
 	</script>
 <?php
-} else { 		    echo "<script>window.location.href='login.php'</script>"; 
-
+ } else {
+	 echo "<script>window.location.href='../login.php'</script>"; 
+ }
 
 ?>
-	<!-- <div align="center">
-		<p><a href="register.php" class="btn btn-warning btn-lg">Register</a></p>
-		<p><a href="login.php" class="btn btn-dark btn-lg">Login</a></p>
-	</div> -->
-<?php
-}
-?>
+
 <br />
 <br />
 <br />

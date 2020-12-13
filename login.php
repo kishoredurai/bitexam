@@ -8,6 +8,7 @@ $exam = new Examination;
 
 $exam->user_session_public();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

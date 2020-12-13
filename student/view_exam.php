@@ -392,6 +392,10 @@ document.addEventListener("visibilitychange", event => {
 })
 
 $(document).ready(function(){
+
+	$('a .submit').click(function(event) {
+    	event.preventDefault();
+	});
 	var exam_id = "<?php echo $exam_id; ?>";
 
 	load_question();
@@ -413,11 +417,13 @@ $(document).ready(function(){
 	$(document).on('click', '.next', function(){
 		var question_id = $(this).attr('id');
 		load_question(question_id);
+		question_navigation();
 	});
 
 	$(document).on('click', '.previous', function(){
 		var question_id = $(this).attr('id');
 		load_question(question_id);
+		question_navigation();
 	});
 
 	function question_navigation()
@@ -436,6 +442,7 @@ $(document).ready(function(){
 	$(document).on('click', '.question_navigation', function(){
 		var question_id = $(this).data('question_id');
 		load_question(question_id);
+		question_navigation();
 	});
 
 	function load_user_details()

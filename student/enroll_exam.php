@@ -68,3 +68,9 @@ $(document).ready(function(){
 });
 
 </script>
+<style>
+.btn {
+		font-size: 0.875rem;
+		width: 130px;
+	}
+	</style>

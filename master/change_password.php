@@ -1,14 +1,6 @@
 <?php
 
-//change_password.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
-
-include('../master/Examination.php');
-
-$exam = new Examination;
-
-$exam->user_session_private();
-
-include('../include/user_header.php');
+include('header.php');
 
 ?>
 <br>
@@ -65,7 +57,7 @@ include('../include/user_header.php');
 			<div class="form-group" align="center">
 					    	<input type="hidden" name="page" value="change_password" />
 					    	<input type="hidden" name="action" value="change_password" />
-					    	<input type="submit" name="user_password" id="user_password" class="btn btn-info" value="Change" />
+					    	<input type="submit" name="user_password" id="user_password" class="btn blue" value="Change" />
 					    </div>
 		  </form>
 		 
@@ -103,7 +95,7 @@ $(document).ready(function(){
 		if($('#change_password_form').parsley().validate())
 		{
 			$.ajax({
-				url:"../user_ajax_action.php",
+				url:"ajax_action.php",
 				method:"POST",
 				data:$(this).serialize(),
 				dataType:"json",
