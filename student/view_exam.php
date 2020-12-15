@@ -37,7 +37,21 @@ function stop(){
         // var button = document.querySelector('#start');
         var container = document.querySelector('#jitsi-container');
         var api = null;
+		<?php
+		include('../master/Examination.php');
 
+		$exam = new Examination;
+		
+		$exam->user_session_private();
+		$rollno='';
+				$id = $_SESSION['user_id'];          
+				$exam->query ="select * from user_table where user_id= '$id';";
+				$results = $exam->query_result();
+				foreach($results as $rows)
+				{
+					$rollno=$rows["user_rollno"];
+				}
+				?>
         
             // var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             // var stringLength = 30;
@@ -45,9 +59,9 @@ function stop(){
             // function pickRandom() {
             //     return possible[Math.floor(Math.random() * possible.length)];
             // }
-
+		//var rollno=10;
             // var randomString = Array.apply(null, Array(stringLength)).map(pickRandom).join('');
-            var randomString = '191CS151';    
+            var randomString = '<?php echo $rollno; ?>';    
             var domain = "meet.jit.si";
             var options = {
                 "roomName": randomString,
@@ -91,16 +105,16 @@ function stop(){
 
         
     </script>
-    
+    	<?php
+				
+				?>
+
+				
 <?php
 
 //view_exam.php 
 
-include('../master/Examination.php');
 
-$exam = new Examination;
-
-$exam->user_session_private();
 
 include('../include/exam_header.php');
 
@@ -374,20 +388,58 @@ if($exam_status == 'Completed')
 
 
 <script>
-
+<?php 
+$count=0;
+$id = $_SESSION['user_id'];          
+$exam->query ="Select * from user_exam_enroll_table where user_id= '$id' and exam_id='$exam_id';";
+$results = $exam->query_result();
+foreach($results as $rows)
+{
+    $count=$rows["tab_count"];
+}
+?>
 // tab switch
-
-
+var count=<?php echo $count; ?>;
+var exam_id = "<?php echo $exam_id; ?>";
 document.addEventListener("visibilitychange", event => {
   if (document.visibilityState == "visible") {
     console.log("tab is activate")
   } else {
 	console.log("tab is inactive")
-	var exam_id = "<?php echo $exam_id; ?>";
+	
+	if(count>=4)
+       {
+		count=count+1;
+        console.log(count);
+	    	console.log("tab is inactive");
+         $.ajax({
+            url:"tab_switch.php",    //the page containing php script
+            type: "post",    //request type,
+            dataType: 'json',
+            data: {count: count,exam_id: exam_id},
+            
+        });  
+
+	
 	// ["online_exam_status"] == 'Completed'
 	window.close();
     //   console.log(camtest);
-	window.location.assign("submit.php?del="+exam_id);
+	window.location.assign("submit.php?del="+exam_id); 
+       }
+       else{
+           count=count+1;
+          
+           $.ajax({
+            url:"tab_switch.php",    //the page containing php script
+            type: "post",    //request type,
+            dataType: 'json',
+            data: {count: count,exam_id: exam_id},
+            
+        });   
+		window.alert("You have switch over tab : "+count+"/5");
+       }
+
+//	window.location.assign("submit.php?del="+exam_id);
   }
 })
 

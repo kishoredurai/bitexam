@@ -51,7 +51,7 @@ $exam->admin_session_private();
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <div class="topnav"><a style="color: black;" class="nav-link" href="exam.php">Add  Exam</a></div>
+                    <div class="topnav"><a style="color: black;" class="nav-link" href="exam.php">Exams</a></div>
                 </li>
                 <!-- <li class="nav-item">
                     <div class="topnav"> <a style="color: black;" class="nav-link" href="course.php">Student Courses</a></div>
@@ -61,7 +61,7 @@ $exam->admin_session_private();
                 </li>
                
                 <li class="nav-item">
-                    <div class="topnav"> <a style="color: black;" class="nav-link" href="staff_feedback.php"> Student Feedback</a></div>
+                    <div class="topnav"> <a style="color: black;" class="nav-link" href="staff_feedback.php">Feedback</a></div>
                 </li>
             </ul>
         <?php

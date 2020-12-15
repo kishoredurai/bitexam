@@ -779,8 +779,9 @@ if(isset($_POST['page']))
 			{
 			 	$exam->query .= 'user_email_address LIKE "%'.$_POST["search"]["value"].'%" ';
 			 	$exam->query .= 'OR user_name LIKE "%'.$_POST["search"]["value"].'%" ';
-			 	$exam->query .= 'OR user_gender LIKE "%'.$_POST["search"]["value"].'%" ';
-			 	$exam->query .= 'OR user_mobile_no LIKE "%'.$_POST["search"]["value"].'%" ';
+			 	$exam->query .= 'OR user_rollno LIKE "%'.$_POST["search"]["value"].'%" ';
+				$exam->query .= 'OR user_course LIKE "%'.$_POST["search"]["value"].'%" ';
+				$exam->query .= 'OR user_year LIKE "%'.$_POST["search"]["value"].'%" ';
 			}
 			
 			if(isset($_POST["order"]))
@@ -819,19 +820,22 @@ if(isset($_POST['page']))
 				$sub_array[] = '<img src="../upload/'.$row["user_image"].'" class="img-thumbnail" width="75" />';
 				$sub_array[] = $row["user_name"];
 				$sub_array[] = $row["user_email_address"];
-				$sub_array[] = $row["user_gender"];
+				$sub_array[] = $row["user_rollno"];
+				$sub_array[] = $row["user_year"];
+				
 				$sub_array[] = $row["user_mobile_no"];
-				$is_email_verified = '';
-				if($row["user_email_verified"] == 'yes')
-				{
-					$is_email_verified = '<label class="badge badge-success">Yes</label>';
-				}
-				else
-				{
-					$is_email_verified = '<label class="badge badge-danger">No</label>';	
-				}
+				$sub_array[] = $row["user_course"];
+				// $is_email_verified = '';
+				// if($row["user_email_verified"] == 'yes')
+				// {
+				// 	$is_email_verified = '<label class="badge badge-success">Yes</label>';
+				// }
+				// else
+				// {
+				// 	$is_email_verified = '<label class="badge badge-danger">No</label>';	
+				// }
 								
-				$sub_array[] = $is_email_verified;
+				// $sub_array[] = $is_email_verified;
 				$sub_array[] = '<button type="button" name="view_details" class="btn btn-primary btn-sm details" id="'.$row["user_id"].'">View Details</button>';
 				$data[] = $sub_array;
 			}
@@ -854,15 +858,6 @@ if(isset($_POST['page']))
 			$output = '';
 			foreach($result as $row)
 			{
-				$is_email_verified = '';
-				if($row["user_email_verified"] == 'yes')
-				{
-					$is_email_verified = '<label class="badge badge-success">Email Verified</label>';
-				}
-				else
-				{
-					$is_email_verified = '<label class="badge badge-danger">Email Not Verified</label>';	
-				}
 
 				$output .= '
 				<div class="row">
@@ -891,10 +886,6 @@ if(isset($_POST['page']))
 							<tr>
 								<th>Email</th>
 								<td>'.$row["user_email_address"].'</td>
-							</tr>
-							<tr>
-								<th>Email Status</th>
-								<td>'.$is_email_verified.'</td>
 							</tr>
 						</table>
 					</div>

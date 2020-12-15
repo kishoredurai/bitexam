@@ -87930,7 +87930,7 @@ function checkEyesInValidationBox() {
 
       console.log(wrong);
       setTimeout( 5000);
-      if(wrong>10){
+      if(wrong>15){
           
       
     //   alert(wrong/2);

@@ -554,7 +554,7 @@ if (isset($_POST['page'])) {
 				  	<div align="center">
 				   		<button type="button" name="previous" class="btn blue previous" id="' . $previous_id . '" ' . $if_previous_disable . '>PREVIOUS</button>&nbsp;
 						   <button type="button" name="next" class="btn info next" id="' . $next_id . '" ' . $if_next_disable . '>  NEXT  </button>' . ' <br> <hr>
-						   <a onclick="if(!confirm(\'This will end the exam. Kindly stop the recording to save your answers.\')) return false;" class="btn success submit ' . $hide_submit  . '" href="submit.php?id=' . $ex_id . '">SUBMIT</a>
+						   <a onclick="if(!confirm(\'This will end the exam. Kindly stop the recording to save your answers.\')) return false;" class="btn success submit ' . $hide_submit  . '" onclick="alert('.'Press a button!'.')" href="submit.php?id=' . $ex_id . '">SUBMIT</a>
 						</br></hr>
 				  	</div>
 					  <br /><br />';

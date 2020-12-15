@@ -1,6 +1,7 @@
 <?php
 
 //exam.php
+header('location: exam.php');
 
 include('header.php');
 include('../include/db.php');
