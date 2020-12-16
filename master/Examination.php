@@ -23,7 +23,7 @@ class Examination
 
 	function __construct()
 	{
-		$this->host = 'localhost';
+		$this->host = '10.10.237.153';
 		$this->username = 'test';
 		$this->password = 'test';
 		$this->database = 'online_examination';

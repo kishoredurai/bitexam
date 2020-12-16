@@ -443,9 +443,10 @@ if(isset($_POST['page']))
 			";
 
 			$exam->execute_query($exam->data);
-
+			
 			$output = array(
-				'success'	=>	'Exam Details has been changed'
+				'success'	=>	'Exam Details has been changed',
+				'DATA' => $_POST
 			);
 
 			echo json_encode($output);

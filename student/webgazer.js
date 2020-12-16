@@ -87925,12 +87925,12 @@ function checkEyesInValidationBox() {
       
       var camtest =0;
       wrong=wrong+1;
-      window.alert("warning ! "+wrong+ "place you face inside the frame within 5 sec");
+      window.alert("Reminder ! "+wrong+ "place you face inside the frame");
       
 
       console.log(wrong);
       setTimeout( 5000);
-      if(wrong>15){
+      if(wrong>20){
           
       
     //   alert(wrong/2);

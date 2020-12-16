@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start" onclick="kishore()">Start</button>
+</body>
+</html>
+<script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+<script>
+    console.log(window.screen.availHeight);
+    console.log(window.screen.availWidth);
+    function kishore(){
+            navigator.mediaDevices.getUserMedia({
+            video: {
+                width: { min: 720, ideal: 320 },
+                height: { min: 360 },
+                frameRate: 60,
+                facingMode: "screen",
+                },
+            audio: true
+        }).then(async function(stream) {
+            let recorder = RecordRTC(stream, {
+                type: 'video'
+            });
+            recorder.startRecording();
+        
+            const sleep = m => new Promise(r => setTimeout(r, m));
+            await sleep(3000);
+        
+            recorder.stopRecording(function() {
+                let blob = recorder.getBlob();
+                invokeSaveAsDialog(blob);
+            });
+        });
+    }
+</script>
+<!-- <script>
+var constraints = {
+    video: {
+      width: { min: 320, ideal: 320 },
+      height: { min: 240 },
+      frameRate: 60,
+      facingMode: "screen",
+    }
+  };
+  
+  function start() {
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(function(stream) { v.srcObject = stream; })
+    .then(function() {
+      return new Promise(function(r) { v.onloadedmetadata = r;});
+    })
+    .then(function() {
+      log("Success: "+ v.videoWidth +"x"+ v.videoHeight);
+    })
+    .catch(failed);
+  }
+  
+  function log(msg) { div.innerHTML += "<p>" + msg + "</p>"; }
+  function failed(e) { log(e + ", line " + e.lineNumber); }
+</script>
+    
+  <video id="v" height="120" width="160" autoplay></video><br>
+  <button onclick="start()">Start!</button><div id="div"></div>
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> -->
