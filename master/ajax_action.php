@@ -327,9 +327,9 @@ if(isset($_POST['page']))
 
 				$sub_array[] = '<a href="exam_enroll.php?code='.$row['online_exam_code'].'" class="btn warning btn-sm">Enrolled</a>';
 
-				$sub_array[] = $result_button;
+				// $sub_array[] = $result_button;
 
-				$sub_array[] = $edit_button . ' ' . $delete_button;
+				// $sub_array[] = $edit_button . ' ' . $delete_button;
 
 				$data[] = $sub_array;
 			}

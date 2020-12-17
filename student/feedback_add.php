@@ -15,6 +15,12 @@ include('../include/db.php');
 
 
 if (isset($_POST['feed'])) {
+
+    $alert='swal("Good job!", "You clicked the button!", "success");';
+        echo "<script type='text/javascript'>'$alert'</script>";
+        
+        sleep(3);
+
     $id = $_SESSION['user_id'];
     $type = $_POST['type'];
     $feedback = $_POST['feedback'];
@@ -26,8 +32,7 @@ move_uploaded_file($profiletmpname, '../feedback_image/'.$profilename);
 
         $result = mysqli_query($db, "INSERT INTO `feedback_table`(`user_id`, `feed_type`, `feed`,`feed_image` ) values ('$id','$type','$feedback','$profilename');");
 
-
-        echo "<script type='text/javascript'>window.alert('Feedback Updated');</script>";
+        
 
         echo "<script>window.location.href='feedback.php'</script>"; 
 

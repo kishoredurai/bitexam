@@ -23,7 +23,7 @@ class Examination
 
 	function __construct()
 	{
-		$this->host = '10.10.237.153';
+		$this->host = 'localhost';
 		$this->username = 'test';
 		$this->password = 'test';
 		$this->database = 'online_examination';
@@ -130,6 +130,23 @@ class Examination
 	function admin_session_public()
 	{
 		if(isset($_SESSION['admin_id']))
+		{
+			$this->redirect('index.php');
+		}
+	}
+
+
+	function coe_session_private()
+	{
+		if(!isset($_SESSION['coe_id']))
+		{
+			$this->redirect('../login.php');
+		}
+	}
+
+	function coe_session_public()
+	{
+		if(isset($_SESSION['coe_id']))
 		{
 			$this->redirect('index.php');
 		}

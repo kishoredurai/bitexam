@@ -51,6 +51,13 @@ foreach($result as $row)
 }
 
 
+
+
+/// staff user checking
+
+
+
+
 $exam->query = "SELECT * FROM admin_table WHERE admin_email_address = :user_email_address	";
 
 $total_rows = $exam->total_row();

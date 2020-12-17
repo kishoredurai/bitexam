@@ -90,6 +90,7 @@ if (isset($_POST['page'])) {
 				':user_email_address'	=>	$_POST['user_email_address']
 			);
 			$cn=1;
+
 			// student login checking
 			$exam->query = "
 			SELECT * FROM user_table 
@@ -104,26 +105,76 @@ if (isset($_POST['page'])) {
 
 				foreach ($result as $row) {
 
-					if (password_verify($_POST['user_password'], $row['user_password'])) {
+					if (password_verify($_POST['user_password'], $row['user_password'])) 
+					{	
+						$cn=2;
+
 						$_SESSION['user_id'] = $row['user_id'];
 						$output = array(
-							'success'	=>	true
+							'success'	=>	true,
+							'status'    =>	'student'						
 						);
-						$cn=0;
-					} else {
+					} 
+					else {
 						$output = array(
-							'error'	=>	'Wrong Password'
+							'error'		=>	'Wrong Password'
 						);
 					}
-					return $output;
-					if($cn==0)
-					{
-						header("location: student/index.php");
-					}
+					
 				}
 			}
+			else {
+				$output = array(
+					'error'		=>	'Wrong Email Address'
+				);
+			}
+
+			if($cn==1)
+			{
+			// //coe login checking
+			$exam->query = "
+			SELECT * FROM coe_table 
+			WHERE coe_email_address = :user_email_address
+			";
+
+			$total_row = $exam->total_row();
+
+
+			if ($total_row > 0) {
+				$result = $exam->query_result();
+
+				foreach ($result as $row) {
+
+					if (password_verify($_POST['user_password'], $row['coe_password'])) {
+						$cn=2;
+						$_SESSION['coe_id'] = $row['coe_id'];
+						$output = array(
+							'success'	=>	true,
+							'status'    =>	'coe'
+						);
+						
+
+					} 
+					else {
+						$output = array(
+							'error'		=>	'Wrong Password'
+						);
+						echo json_encode($output);
+
+					}
+				}
+			} else {
+				$output = array(
+					'error'		=>	'Wrong Email Address'
+				);
+
+			}
+
+		}
 
 			//admin checking
+			if($cn==1)
+			{
 			$exam->query = "
 			SELECT * FROM admin_table 
 			WHERE admin_email_address = :user_email_address
@@ -140,7 +191,8 @@ if (isset($_POST['page'])) {
 					if (password_verify($_POST['user_password'], $row['admin_password'])) {
 						$_SESSION['admin_id'] = $row['admin_id'];
 						$output = array(
-							'success'	=>	true
+							'success'	=>	true,
+							'status'    =>	'staff'
 						);
 						
 
@@ -156,7 +208,7 @@ if (isset($_POST['page'])) {
 					'error'		=>	'Wrong Email Address'
 				);
 			}
-
+			}
 
 
 

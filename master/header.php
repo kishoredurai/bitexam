@@ -26,6 +26,7 @@ $exam->admin_session_private();
   <script src="../style1/bootstrap.min.js"></script>
   <script src="../style1/dataTables.min.js"></script>
   <script src="../style1/dataTables.bootstrap4.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link rel="stylesheet" href="../style/style.css" />
   <link rel="stylesheet" href="../style/TimeCircles.css" />
   <script src="../style/TimeCircles.js"></script>

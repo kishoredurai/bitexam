@@ -15,9 +15,7 @@ include('../include/db.php');
 			<div class="col-md-9">
 				<h3 class="panel-title"> <?php echo $row["admin_name"]; ?> Online Exam List</h3>
 			</div>
-			<div class="col-md-3" align="right">
-				<button type="button" id="add_button" class="btn info btn-sm">Add</button>
-			</div>
+			
 		</div>
 	</div>
 	<div class="card-body">
@@ -38,8 +36,8 @@ include('../include/db.php');
 						<th>Status</th>
 						<th>Question</th>
 						<th>Enrolled student</th>
-						<th>Result</th>
-						<th>Action</th>
+						<!-- <th>Result</th>
+						<th>Action</th> -->
 					</tr>
 				</thead>
 			</table>
@@ -534,8 +532,10 @@ $(document).ready(function(){
 				success:function(data)
 				{
 					if(data.success)
-					{
+					{   
 						alert("Question Added successfully");
+						swal("Good job!", "Question added successfully", "success");
+						
 						$('#message_operation').html('<div class="alert alert-success">'+data.success+'</div>');
 
 						reset_question_form();
@@ -553,10 +553,19 @@ $(document).ready(function(){
 
 	var editor = textboxio.replace('.question_textarea');
 	// editor.message('info', 3000, 'This editor can be used to add images, mathematical symbols and also you can change font size, font style, etc.');
+	swal("Good job!", "Question added successfully!", "success");
 	
 
 });
 
+</script>
+<script>
+function myFunction() {
+  setTimeout(function(), 3000);
+}
+</script>
+<script>
+	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </script>
 <style>
 	.question_textarea {

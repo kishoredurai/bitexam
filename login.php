@@ -119,9 +119,19 @@ $exam->user_session_public();
                         $('#user_login').val('Please wait...');
                     },
                     success: function(data) {
+                       
                         if (data.success) {
+                            if (data.status=='staff') {
                             location.href = 'master/index.php';
-                        } else {
+                            } 
+                            if (data.status=='student') {
+                            location.href = 'student/index.php';
+                             }
+                             if (data.status=='coe') {
+                            location.href = 'COE/index.php';
+                             }
+                        }
+                         else {
                             $('#message').html('<div class="alert alert-danger" style="font-size:200;">' + data.error + '</div>');
                         }
 

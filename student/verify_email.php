@@ -1,7 +1,6 @@
 <?php
 
-//verify_email.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
-
+//verify_email.php 
 include('../master/Examination.php');
 
 $exam = new Examination;

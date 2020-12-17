@@ -87925,18 +87925,24 @@ function checkEyesInValidationBox() {
       
       var camtest =0;
       wrong=wrong+1;
-      window.alert("Reminder ! "+wrong+ "place you face inside the frame");
+     swal("Reminder ! "+wrong+ "place you face inside the frame");
+    // swal({
+    //     title: "waring!",
+    //     text: "violation of rules",
+    //     timer: 2000,
+        
+        
+    //  });
       
 
       console.log(wrong);
-      setTimeout( 5000);
-      if(wrong>20){
-          
-      
+      setTimeout( 2000);
+      if(wrong>5){
+           wrong=0;
     //   alert(wrong/2);
-      window.close();
+    //   window.close();
     //   console.log(camtest);
-      window.location.assign("enroll_exam.php");
+    //   window.location.assign("enroll_exam.php");
       
       }
      
@@ -87946,6 +87952,7 @@ function checkEyesInValidationBox() {
   }
   else
     faceFeedbackBox.style.border = 'solid black';
+    // swal("Fix to right position");
     
 }
 

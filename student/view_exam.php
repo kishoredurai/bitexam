@@ -25,7 +25,8 @@ function stop(){
 <canvas id="plotting_canvas" width="600" height="600" style="cursor:crosshair;"></canvas>
     <script src="webgazer.js"></script>
     <script src="jquery.min.js"></script>
-    <script src="sweetalert.min.js"></script>
+	<script src="sweetalert.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="main.js"></script>
     <script src="calibration.js"></script>
     <script src="precision_calculation.js"></script>
@@ -79,7 +80,7 @@ function stop(){
                 {
                     on: true, //whether screen sharing is on
                     details: {
-                        sourceType: screen,
+                        sourceType: 'screen'
 
                     }
 
@@ -180,7 +181,7 @@ if(isset($_GET['code']))
 			}
 		}
 
-	echo "<script type='text/javascript'>window.alert('Reminder ! start Recording');</script>";
+	echo "<script type='text/javascript'>swal('Reminder ! start Recording');</script>";
 
 	$exam->query = "
 	SELECT online_exam_status, online_exam_datetime, online_exam_duration FROM online_exam_table 
@@ -436,7 +437,7 @@ document.addEventListener("visibilitychange", event => {
             data: {count: count,exam_id: exam_id},
             
         });   
-		window.alert("You have switch over tab : "+count+"/5");
+		swal("You have switch over tab : "+count+"/5");
        }
 
 //	window.location.assign("submit.php?del="+exam_id);
@@ -531,7 +532,7 @@ $(document).ready(function(){
 		}
 		if(remaining_second < 30 && remaining_second > 28)
 		{
-			window.alert('please stop recording');
+			swal('please stop recording');
 		}
 		
 	}, 1000);
@@ -542,13 +543,13 @@ $(document).ready(function(){
 		var answer_option = $(this).data('id');
 
 		if(answer_option==1)
-        alert("Option A");
+        swal("Option A");
 		else if(answer_option==2)
-        alert("Option B");
+        swal("Option B");
 		else if(answer_option==3)
-        alert("Option C");
+        swal("Option C");
 		else if(answer_option==4)
-        alert("Option D");
+        swal("Option D");
         
 		$.ajax({
 			url:"../user_ajax_action.php",
