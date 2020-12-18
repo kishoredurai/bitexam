@@ -4,6 +4,8 @@
 
 include('Examination.php');
 
+header("location:/bitexam/master/index.php");
+
 $exam = new Examination;
 
 $exam->admin_session_public();

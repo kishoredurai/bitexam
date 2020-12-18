@@ -1,5 +1,8 @@
 <?php
 
+require_once '../include/db.php';
+
+include('../include/db.php');
 
 
 include('header.php');
@@ -9,28 +12,83 @@ include('header.php');
 
 <br><Br>
 <div class="card">
-	<div class="card-header">
+	<div class="card-header" align="center">
+		<div class="form-group">
+			<div class="cols">
+				<form method="post" id="exam_form">
+					<div class="row">
 
+						<div class="col-12 col-md-4" >
+							<select name="staff_id" id="online_exam_course" class="form-control">
+								<option value="">Select</option>
+								<?php
+								require_once '../include/db.php';
+
+								$sql = "SELECT * from course_table";
+								$result = mysqli_query($db, $sql);
+
+								if (mysqli_num_rows($result) > 0) {
+									while ($row = mysqli_fetch_assoc($result)) { ?>
+										<option value="<?php echo $row['course_name']; ?>"><?php echo $row['course_name']; ?></option>
+								<?php }
+								} ?>
+							</select>
+						</div>
+						<div class="col-12 col-md-4">
+							<div class="form-group">
+								<div class="col-md-12">
+									<select name="exam_year" id="online_exam_year" class="form-control">
+										<option value="">Select</option>
+										<option value="I">I</option>
+										<option value="II">II</option>
+										<option value="III">III</option>
+										<option value="IV">IV</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+						<div class="col-3">
+							<input type="submit" name="button_action" id="button_action" class="btn success btn-sm" value="Search" style="align:right" />
+						</div>
+					</div>
+			</div>
+
+			</form>
+		</div>
 	</div>
+</div>
+
+<br><Br>
+<div class="card">
+	<div class="card-header">
+		<div class="form-group">
+			<div class="cols">
+
+			</div>
+		</div>
+	</div>
+
 	<div class="card-body">
 		<span id="message_operation"></span>
-		<div id="table-filter"></div>
 		<div class="table-responsive">
+			<div class="col-2 text-right ml-auto">
+				<input type="text" name="search" id="search" placeholder="Search" class="form-control" />
+			</div>
+
 			<table class="table table-bordered table-striped table-hover" id="user_data_table">
 				<thead>
 					<tr>
-					<th>S.No</th>
+						<th>S.No</th>
 						<th>Image</th>
-						<th>User Name</th>
-						<th>Email Address</th>
-						<th>Rollno</th>
+						<th>User Name </th>
+						<th>Email Address </th>
+						<th>User Rollno</th>
 						<th>Year</th>
-						<th>Mobile No</th>
-						<th>Department</th>
+						<th>Course </th>
 						<th>Action</th>
 					</tr>
 				</thead>
-				<tfoot></tfoot>
 			</table>
 		</div>
 	</div>
@@ -59,69 +117,114 @@ include('header.php');
 	</div>
 </div>
 
-<style>
-	.btn {
-		font-size: 0.875rem;
-		font-weight: 500;
-		width: 140px;
-	}
-</style>
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
 	var selections = []
 	$(document).ready(function() {
 
-		var dataTable = $('#user_data_table').DataTable({
-			// "processing": true,
+		var dataTable = $('#user_data_table').DataTable();
+		dataTable.destroy();
+
+
+		dataTable = $('#user_data_table').DataTable({
+			"processing": true,
 			"serverSide": true,
-			"paging": false,
+			"searching": false,
+
 			"order": [],
-    		select: true,
-    		// stateSave: true,
 			"ajax": {
 				url: "ajax_action.php",
 				type: "POST",
+
 				data: {
-					action: 'fetch',
+					action: 'load',
 					page: 'user'
 				}
 			},
-
 			"columnDefs": [{
-					"targets": [0, 1, 8],
-					"orderable": false,
-				},
-			],
+				"targets": [0, 7],
+				"orderable": false,
+			}, ],
 
-			initComplete: function () {
-            this.api().columns([2, 5, 7]).every( function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $('#table-filter'))
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
-						
-                        dataTable
-							.search( val )
-                            .draw();
-                    } );
-					
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-			
 		});
 
 		
+		$(document).on('click', '.details', function() {
+			var user_id = $(this).attr('id');
+			$.ajax({
+				url: "ajax_action.php",
+				method: "POST",
+				data: {
+					action: 'fetch_data',
+					user_id: user_id,
+					page: 'user'
+				},
+				success: function(data) {
+					$('#user_details').html(data);
+					$('#detailModal').modal('show');
+				}
+			});
+		});
 
 
+		$("#search").on("keyup", function() {
+			console.log('test');
+			var value = $("#search").val().toLowerCase();
+			$("#user_data_table tr").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		});
+
+	});
+
+
+
+
+
+
+
+	$('#exam_form').on('submit', function(event) {
+		event.preventDefault();
+
+
+		$('#online_staff_id').attr('required', 'required');
+
+		$('#online_exam_year').attr('required', 'required');
+
+		if ($('#exam_form').parsley().validate()) {
+			var course = $('#online_exam_course').val();
+			var year = $('#online_exam_year').val();
+
+
+			var dataTable = $('#user_data_table').DataTable();
+			dataTable.destroy();
+
+
+			dataTable = $('#user_data_table').DataTable({
+				"processing": true,
+				"serverSide": true,
+				"searching": false,
+
+				"order": [],
+				"ajax": {
+					url: "ajax_action.php",
+					type: "POST",
+
+					data: {
+						year: year,
+						course: course,
+						action: 'fetch',
+						page: 'user'
+					}
+				},
+				"columnDefs": [{
+					"targets": [0, 7],
+					"orderable": false,
+				}, ],
+
+			});
+
+
+		}
 
 		$(document).on('click', '.details', function() {
 			var user_id = $(this).attr('id');
@@ -141,4 +244,5 @@ include('header.php');
 		});
 
 	});
+	
 </script>

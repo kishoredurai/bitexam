@@ -553,7 +553,6 @@ $(document).ready(function(){
 
 	var editor = textboxio.replace('.question_textarea');
 	// editor.message('info', 3000, 'This editor can be used to add images, mathematical symbols and also you can change font size, font style, etc.');
-	swal("Good job!", "Question added successfully!", "success");
 	
 
 });

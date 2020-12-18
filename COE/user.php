@@ -8,24 +8,23 @@ include('header.php');
 
 ?>
 <br /><br>
-
-<br><Br>
 <div class="card">
-	<div class="card-header">
+	<div class="card-header" align="center">
+
 		<div class="form-group">
 			<div class="cols">
 				<form method="post" id="exam_form">
 					<div class="row">
 
-						<div class="col-12 col-md-4">
+						<div class="col-12 col-md-4" >
 							<select name="staff_id" id="online_exam_course" class="form-control">
 								<option value="">Select</option>
 								<?php
 								require_once '../include/db.php';
-	
+
 								$sql = "SELECT * from course_table";
 								$result = mysqli_query($db, $sql);
-	
+
 								if (mysqli_num_rows($result) > 0) {
 									while ($row = mysqli_fetch_assoc($result)) { ?>
 										<option value="<?php echo $row['course_name']; ?>"><?php echo $row['course_name']; ?></option>
@@ -35,20 +34,20 @@ include('header.php');
 						</div>
 						<div class="col-12 col-md-4">
 							<div class="form-group">
-									<div class="col-md-12">
-										<select name="exam_year" id="online_exam_year" class="form-control">
-											<option value="">Select</option>
-											<option value="I">I</option>
-											<option value="II">II</option>
-											<option value="III">III</option>
-											<option value="IV">IV</option>
-										</select>
-									</div>
-								
+								<div class="col-md-12">
+									<select name="exam_year" id="online_exam_year" class="form-control">
+										<option value="">Select</option>
+										<option value="I">I</option>
+										<option value="II">II</option>
+										<option value="III">III</option>
+										<option value="IV">IV</option>
+									</select>
+								</div>
+
 							</div>
 						</div>
 						<div class="col-3">
-							<input type="submit" name="button_action" id="button_action" class="btn btn-success btn-sm" value="Search" style="align:right" />
+							<input type="submit" name="button_action" id="button_action" class="btn success btn-sm" value="Search" style="align:right" />
 						</div>
 					</div>
 			</div>
@@ -56,7 +55,20 @@ include('header.php');
 			</form>
 		</div>
 	</div>
-	
+</div>
+
+<br><Br>
+<div class="card">
+	<div class="card-header" align="center">
+	<h3 class="panel-title">Student  List</h3>
+
+		<div class="form-group">
+			<div class="cols">
+
+			</div>
+		</div>
+	</div>
+
 	<div class="card-body">
 		<span id="message_operation"></span>
 		<div class="table-responsive">
@@ -142,6 +154,28 @@ include('header.php');
 				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
+
+
+		$(document).on('click', '.details', function() {
+			var user_id = $(this).attr('id');
+			$.ajax({
+				url: "ajax_action.php",
+				method: "POST",
+				data: {
+					action: 'fetch_data',
+					user_id: user_id,
+					page: 'user'
+				},
+				success: function(data) {
+					$('#user_details').html(data);
+					$('#detailModal').modal('show');
+				}
+			});
+		});
+
+
+
+
 
 	});
 
