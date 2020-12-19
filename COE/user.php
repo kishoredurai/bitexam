@@ -9,9 +9,9 @@ include('header.php');
 ?>
 <br /><br>
 <div class="card">
-	<div class="card-header" align="center">
+	<div class="card-header">
 
-		<div class="form-group">
+		<div class="form-group col-lg-11 col-md-11 offset-lg-1 offset-md-1">
 			<div class="cols">
 				<form method="post" id="exam_form">
 					<div class="row">
@@ -46,8 +46,8 @@ include('header.php');
 
 							</div>
 						</div>
-						<div class="col-3">
-							<input type="submit" name="button_action" id="button_action" class="btn success btn-sm" value="Search" style="align:right" />
+						<div class="col-4 text-center">
+							<input type="submit" name="button_action" id="button_action" class="btn success btn-sm" value="Search" />
 						</div>
 					</div>
 			</div>

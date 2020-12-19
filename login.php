@@ -130,6 +130,9 @@ $exam->user_session_public();
                              if (data.status=='coe') {
                             location.href = 'COE/index.php';
                              }
+                             if (data.status=='admin') {
+                            location.href = 'admin/index.php';
+                             }
                         }
                          else {
                             $('#message').html('<div class="alert alert-danger" style="font-size:200;">' + data.error + '</div>');

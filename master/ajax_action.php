@@ -701,9 +701,7 @@ if (isset($_POST['page'])) {
 		if ($_POST['action'] == 'load') {
 			$output = array();
 
-			$course = $_POST['course'];
-			$year = $_POST['year'];
-
+			
 			$exam->query = "SELECT * FROM user_table ;";
 
 

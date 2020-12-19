@@ -90,6 +90,7 @@ if (isset($_POST['page'])) {
 				':user_email_address'	=>	$_POST['user_email_address']
 			);
 			$cn = 1;
+			$error = 1;
 
 			// student login checking
 			$exam->query = "
@@ -102,7 +103,7 @@ if (isset($_POST['page'])) {
 
 			if ($total_row > 0) {
 				$result = $exam->query_result();
-
+				$error = 2;
 				foreach ($result as $row) {
 
 					if (password_verify($_POST['user_password'], $row['user_password'])) {
@@ -115,15 +116,13 @@ if (isset($_POST['page'])) {
 							'status'    =>	'student'
 						);
 					} else {
-						$output = array(
-							'error'		=>	'Wrong Password'
-						);
+						if ($error == 1) {
+							$output = array(
+								'error'		=>	'Wrong Password'
+							);
+						}
 					}
 				}
-			} else {
-				$output = array(
-					'error'		=>	'Wrong Email Address'
-				);
 			}
 
 			if ($cn == 1) {
@@ -138,7 +137,7 @@ if (isset($_POST['page'])) {
 
 				if ($total_row > 0) {
 					$result = $exam->query_result();
-
+					$error = 2;
 					foreach ($result as $row) {
 
 						if (password_verify($_POST['user_password'], $row['coe_password'])) {
@@ -149,26 +148,22 @@ if (isset($_POST['page'])) {
 								'status'    =>	'coe'
 							);
 						} else {
-							$output = array(
-								'error'		=>	'Wrong Password'
-							);
-							echo json_encode($output);
+							if ($error == 1) {
+								$output = array(
+									'error'		=>	'Wrong Password'
+								);
+							}
 						}
 					}
-				} else {
-					$output = array(
-						'error'		=>	'Wrong Email Address'
-					);
 				}
 			}
 
 			//admin checking
 
 			if ($cn == 1) {
-				// //coe login checking
 				$exam->query = "
 			SELECT * FROM coe_table 
-			WHERE coe_email_address = :user_email_address and user_type='admin'
+			WHERE coe_email_address = :user_email_address and user_type='ADMIN'
 			";
 
 				$total_row = $exam->total_row();
@@ -176,26 +171,28 @@ if (isset($_POST['page'])) {
 
 				if ($total_row > 0) {
 					$result = $exam->query_result();
-
+					$error = 2;
 					foreach ($result as $row) {
 
 						if (password_verify($_POST['user_password'], $row['coe_password'])) {
 							$cn = 2;
-							$_SESSION['coe_id'] = $row['coe_id'];
+							$_SESSION['adm_id'] = $row['coe_id'];
 							$output = array(
 								'success'	=>	true,
-								'status'    =>	'coe'
+								'status'    =>	'admin'
 							);
 						} else {
-							$output = array(
-								'error'		=>	'Wrong Password'
-							);
-							echo json_encode($output);
+							if ($error == 1) {
+
+								$output = array(
+									'error'		=>	'Wrong Password'
+								);
+							}
 						}
 					}
 				} else {
 					$output = array(
-						'error'		=>	'Wrong Email Address'
+						'error'		=>	'Wrong Email Address or Password'
 					);
 				}
 			}
@@ -231,7 +228,7 @@ if (isset($_POST['page'])) {
 					}
 				} else {
 					$output = array(
-						'error'		=>	'Wrong Email Address'
+						'error'		=>	'Wrong Email Address or Password'
 					);
 				}
 			}

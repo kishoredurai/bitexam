@@ -136,6 +136,23 @@ class Examination
 	}
 
 
+	function adm_session_private()
+	{
+		if(!isset($_SESSION['adm_id']))
+		{
+			$this->redirect('../login.php');
+		}
+	}
+
+	function adm_session_public()
+	{
+		if(isset($_SESSION['adm_id']))
+		{
+			$this->redirect('index.php');
+		}
+	}
+
+
 	function coe_session_private()
 	{
 		if(!isset($_SESSION['coe_id']))

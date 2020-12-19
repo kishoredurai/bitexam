@@ -42,6 +42,7 @@ $exam->admin_session_private();
 
 
     <nav class="navbar navbar-expand-sm  navbar-light   " style="background-color: #dedede ;">
+<div class="container" style="max-width: 1500px;">
         <a class="navbar-brand" href="index.php">
             <img src="https://www.bitsathy.ac.in/assets/images/headlogo.svg" width="180" height="40" alt="">
         </a>
@@ -63,8 +64,12 @@ $exam->admin_session_private();
                 <!-- <li class="nav-item">
                     <div class="topnav"> <a style="color: black;" class="nav-link" href="course.php">Student Courses</a></div>
                 </li> -->
-                <li class="nav-item">
-                    <div class="topnav"><a style="color: black;" class="nav-link" href="user.php">Student List</a></div>
+                <li class="nav-item dropdown">
+                    <div class="topnav">
+                        <a class="nav-link dropdown" style="color: black;" class="nav-link" href="#">Details</a></div>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="user.php">Students Details</a>
+                        <a class="dropdown-item" href="staff.php">Staff Details</a>
                 </li>
 
                 <li class="nav-item">
@@ -84,8 +89,8 @@ $exam->admin_session_private();
                 foreach ($result as $row)
             ?>
                 <form class="form-inline my-2 my-lg-0">
-                    <div class="dropdown "> &emsp;&nbsp;&nbsp;&nbsp;
-                        <a class="dropdown-toggle" padding="10dp" type="button" data-toggle="dropdown">&nbsp;&nbsp;&nbsp;&nbsp; <img class="rounded-circle" width="35" height="30" alt="100x100" src="../include/bit1.png" data-holder-rendered="true">&nbsp;&nbsp;<b><?php echo $row["coe_name"]; ?></b>
+                    <div class="dropdown ">
+                        <a class="dropdown-toggle" padding="10dp" type="button" data-toggle="dropdown"><img class="rounded-circle" width="35" height="30" alt="100x100" src="../include/bit1.png" data-holder-rendered="true"><b><?php echo $row["coe_name"]; ?></b>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <!-- <a class="dropdown-item " href="profile.php">Profile</a> -->
@@ -100,6 +105,7 @@ $exam->admin_session_private();
             }
 
     ?>
+    </div>
     </div>
     </nav>
     <style>
