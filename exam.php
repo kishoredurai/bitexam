@@ -556,6 +556,11 @@ $(document).ready(function(){
 
 });
 
+    function openWin() {
+		var view_link = $('#view_exam').attr('href');
+		myWindow = window.open(view_link, "", 'fullscreen=yes');
+	}
+
 </script>
 <style>
 	.question_textarea {

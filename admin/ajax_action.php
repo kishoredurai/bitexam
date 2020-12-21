@@ -2,7 +2,7 @@
 
 include('../include/db.php');
 require_once'../include/db.php';
-//ajax_action.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
+//ajax_action.php 
 
 include('Examination.php');
 
@@ -193,11 +193,11 @@ if(isset($_POST['page']))
 
 				$exam->query .= 'OR online_exam_duration LIKE "%' . $_POST["search"]["value"] . '%" ';
 
-				$exam->query .= 'OR total_question LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR total_question LIKE "%' . $_POST["search"]["value"] . '%" ';
 
-				$exam->query .= 'OR marks_per_right_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR marks_per_right_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
 
-				$exam->query .= 'OR marks_per_wrong_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR marks_per_wrong_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
 
 				$exam->query .= 'OR online_exam_status LIKE "%' . $_POST["search"]["value"] . '%" ';
 			}
@@ -249,12 +249,12 @@ if(isset($_POST['page']))
 
 				$sub_array[] = $row['online_exam_duration'] . ' Minute';
 
-				$sub_array[] = $row['total_question'] . ' Question';
+				// $sub_array[] = $row['total_question'] . ' Question';
 
-				$sub_array[] = $row['marks_per_right_answer'] . ' Mark';
+				// $sub_array[] = $row['marks_per_right_answer'] . ' Mark';
 
 
-				$sub_array[] = '-' . $row['marks_per_wrong_answer'] . ' Mark';
+				// $sub_array[] = '-' . $row['marks_per_wrong_answer'] . ' Mark';
 
 				$status = '';
 				$edit_button = '';
@@ -282,7 +282,7 @@ if(isset($_POST['page']))
 					$edit_button = '
 					<button type="button" name="edit" class="btn btn-primary btn-sm edit" id="' . $row['online_exam_id'] . '">Edit</button>
 					';
-
+ 
 					$delete_button = '<button type="button" name="delete" class="btn btn-danger btn-sm delete" id="' . $row['online_exam_id'] . '">Delete</button>';
 				} else {
 					$result_button = '<a href="exam_result.php?code=' . $row["online_exam_code"] . '" class="btn success btn-sm">Result</a>';
@@ -334,11 +334,11 @@ if(isset($_POST['page']))
 				':online_exam_title'	=>	$exam->clean_data($_POST['online_exam_title']),
 				':online_exam_datetime'	=>	$_POST['online_exam_datetime'] . ':00',
 				':online_exam_duration'	=>	$_POST['online_exam_duration'],
-				':total_question'		=>	$_POST['total_question'],
+				// ':total_question'		=>	$_POST['total_question'],
 				':user_year'			=>	$_POST['exam_year'],
 				':user_course'			=>	$_POST['exam_course'],
-				':marks_per_right_answer'=>	$_POST['marks_per_right_answer'],
-				':marks_per_wrong_answer'=>	$_POST['marks_per_wrong_answer'],
+				// ':marks_per_right_answer'=>	$_POST['marks_per_right_answer'],
+				// ':marks_per_wrong_answer'=>	$_POST['marks_per_wrong_answer'],
 				':online_exam_created_on'=>	$current_datetime,
 				':online_exam_status'	=>	'Pending',
 				':online_exam_code'		=>	$exam_code
@@ -346,8 +346,8 @@ if(isset($_POST['page']))
 
 			$exam->query = "
 			INSERT INTO online_exam_table 
-			(admin_id, user_year, user_course, online_exam_title, online_exam_datetime, online_exam_duration, total_question, marks_per_right_answer, marks_per_wrong_answer, online_exam_created_on, online_exam_status, online_exam_code) 
-			VALUES (:admin_id, :user_year, :user_course, :online_exam_title, :online_exam_datetime, :online_exam_duration, :total_question, :marks_per_right_answer, :marks_per_wrong_answer, :online_exam_created_on, :online_exam_status, :online_exam_code)
+			(admin_id, user_year, user_course, online_exam_title, online_exam_datetime, online_exam_duration,   online_exam_created_on, online_exam_status, online_exam_code) 
+			VALUES (:admin_id, :user_year, :user_course, :online_exam_title, :online_exam_datetime, :online_exam_duration,   :online_exam_created_on, :online_exam_status, :online_exam_code)
 			";
 			$examid = "";
 			$exam->execute_query();
@@ -815,6 +815,9 @@ if(isset($_POST['page']))
 								
 				// $sub_array[] = $is_email_verified;
 				$sub_array[] = '<button type="button" name="view_details" class="btn btn-primary btn-sm details" id="'.$row["user_id"].'">View Details</button>';
+
+				$sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-sm delete" id="'.$row["user_id"].'"><i class="fa fa-trash"></i></button> &nbsp;<a type="button" name="view_details" class="btn btn-success btn-sm details" id="'.$row["user_id"].'"><i class="fa fa-edit fa-sm"></i></a>';
+
 				$data[] = $sub_array;
 			}
 
@@ -827,6 +830,61 @@ if(isset($_POST['page']))
 			echo json_encode($output);	
 		}
 
+
+		if($_POST['action'] == 'Add')
+		{
+			
+
+			$exam->data = array(
+				':user_name'			=>	$_POST['user_name'],
+				':user_rollno'			=>	$_POST['user_rollno'],
+				':user_year'			=>	$_POST['user_year'],
+				':user_course'			=>	$_POST['user_course'],
+				':user_gender'			=>	$_POST['user_gender'],
+				':user_dob'				=>	$_POST['user_dob'],
+				':user_email_address'	=>	$_POST['user_email_address'],
+				':user_mobile_no'		=>	$_POST['user_mobile_no'],
+				':user_address'			=>	$_POST['user_address']
+			);
+
+			$exam->query = "
+			INSERT INTO user_table
+			(user_name, user_rollno, user_course, user_year, user_gender, user_dob, user_email_address, user_mobile_no,user_address) 
+			VALUES (:user_name, :user_rollno, :user_course, :user_year, :user_gender, :user_dob, :user_email_address, :user_mobile_no, :user_address);
+			";
+			
+			$exam->execute_query();
+
+			
+			$output = array(
+				'success'	=>	'User Added Successfully'
+			);
+
+			echo json_encode($output);
+		}
+
+
+
+
+		if($_POST['action'] == 'delete')
+		{
+			$exam->data = array(
+				':user_id'	=>	$_POST['user_id']
+			);
+
+
+			$exam->query = "
+			DELETE FROM user_table WHERE user_id = :user_id
+			";
+
+			$exam->execute_query();
+
+			$output = array(
+				'success'	=>	'User Details has been removed'
+			);
+
+			echo json_encode($output);
+		}
 
 
 		if($_POST['action'] == 'fetch')
@@ -900,6 +958,9 @@ if(isset($_POST['page']))
 								
 				// $sub_array[] = $is_email_verified;
 				$sub_array[] = '<button type="button" name="view_details" class="btn btn-primary btn-sm details" id="'.$row["user_id"].'">View Details</button>';
+				
+				$sub_array[] = '<button type="button" name="delete"  class="btn btn-danger btn-sm delete" id="'.$row["user_id"].'"><i class="fa fa-trash"></i></button><button type="button" name="view_details" class="btn btn-success btn-sm details" id="'.$row["user_id"].'"><i class="fa fa-edit fa-sm"></i></button>';
+
 				$data[] = $sub_array;
 			}
 
@@ -1027,6 +1088,8 @@ if(isset($_POST['page']))
 
 				// $sub_array[] = $is_email_verified;
 				// $sub_array[] = '<button type="button" name="view_details" class="btn btn-primary btn-sm details" id="'.$row["user_id"].'">View Details</button>';
+
+				$sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-sm delete" id="'.$row["admin_id"].'"><i class="fa fa-trash"></i></button> &nbsp;<a type="button" name="view_details" class="btn btn-success btn-sm details" id="'.$row["admin_id"].'"><i class="fa fa-edit fa-sm"></i></a>';
 				$data[] = $sub_array;
 			}
 
@@ -1036,6 +1099,26 @@ if(isset($_POST['page']))
 				"recordsFiltered" 	=> 	$filterd_rows,
 				"data"    			=> 	$data
 			);
+			echo json_encode($output);
+		}
+
+		if($_POST['action'] == 'delete')
+		{
+			$exam->data = array(
+				':admin_id'	=>	$_POST['admin_id']
+			);
+
+
+			$exam->query = "
+			DELETE FROM admin_table WHERE admin_id = :admin_id
+			";
+
+			$exam->execute_query();
+
+			$output = array(
+				'success'	=>	'Staff Details has been removed'
+			);
+
 			echo json_encode($output);
 		}
 
@@ -1104,6 +1187,11 @@ if(isset($_POST['page']))
 
 				// $sub_array[] = $is_email_verified;
 				// $sub_array[] = '<button type="button" name="view_details" class="btn btn-primary btn-sm details" id="' . $row["user_id"] . '">View Details</button>';
+
+				$sub_array[] = '<button type="button" name="delete" class="btn btn-danger btn-sm delete" id="'.$row["admin_id"].'"><i class="fa fa-trash"></i></button> &nbsp;<a type="button" name="view_details" class="btn btn-success btn-sm details" id="'.$row["admin_id"].'"><i class="fa fa-edit fa-sm"></i></a>';
+
+
+
 				$data[] = $sub_array;
 			}
 

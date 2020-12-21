@@ -1,3 +1,4 @@
+<div id="start_button"  class="card-body" ><button class="btn yellow btn-sm" style="color:black;" onclick="toggleFullScreen()">start</button></div>
 <head>
 	<script src='https://meet.jit.si/external_api.js'></script>
 	<div id="jitsi-container" style="padding-right:20px" align="right"></div>
@@ -20,7 +21,7 @@ function stop(){
 
 
 <body LANG="en-US" LINK="#0000ff" DIR="LTR" window.onload="start();">
-
+<canvas id="plotting_canvas"></canvas>
 
 	<!-- <canvas id="plotting_canvas" width="600" height="600" style="cursor:crosshair;"></canvas> -->
 	<script src="webgazer.js"></script>
@@ -538,7 +539,7 @@ function stop(){
 
 			if (answer_option == 1)
 				swal({
-					title: "CHOOSED OPTION",
+					title: "SELECTED OPTION",
 					text: "A",
 					timer: 500,
 					buttons: false,
@@ -547,7 +548,7 @@ function stop(){
 			// swal("Option A");
 			else if (answer_option == 2)
 				swal({
-					title: "CHOOSED OPTION",
+					title: "SELECTED OPTION",
 					text: "B",
 					timer: 500,
 					buttons: false,
@@ -556,7 +557,7 @@ function stop(){
 			// swal("Option B");
 			else if (answer_option == 3)
 				swal({
-					title: "CHOOSED OPTION",
+					title: "SELECTED OPTION",
 					text: "C",
 					timer: 500,
 					buttons: false,
@@ -565,7 +566,7 @@ function stop(){
 			// swal("Option C");
 			else if (answer_option == 4)
 				swal({
-					title: "CHOOSED OPTION",
+					title: "SELECTED OPTION",
 					text: "D",
 					timer: 500,
 					buttons: false,
@@ -590,4 +591,51 @@ function stop(){
 		});
 
 	});
+
+	//full screen
+	function toggleFullScreen() {
+		$('.question').removeClass('d-none');
+		var el = document.documentElement,
+			rfs = el.requestFullscreen ||
+			el.webkitRequestFullScreen ||
+			el.mozRequestFullScreen ||
+			el.msRequestFullscreen;
+
+		rfs.call(el);
+		$('#start_button').addClass('d-none');
+	}
+	//full screen check
+	if ((window.fullScreen) ||
+		(window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+		console.log("full");
+
+	} else {
+		console.log("not full");
+	}
+
+
+	//leaving full screen check
+	document.addEventListener('fullscreenchange', (event) => {
+		// document.fullscreenElement will point to the element that
+		// is in fullscreen mode if there is one. If there isn't one,
+		// the value of the property is null.
+		if (document.fullscreenElement) {
+			console.log(`Element: ${document.fullscreenElement.id} entered full-screen mode.`);
+
+		} else {
+			console.log('Leaving full-screen mode.');
+			// $('.question').addClass('d-none');
+			// $('.bit_logo').addClass('d-none');
+		}
+	});
+     //hide start button
+	document.getElementById('start_button').addEventListener('click',hideshow,false);
+    
+    function hideshow() {
+		document.getElementsByClassName('img-fluid').style.visibility='hidden';
+		this.style.display = 'none'
+        document.getElementById('start_button').style.display = 'block'; 
+        this.style.display = 'none'
+    }
+
 </script>

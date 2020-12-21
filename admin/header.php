@@ -14,6 +14,9 @@ $exam->adm_session_private();
 <html lang="en">
 
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
+<script src="../style/sweetalert.min.js"></script>
     <link rel="icon" href="../include/bit1.png " type="image/icon type">
     <title>Online Examination System - datastack</title>
     <meta charset="utf-8">
@@ -30,11 +33,11 @@ $exam->adm_session_private();
     <link rel="stylesheet" href="../style/TimeCircles.css" />
     <script src="../style/TimeCircles.js"></script>
     <link href="../style/button.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style/font-awesome.min.css">
 
     <link rel="stylesheet" href="../style/bootstrap-datetimepicker.css" />
     <script src="../style/bootstrap-datetimepicker.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -60,9 +63,9 @@ $exam->adm_session_private();
                     </div>
                 </li>
 
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <div class="topnav"> <a style="color: black;" class="nav-link" href="course.php">Student Courses</a></div>
-                </li> -->
+                </li>
                 <li class="nav-item dropdown">
                     <div class="topnav">
                         <a class="nav-link dropdown" style="color: black;" class="nav-link" href="#">Details</a></div>

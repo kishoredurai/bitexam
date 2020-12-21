@@ -18,7 +18,7 @@ $exam->user_session_public();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="include/bit1.png " type="image/icon type">
+    <link rel="icon" href="include/logo2.png " type="image/icon type">
   	<title>Online Examination System - datastack</title>
     <link rel="stylesheet" href="style1/dataTables.bootstrap4.min.css">
     <script src="style1/jquery.min.js"></script>
@@ -41,7 +41,7 @@ $exam->user_session_public();
 
                 <div class="row no-gutters">
                     <div class="col-md-5">
-                        <img src="https://www.bitsathy.ac.in/assets/images/facilities/campus/7/01.webp" alt="login" class="login-card-img">
+                        <img src="include/login.jpg" alt="login" class="login-card-img">
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">

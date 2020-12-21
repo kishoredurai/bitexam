@@ -44,11 +44,11 @@ include('../include/exam_header.php');
 
 
 
-        var randomString = <?php echo "hi"?>
+        var randomString = <?php echo "hi" ?>
 
         var domain = "meet.jit.si";
         var options = {
-            "roomName": randomString ,
+            "roomName": randomString,
             "parentNode": container,
             "width": 500,
             "height": 550,

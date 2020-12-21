@@ -33,9 +33,9 @@ include('../include/db.php');
 						<th>Student Year</th>
 						<th>Student Course</th>
 						<th>Duration</th>
-						<th>Total Question</th>
+						<!-- <th>Total Question</th>
 						<th>Right Answer Mark</th>
-						<th>Wrong Answer Mark</th>
+						<th>Wrong Answer Mark</th> -->
 						<th>Status</th>
 						<th>Question</th>
 						<th>Enrolled student</th>
@@ -48,7 +48,7 @@ include('../include/db.php');
 	</div>
 </div>
 
-<div class="modal" id="formModal">
+<div class="modal" id="user_modal">
   	<div class="modal-dialog modal-lg">
     	<form method="post" id="exam_form">
       		<div class="modal-content">
@@ -162,13 +162,13 @@ include('../include/db.php');
 	                		</div>
             			</div>
           			</div>
-          			<div class="form-group">
+          			<!-- <div class="form-group">
             			<div class="row">
               				<label class="col-md-4 text-right">Total Question <span class="text-danger">*</span></label>
 	              			<div class="col-md-8">
 							  <input type="number" name="total_question" id="total_question" min="1" class="form-control"/>
 
-	                			<!-- <select name="total_question" id="total_question" class="form-control">
+	                			<select name="total_question" id="total_question" class="form-control">
 									<option value="">Select</option>
 									<option value="2">2 Question</option>
 	                				<option value="5">5 Question</option>
@@ -178,11 +178,11 @@ include('../include/db.php');
 	                				<option value="100">100 Question</option>
 	                				<option value="200">200 Question</option>
 	                				<option value="300">300 Question</option>
-	                			</select> -->
+	                			</select>
 	                		</div>
             			</div>
-          			</div>
-          			<div class="form-group">
+          			</div> -->
+          			<!-- <div class="form-group">
             			<div class="row">
               				<label class="col-md-4 text-right">Marks for Right Answer <span class="text-danger">*</span></label>
 	              			<div class="col-md-8">
@@ -197,8 +197,8 @@ include('../include/db.php');
 	                		</div>
             			</div>
           			</div>
-          			<div class="form-group">
-            			<div class="row">
+          			<div class="form-group"> -->
+            			<!-- <div class="row">
               				<label class="col-md-4 text-right">Marks for Wrong Answer <span class="text-danger">*</span></label>
 	              			<div class="col-md-8">
 	                			<select name="marks_per_wrong_answer" id="marks_per_wrong_answer" class="form-control">
@@ -209,7 +209,7 @@ include('../include/db.php');
 	                		</div>
             			</div>
           			</div>
-        		</div>
+        		</div> -->
 
 	        	<!-- Modal footer -->
 	        	<div class="modal-footer">
@@ -362,7 +362,7 @@ $(document).ready(function(){
 		},
 		"columnDefs":[
 			{
-				"targets":[7,8,9],
+				"targets":[0,10],
 				"orderable":false,
 			},
 		],
@@ -379,7 +379,7 @@ $(document).ready(function(){
 
 	$('#add_button').click(function(){
 		reset_form();
-		$('#formModal').modal('show');
+		$('#user_modal').modal('show');
 		$('#message_operation').html('');
 	});
 
@@ -406,11 +406,11 @@ $(document).ready(function(){
 
 		$('#online_staff_id').attr('required', 'required');
 		
-		$('#total_question').attr('required', 'required');
+		// $('#total_question').attr('required', 'required');
 
-		$('#marks_per_right_answer').attr('required', 'required');
+		// $('#marks_per_right_answer').attr('required', 'required');
 
-		$('#marks_per_wrong_answer').attr('required', 'required');
+		// $('#marks_per_wrong_answer').attr('required', 'required');
 
 		if($('#exam_form').parsley().validate())
 		{
@@ -433,7 +433,7 @@ $(document).ready(function(){
 
 						dataTable.ajax.reload();
 
-						$('#formModal').modal('hide');
+						$('#user_modal').modal('hide');
 					}
 
 					$('#button_action').attr('disabled', false);
@@ -487,7 +487,7 @@ $(document).ready(function(){
 
 				$('#action').val('Edit');
 
-				$('#formModal').modal('show');
+				$('#user_modal').modal('show');
 			}
 		})
 	});

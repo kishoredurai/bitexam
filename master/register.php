@@ -1,13 +1,13 @@
 <?php
 
-//register.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
+//register.php 
 
 include('Examination.php');
 
 $exam = new Examination;
 
 $exam->admin_session_public();
-include('../include/db.php');	
+include('../include/db.php');
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ include('../include/db.php');
 
 <body>
   <div class="jumbotron text-center" style="margin-bottom:0; padding: 1rem 1rem;background-color:white;">
-    <img src="https://www.bitsathy.ac.in/assets/images/headlogo.svg" class="img-fluid" width="900" alt="Online Examination System in PHP">
+    <img id="bit_logo" src="https://www.bitsathy.ac.in/assets/images/headlogo.svg" class="img-fluid" width="900" alt="Online Examination System in PHP">
 
   </div>
   <br><br>
@@ -71,7 +71,7 @@ include('../include/db.php');
                 <label><b>Enter Mobile Number :</b></label>
                 <input type="text" name="admin_mobile_no" id="admin_mobile_no" class="form-control" required>
               </div>
-              
+
               <div class="form-group">
                 <label><b>Select Course :</b></label>
                 <select name="admin_course" id="admin_course" class="form-control">

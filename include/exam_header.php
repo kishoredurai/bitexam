@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="jumbotron text-center" style="margin-bottom:0;background-color:white;">
-        <img src="https://www.bitsathy.ac.in/assets/images/headlogo.svg" class="img-fluid" width="700" alt="Online Examination System in PHP">
+        <!-- <img src="https://www.bitsathy.ac.in/assets/images/headlogo.svg" class="img-fluid" width="700" alt="Online Examination System in PHP"> -->
        
   </div>
 

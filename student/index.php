@@ -20,7 +20,8 @@ $row = mysqli_fetch_assoc($result);
 $row_comp = $row['cnt'];
 
 ?>
-<div class="containter">
+<body oncontextmenu="return false;">
+<div class="containter" >
 	<br />
 	<br><br> <br><br><!-- <meta http-equiv="refresh" content="10"> -->
 

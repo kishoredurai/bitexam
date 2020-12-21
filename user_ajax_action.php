@@ -328,18 +328,6 @@ if (isset($_POST['page'])) {
 					<td><b>Exam Duration</b></td>
 					<td>' . $row["online_exam_duration"] . ' Minute</td>
 				</tr>
-				<tr>
-					<td><b>Exam Total Question</b></td>
-					<td>' . $row["total_question"] . ' </td>
-				</tr>
-				<tr>
-					<td><b>Marks Per Right Answer</b></td>
-					<td>' . $row["marks_per_right_answer"] . ' Mark</td>
-				</tr>
-				<tr>
-					<td><b>Marks Per Wrong Answer</b></td>
-					<td>-' . $row["marks_per_wrong_answer"] . ' Mark</td>
-				</tr>
 				';
 				if ($exam->If_user_already_enroll_exam($_POST['exam_id'], $_SESSION['user_id'])) {
 					$enroll_button = '
@@ -421,9 +409,9 @@ if (isset($_POST['page'])) {
 				$exam->query .= 'online_exam_table.online_exam_title LIKE "%' . $_POST["search"]["value"] . '%" ';
 				$exam->query .= 'OR online_exam_table.online_exam_datetime LIKE "%' . $_POST["search"]["value"] . '%" ';
 				$exam->query .= 'OR online_exam_table.online_exam_duration LIKE "%' . $_POST["search"]["value"] . '%" ';
-				$exam->query .= 'OR online_exam_table.total_question LIKE "%' . $_POST["search"]["value"] . '%" ';
-				$exam->query .= 'OR online_exam_table.marks_per_right_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
-				$exam->query .= 'OR online_exam_table.marks_per_wrong_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR online_exam_table.total_question LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR online_exam_table.marks_per_right_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR online_exam_table.marks_per_wrong_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
 				$exam->query .= 'OR online_exam_table.online_exam_status LIKE "%' . $_POST["search"]["value"] . '%" ';
 			}
 
@@ -465,9 +453,9 @@ if (isset($_POST['page'])) {
 				$sub_array[] = html_entity_decode($row["online_exam_title"]);
 				$sub_array[] = $row["online_exam_datetime"];
 				$sub_array[] = $row["online_exam_duration"] . ' Minute';
-				$sub_array[] = $row["total_question"] . ' Question';
-				$sub_array[] = $row["marks_per_right_answer"] . ' Mark';
-				$sub_array[] = '-' . $row["marks_per_wrong_answer"] . ' Mark';
+				// $sub_array[] = $row["total_question"] . ' Question';
+				// $sub_array[] = $row["marks_per_right_answer"] . ' Mark';
+				// $sub_array[] = '-' . $row["marks_per_wrong_answer"] . ' Mark';
 				$status = '';
 				$view_exam = ''; //Added
 				if ($row['online_exam_status'] == 'Created') {
@@ -486,15 +474,18 @@ if (isset($_POST['page'])) {
 				$sub_array[] = $status;
 
 				if ($row["online_exam_status"] == 'Started' and $row["exam_status"] == '') {
-					$view_exam = '<a href="view_exam.php?code=' . $row["online_exam_code"] . '" class="btn blue btn-sm">View Exam</a>';
+					$view_exam = '<a href="view_exam.php?code=' . $row["online_exam_code"] . '" id="view_exam" class="btn blue btn-sm" onclick="openWin()" style="color:black;" >View Exam</a>';
 				}
 				if ($row["online_exam_status"] == 'Completed') {
-					//$view_exam = '<a href="view.php?code='.$row["online_exam_code"].'" class="btn warning btn-sm">View Exam</a>';
+					$view_exam = '<a href="view.php?code=' . $row["online_exam_code"] . '" class="btn warning btn-sm">View Exam</a>';
 					$view_exam = '<span class="badge badge-success">Exam Completed</span>';
 				}
 				if ($row["online_exam_status"] == 'Started' and $row["exam_status"] == 'Completed') {
 					$view_exam = '<span class="badge badge-success">Exam submitted</span>';
 				}
+
+				//$view_exam = '<a href="view_exam.php?code=' . $row["online_exam_code"] . '" id="view_exam" class="btn blue btn-sm" onclick="openWin(); return false;" style="color:black;" >View Exam</a>';
+
 
 				$sub_array[] = $view_exam;
 
@@ -505,7 +496,7 @@ if (isset($_POST['page'])) {
 				"draw"    			=> 	intval($_POST["draw"]),
 				"recordsTotal"  	=>  $total_rows,
 				"recordsFiltered" 	=> 	$filterd_rows,
-				"data"    			=> 	$data
+				"data"    			=> 	$data,
 			);
 			echo json_encode($output);
 		}
@@ -629,27 +620,129 @@ if (isset($_POST['page'])) {
 				  	<div align="center">
 				   		<button type="button" name="previous" class="btn blue previous" id="' . $previous_id . '" ' . $if_previous_disable . '>PREVIOUS</button>&nbsp;
 						   <button type="button" name="next" class="btn info next" id="' . $next_id . '" ' . $if_next_disable . '>  NEXT  </button>' . ' <br> <hr>
-						   <a onclick="if(!confirm(\'This will end the exam. Kindly stop the recording to save your answers.\')) return false;" class="btn success submit ' . $hide_submit  . '" href="submit.php?id=' . $ex_id . '">SUBMIT</a>
+						   <a id="swal" onclick="myfun();" class="btn success submit ' . $hide_submit  . '" href="submit.php?id=' . $ex_id . '">SUBMIT</a>
 						</br></hr>
 				  	</div>
-					  <br /><br />';
+					  <br /><br />
+					  <script>
+    function myfun() {
+        swal({
+            title: "Are you sure?",
+            text: "Do you want to finish exam?Kindly stop the recording to save your answers.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("submitted successfully!", {
+                        icon: "success",
+                    });
+                } else {
+                    // swal("Your imaginary file is safe!");
+                    return false;
+                }
+            });
+    }
+
+</script>
+<style>
+    .swal-overlay {
+        background-color: rgba(43, 165, 137, 0.45);
+    }
+</style>';
+				//
+
+				//   swal({
+				// 	title: 'Are you sure?',
+				// 	text: "Do you want finsh the exam",
+				// 	type: 'warning',
+				// 	showCancelButton: true,
+				// 	confirmButtonColor: '#3085d6',
+				// 	cancelButtonColor: '#d33',
+				// 	confirmButtonText: 'Yes, delete it!'
+				//   }).then(function() {
+				// 	swal(
+				// 	  'Success!',
+				// 	  'Exam submitted successfully.',
+				// 	  'success'
+				// 	);
+				//   })
+
+				//   
+
+				//
 			}
 
 			echo $output;
 		}
 		if ($_POST['action'] == 'question_navigation') {
 			$exam->query = "
-				SELECT question_id FROM question_table 
-				WHERE online_exam_id = '" . $_POST["exam_id"] . "' 
-				ORDER BY question_id ASC 
+				SELECT section_id, title FROM section 
+				WHERE exam_id = '" . $_POST["exam_id"] . "' 
+				ORDER BY section_id ASC;
 				";
 			$result = $exam->query_result();
+			// die(var_dump($result));
 			$output = '
 			<div class="card">
 				<div class="card-header">Question Navigation</div>
 				<div class="card-body">
 					<div class="row">
 			';
+
+			$exam_id = $_POST["exam_id"];
+			$user_id = $_SESSION['user_id'];
+
+			$exam->query = "
+					SELECT question_id from user_exam_question_answer
+					WHERE user_id=$user_id and exam_id = $exam_id and not user_answer_option = '0'; 
+				";
+
+			$answered_questions = ($exam->query_result_assoc());
+			$question_ids = array();
+			foreach($answered_questions as $answer){
+				$question_ids[] = $answer['question_id'];
+			};
+			// print_r($question_ids);
+			// die(print_r($answered_questions));
+
+			// $exam->query = "
+			// 	SELECT section_id, title from section 
+			// 	where exam_id = $exam_id;
+			// ";
+			// echo $exam_id, $user_id;
+			// die(var_dump($exam->query_result()));
+
+			foreach ($result as $row) {
+				$section_id = $row['section_id'];
+				$output .= '<div class="card">
+					<div class="card-header">' . $row["title"] . '</div>
+					<div class="card-body">';
+
+					$exam->query = "
+						SELECT question_id, question_number from question_table 
+						where section_id = $section_id and online_exam_id = $exam_id;
+					";
+					$questions_in_section = $exam->query_result();
+
+					// die(print_r($questions_in_section));
+
+					foreach($questions_in_section as $question){
+						$color = 'bg-primary';
+						if (in_array($question['question_id'], $question_ids)){
+							$color = 'bg-success';
+						};
+						$output .= '<div class="col-md-2" style="margin-bottom:24px;">
+					<button type="button" class="btn'. $color .' btn-primary btn-lg question_navigation" data-question_id="' . $question['question_id'] . '">' . $question['question_number'] . '</button>
+				</div>';
+					};
+
+				$output .= '</div>
+				</div>';
+			}
+
 			$count = 1;
 			foreach ($result as $row) {
 				$question = $row["question_id"];

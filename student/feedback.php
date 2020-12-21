@@ -18,6 +18,7 @@ if (isset($_REQUEST['del'])) {
 ?>
 <br>
 
+<body oncontextmenu="return false;">
 
 <br><Br><br>
 <h1 style="align-content: center;font-size:50px;font-family:cursive;" align="center">Feedback</h1><br>

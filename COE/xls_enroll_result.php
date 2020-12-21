@@ -26,7 +26,7 @@ if(isset($_GET["code"]))
 	foreach($results as $rows)
 	{
 	$output .= '<h3>Exam Title :&nbsp;&nbsp;&nbsp;&nbsp;'.$rows["online_exam_title"].'<br><b>Exam Date and Time : </b>'.$rows["online_exam_datetime"].'<br><b>Student Year : 
-	</b>'.$rows["user_year"].'<br><b>User Course : </b>'.$rows["user_course"].'<br><b>Exam Duration (min): </b>'.$rows["online_exam_duration"].'<br><b>Total Question : </b>'.$rows["total_question"].'<br><hr><br>';
+	</b>'.$rows["user_year"].'<br><b>User Course : </b>'.$rows["user_course"].'<br><b>Exam Duration (min): </b>'.$rows["online_exam_duration"];
     }
 
 	$output .= '

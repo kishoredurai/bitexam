@@ -85,6 +85,8 @@ WHERE user_id = '" . $_SESSION['user_id'] . "'
       </form>
       </div>
     </nav>
+    <body oncontextmenu="return false;">
+
     <style>
       .topnav {
         overflow: hidden;

@@ -1,6 +1,6 @@
 <?php
 
-//pdf_exam_result.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
+//pdf_exam_result.php 
 
 include("Examination.php");
 
@@ -89,5 +89,3 @@ if(isset($_GET["code"]))
 
 	exit(0);
 }
-
-?>

@@ -78,7 +78,7 @@ foreach($result as $row)
 }
 else
 {
-    echo "<script type='text/javascript'>window.alert('Email ID Does not exsist');</script>";
+    echo "<script type='text/javascript'>swal('Email ID Does not exsist');</script>";
 
     echo "<script>window.location.href='login.php'</script>"; 
 }

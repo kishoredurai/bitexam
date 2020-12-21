@@ -2,8 +2,7 @@
 
 include('../include/db.php');
 require_once '../include/db.php';
-//ajax_action.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
-
+//ajax_action.php 
 include('Examination.php');
 
 
@@ -176,11 +175,11 @@ if (isset($_POST['page'])) {
 
 				$exam->query .= 'OR online_exam_duration LIKE "%' . $_POST["search"]["value"] . '%" ';
 
-				$exam->query .= 'OR total_question LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR total_question LIKE "%' . $_POST["search"]["value"] . '%" ';
 
-				$exam->query .= 'OR marks_per_right_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR marks_per_right_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
 
-				$exam->query .= 'OR marks_per_wrong_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
+				// $exam->query .= 'OR marks_per_wrong_answer LIKE "%' . $_POST["search"]["value"] . '%" ';
 
 				$exam->query .= 'OR online_exam_status LIKE "%' . $_POST["search"]["value"] . '%" ';
 			}
@@ -222,8 +221,8 @@ if (isset($_POST['page'])) {
 
 				$sub_array[] = $cnt;
 
-				$sub_array[] = html_entity_decode($row['online_exam_title']);
-
+				// $sub_array[] = html_entity_decode($row['online_exam_title']);
+				$sub_array[] = '<a href="exam_detail.php?code=' . $row['online_exam_code'] . '" class="">' . html_entity_decode($row['online_exam_title']) . '</a>';
 				$sub_array[] = $row['online_exam_datetime'];
 
 				$sub_array[] = $row['user_year'];
@@ -232,12 +231,12 @@ if (isset($_POST['page'])) {
 
 				$sub_array[] = $row['online_exam_duration'] . ' Minute';
 
-				$sub_array[] = $row['total_question'] . ' Question';
+				// $sub_array[] = $row['total_question'] . ' Question';
 
-				$sub_array[] = $row['marks_per_right_answer'] . ' Mark';
+				// $sub_array[] = $row['marks_per_right_answer'] . ' Mark';
 
 
-				$sub_array[] = '-' . $row['marks_per_wrong_answer'] . ' Mark';
+				// $sub_array[] = '-' . $row['marks_per_wrong_answer'] . ' Mark';
 
 				$status = '';
 				$edit_button = '';
@@ -283,9 +282,9 @@ if (isset($_POST['page'])) {
 
 				$sub_array[] = $status;
 
-				$sub_array[] = $question_button;
+				// $sub_array[] = $question_button;
 
-				$sub_array[] = '<a href="exam_enroll.php?code=' . $row['online_exam_code'] . '" class="btn warning btn-sm">Enrolled</a>';
+				// $sub_array[] = '<a href="exam_enroll.php?code=' . $row['online_exam_code'] . '" class="btn warning btn-sm">Enrolled</a>';
 
 				// $sub_array[] = $result_button;
 
@@ -479,15 +478,20 @@ if (isset($_POST['page'])) {
 	if ($_POST['page'] == 'question') {
 		if ($_POST['action'] == 'Add') {
 			$exam->data = array(
-				':online_exam_id'		=>	$_POST['online_exam_id'],
+				':section_id'           =>  $_POST['section_id'],
+				':question_number'      =>  $_POST['question_number'],
+				':online_exam_id'		=>	$_SESSION['exam_id'],
 				':question_title'		=>	$_POST['question_title'],
-				':answer_option'		=>	$_POST['answer_option']
+				':answer_option'		=>	$_POST['answer_option'],
+				':correct_mark'         =>  $_POST['correct_mark'],
+				':wrong_mark'           =>  $_POST['wrong_mark'],
+				':answer_option'        =>  $_POST['answer_option']
 			);
 
 			$exam->query = "
 			INSERT INTO question_table 
-			(online_exam_id, question_title, answer_option) 
-			VALUES (:online_exam_id, :question_title, :answer_option)
+			(section_id, question_number, online_exam_id, question_title, answer_option, correct_mark, wrong_mark) 
+			VALUES (:section_id, :question_number, :online_exam_id, :question_title, :answer_option, :correct_mark, :wrong_mark)
 			";
 
 			$question_id = $exam->execute_question_with_last_id($exam->data);
@@ -697,11 +701,228 @@ if (isset($_POST['page'])) {
 		}
 	}
 
+
+
+	// Add section
+	if ($_POST['page'] == 'section') {
+
+		if ($_POST['action'] == 'Add') {
+			$exam->data = array(
+				':section_title'		=>	$_POST['section_title'],
+				':total_question'		=>	$_POST['total_question'],
+				':exam_id'				=>	$_SESSION['exam_id']
+			);
+
+			// $exam_code = $_POST['online_exam_id'];
+
+			// $exam->query = "
+			// SELECT online_exam_id FROM `online_exam_table` where online_exam_code='$exam_code';
+			// ";
+
+			// $exam->execute_query();
+			// $id_res = $exam->query_result();
+			// $exam_id = $id_res[0]["online_exam_id"];
+			// $exam->data[":exam_id"] = $id_res[0]["online_exam_id"];
+
+			$exam->query = "
+			INSERT INTO `section`( `exam_id`, `question_count`, `title`) VALUES (:exam_id,:total_question,:section_title)
+			";
+			// die(var_dump($exam->query));
+
+			// $question_id = $exam->execute_question_with_last_id($exam->data);
+
+			// for ($count = 1; $count <= 4; $count++) {
+			// 	$exam->data = array(
+			// 		':question_id'		=>	$question_id,
+			// 		':option_number'	=>	$count,
+			// 		':option_title'		=>	$exam->clean_data($_POST['option_title_' . $count])
+			// 	);
+
+			// 	$exam->query = "
+			// 	INSERT INTO option_table 
+			// 	(question_id, option_number, option_title) 
+			// 	VALUES (:question_id, :option_number, :option_title)
+			// 	";
+
+			// }
+			$exam->execute_query($exam->data);
+			// die(var_dump($exam));
+
+
+			$output = array(
+				'success'		=>	'Section Added'
+			);
+
+			echo json_encode($output);
+		}
+
+
+		if ($_POST['action'] == 'fetch') {
+
+			$output = array();
+			$exam_id = $_SESSION['exam_id'];
+			$exam->query = "
+					SELECT * from section where exam_id=$exam_id;
+				";
+			$exam->execute_query();
+			// if (isset($_POST['code'])) {
+			// 	$exam_id = $exam->Get_exam_id($_POST['code']);
+			// }
+			// $exam->query = "
+			// SELECT * FROM question_table 
+			// WHERE online_exam_id = '" . $exam_id . "' 
+			// AND (
+			// ";
+
+			$output['sections'] = $exam->query_result();
+			// die(var_dump($output['sections']));
+			$questions = array();
+			foreach ($output['sections'] as $row) {
+				$section_id = $row['section_id'];
+				$ques_result = array();
+				$exam->query = "
+				SELECT question_number from question_table where online_exam_id=$exam_id and section_id=$section_id;
+				";
+				$exam->execute_query();
+				$result = $exam->query_result();
+				foreach ($result as $question) {
+					if ($question['question_number']) {
+						$ques_result[] = $question['question_number'];
+						// die(var_dump($question['question_number']));
+
+					}
+					$questions[$section_id] = $ques_result;
+				};
+			};
+			// die(var_dump());
+			
+			$output['questions'] = $questions;
+
+			echo json_encode($output);
+		}
+
+		if ($_POST['action'] == 'edit_fetch') {
+			$data = $_POST['data'];
+			$question = $data['question_number'];
+			$section = $data['section_id'];
+			$exam->query = "
+			SELECT * FROM question_table 
+			WHERE question_number = '$question' and section_id =  $section";
+
+			$ques_result = $exam->query_result();
+			$result = array();
+			if ($ques_result != false){
+				$ques_result=$ques_result[0];
+				$question_id = $ques_result['question_id'];
+				$exam->query = "
+					SELECT option_number, option_title from option_table where question_id = $question_id
+					";
+				$res = $exam->query_result();
+				$option = array();
+				foreach($res as $row){
+					$option[] = $row;
+				};
+				$result['options'] = $option;
+				$result['question'] = $ques_result;
+			}
+
+
+			// foreach ($result as $row) {
+			// 	$output['question_title'] = html_entity_decode($row['question_title']);
+
+			// 	$output['answer_option'] = $row['answer_option'];
+
+			// 	for ($count = 1; $count <= 4; $count++) {
+			// 		$exam->query = "
+			// 		SELECT option_title FROM option_table 
+			// 		WHERE question_id = '" . $_POST["question_id"] . "' 
+			// 		AND option_number = '" . $count . "'
+			// 		";
+
+			// 		$sub_result = $exam->query_result();
+
+			// 		foreach ($sub_result as $sub_row) {
+			// 			$output["option_title_" . $count] = html_entity_decode($sub_row["option_title"]);
+			// 		}
+			// 	}
+			// }
+
+			echo json_encode($result);
+		}
+
+		if ($_POST['action'] == 'Edit') {
+			$exam->data = array(
+				':question_title'		=>	$_POST['question_title'],
+				':answer_option'		=>	$_POST['answer_option'],
+				':question_id'			=>	$_POST['question_id']
+			);
+
+			$exam->query = "
+			UPDATE question_table 
+			SET question_title = :question_title, answer_option = :answer_option 
+			WHERE question_id = :question_id
+			";
+
+			$exam->execute_query();
+
+			for ($count = 1; $count <= 4; $count++) {
+				$exam->data = array(
+					':question_id'		=>	$_POST['question_id'],
+					':option_number'	=>	$count,
+					':option_title'		=>	$_POST['option_title_' . $count]
+				);
+
+				$exam->query = "
+				UPDATE option_table 
+				SET option_title = :option_title 
+				WHERE question_id = :question_id 
+				AND option_number = :option_number
+				";
+				$exam->execute_query();
+			}
+
+			$output = array(
+				'success'	=>	'Question Edit'
+			);
+
+			echo json_encode($output);
+		}
+
+		// delete question
+		if ($_POST['action'] == 'delete') {
+			$exam->data = array(
+				':question_id'	=>	$_POST['question_id']
+			);
+
+			$exam->query = "
+			DELETE FROM question_table 
+			WHERE question_id = :question_id
+			";
+
+			$exam->execute_query();
+
+			$exam->query = "
+			DELETE FROM option_table 
+			WHERE question_id = :question_id
+			";
+
+			$exam->execute_query();
+
+			$output = array(
+				'success'	=>	'Question Details has been removed'
+			);
+
+			echo json_encode($output);
+		}
+	}
+
+
+
 	if ($_POST['page'] == 'user') {
 		if ($_POST['action'] == 'load') {
 			$output = array();
 
-			
+
 			$exam->query = "SELECT * FROM user_table ;";
 
 
@@ -792,15 +1013,12 @@ if (isset($_POST['page'])) {
 				$exam->query .= 'OR user_year LIKE "%' . $_POST["search"]["value"] . '%" ';
 			}
 
-			if(isset($_POST["order"]))
-				{
-					$exam->query .= 'ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' )';
-				}
-				else
-				{
-					$exam->query .= 'ORDER BY user_id DESC )';
-				}
-	
+			if (isset($_POST["order"])) {
+				$exam->query .= 'ORDER BY ' . $_POST['order']['0']['column'] . ' ' . $_POST['order']['0']['dir'] . ' )';
+			} else {
+				$exam->query .= 'ORDER BY user_id DESC )';
+			}
+
 
 			$extra_query = '';
 
@@ -831,7 +1049,7 @@ if (isset($_POST['page'])) {
 				$sub_array[] = $row["user_rollno"];
 				$sub_array[] = $row["user_year"];
 
-				
+
 				$sub_array[] = $row["user_course"];
 				// $is_email_verified = '';
 				// if($row["user_email_verified"] == 'yes')

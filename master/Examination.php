@@ -17,7 +17,7 @@ class Examination
 	var $connect;
 	var $home_page;
 	var $query;
-	var $data;	
+	var $data;
 	var $statement;
 	var $filedata;
 
@@ -48,7 +48,7 @@ class Examination
 
 	function send_email($receiver_email, $subject, $body)
 	{
-		
+
 		// $mail = new PHPMailer;
 
 		// $mail->IsSMTP();
@@ -79,58 +79,56 @@ class Examination
 
 		// $mail->Send();
 		// use PHPMailer\PHPMailer\PHPMailer;
-        // use PHPMailer\PHPMailer\Exception;
+		// use PHPMailer\PHPMailer\Exception;
 
-        // Load Composer's autoloader
-        require 'vendor/autoload.php';
+		// Load Composer's autoloader
+		require 'vendor/autoload.php';
 
 		$mail = new PHPMailer(true);
 
-		
-			//Server settings
-			$mail->SMTPDebug = 0;                                       // Enable verbose debug output
-			$mail->isSMTP();                                            // Set mailer to use SMTP
-			$mail->Host       = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
-			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-			$mail->Username   = 'cloud@bitsathy.ac.in';                     // SMTP username
-			$mail->Password   = 'Cloud@987';                               // SMTP password
-			$mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-			$mail->Port       = 587;                                    // TCP port to connect to
-		
-			//Recipients
-			$mail->setFrom('cloud@bitsathy.ac.in', 'Datastack');
-			$mail->addAddress($receiver_email);
-		
-			// $file_name = $_FILES["file"]["name"];
-			// move_uploaded_file($_FILES["file"]["tmp_name"], $file_name);
-			// $mail->addAttachment($file_name);
-		
-			// Content
-			$mail->isHTML(true);                                  // Set email format to HTML
-			$mail->Subject = $subject;
-			$mail->Body    = $body;
-		
-			$mail->send();	
+
+		//Server settings
+		$mail->SMTPDebug = 0;                                       // Enable verbose debug output
+		$mail->isSMTP();                                            // Set mailer to use SMTP
+		$mail->Host       = 'smtp.gmail.com;';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+		$mail->Username   = 'cloud@bitsathy.ac.in';                     // SMTP username
+		$mail->Password   = 'Cloud@987';                               // SMTP password
+		$mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+		$mail->Port       = 587;                                    // TCP port to connect to
+
+		//Recipients
+		$mail->setFrom('cloud@bitsathy.ac.in', 'Datastack');
+		$mail->addAddress($receiver_email);
+
+		// $file_name = $_FILES["file"]["name"];
+		// move_uploaded_file($_FILES["file"]["tmp_name"], $file_name);
+		// $mail->addAttachment($file_name);
+
+		// Content
+		$mail->isHTML(true);                                  // Set email format to HTML
+		$mail->Subject = $subject;
+		$mail->Body    = $body;
+
+		$mail->send();
 	}
 
 	function redirect($page)
 	{
-		header('location:'.$page.'');
+		header('location:' . $page . '');
 		exit;
 	}
 
 	function admin_session_private()
 	{
-		if(!isset($_SESSION['admin_id']))
-		{
+		if (!isset($_SESSION['admin_id'])) {
 			$this->redirect('login.php');
 		}
 	}
 
 	function admin_session_public()
 	{
-		if(isset($_SESSION['admin_id']))
-		{
+		if (isset($_SESSION['admin_id'])) {
 			$this->redirect('index.php');
 		}
 	}
@@ -138,16 +136,14 @@ class Examination
 
 	function adm_session_private()
 	{
-		if(!isset($_SESSION['adm_id']))
-		{
+		if (!isset($_SESSION['adm_id'])) {
 			$this->redirect('../login.php');
 		}
 	}
 
 	function adm_session_public()
 	{
-		if(isset($_SESSION['adm_id']))
-		{
+		if (isset($_SESSION['adm_id'])) {
 			$this->redirect('index.php');
 		}
 	}
@@ -155,16 +151,14 @@ class Examination
 
 	function coe_session_private()
 	{
-		if(!isset($_SESSION['coe_id']))
-		{
+		if (!isset($_SESSION['coe_id'])) {
 			$this->redirect('../login.php');
 		}
 	}
 
 	function coe_session_public()
 	{
-		if(isset($_SESSION['coe_id']))
-		{
+		if (isset($_SESSION['coe_id'])) {
 			$this->redirect('index.php');
 		}
 	}
@@ -175,6 +169,12 @@ class Examination
 		return $this->statement->fetchAll();
 	}
 
+	function query_result_assoc()
+	{
+		$this->execute_query();
+		return $this->statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	function fetchsinglerow()
 	{
 		$this->execute_query();
@@ -183,10 +183,10 @@ class Examination
 
 	function clean_data($data)
 	{
-	 	$data = trim($data);
-	  	$data = stripslashes($data);
-	  	$data = htmlspecialchars($data);
-	  	return $data;
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
 	}
 
 	function Is_exam_is_not_started($online_exam_id)
@@ -202,13 +202,11 @@ class Examination
 
 		$result = $this->query_result();
 
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			$exam_datetime = $row['online_exam_datetime'];
 		}
 
-		if($exam_datetime > $current_datetime)
-		{
+		if ($exam_datetime > $current_datetime) {
 			return true;
 		}
 		return false;
@@ -223,8 +221,7 @@ class Examination
 
 		$result = $this->query_result();
 
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row['total_question'];
 		}
 	}
@@ -245,8 +242,7 @@ class Examination
 
 		$exam_total_question = $this->Get_exam_total_question($exam_id);
 
-		if($exam_total_question >= $exam_question_limit)
-		{
+		if ($exam_total_question >= $exam_question_limit) {
 			return false;
 		}
 		return true;
@@ -270,16 +266,14 @@ class Examination
 
 		$result = $this->query_result();
 
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row['online_exam_id'];
 		}
 	}
 
 	function Upload_file()
 	{
-		if(!empty($this->filedata['name']))
-		{
+		if (!empty($this->filedata['name'])) {
 			$extension = pathinfo($this->filedata['name'], PATHINFO_EXTENSION);
 
 			$new_name = uniqid() . '.' . $extension;
@@ -296,35 +290,31 @@ class Examination
 
 	function user_session_private()
 	{
-		if(!isset($_SESSION['user_id']))
-		{
+		if (!isset($_SESSION['user_id'])) {
 			$this->redirect('login.php');
 		}
 	}
 
 	function user_session_public()
 	{
-		if(isset($_SESSION['user_id']))
-		{
+		if (isset($_SESSION['user_id'])) {
 			$this->redirect('index.php');
 		}
 	}
 
 	function Fill_exam_list($user_id)
 	{
-		$this->query ="Select * from user_table where user_id= '$user_id';";
+		$this->query = "Select * from user_table where user_id= '$user_id';";
 		$results = $this->query_result();
-		foreach($results as $rows)
-		{
-		$year=$rows['user_year'];
-		$course=$rows["user_course"];
+		foreach ($results as $rows) {
+			$year = $rows['user_year'];
+			$course = $rows["user_course"];
 		}
 		$this->query = "SELECT online_exam_id, online_exam_title FROM online_exam_table WHERE user_year = '$year' AND user_course = '$course' AND online_exam_status = 'Pending' OR online_exam_status = 'Created' ORDER BY online_exam_title ASC";
 		$result = $this->query_result();
 		$output = '';
-		foreach($result as $row)
-		{
-			$output .= '<option value="'.$row["online_exam_id"].'">'.$row["online_exam_title"].'</option>';
+		foreach ($result as $row) {
+			$output .= '<option value="' . $row["online_exam_id"] . '">' . $row["online_exam_title"] . '</option>';
 		}
 		return $output;
 	}
@@ -334,8 +324,7 @@ class Examination
 		SELECT * FROM user_exam_enroll_table 
 		WHERE exam_id = '$exam_id' 
 		AND user_id = '$user_id'		";
-		if($this->total_row() > 0)
-		{
+		if ($this->total_row() > 0) {
 			return true;
 		}
 		return false;
@@ -347,15 +336,14 @@ class Examination
 		SELECT * FROM user_exam_enroll_table 
 		INNER JOIN online_exam_table 
 		ON online_exam_table.online_exam_id = user_exam_enroll_table.exam_id 
-		WHERE user_exam_enroll_table.user_id = '".$user_id."'
+		WHERE user_exam_enroll_table.user_id = '" . $user_id . "'
 		";
 
 		$result = $this->query_result();
 
 		$current_datetime = date("Y-m-d") . ' ' . date("H:i:s", STRTOTIME(date('h:i:sa')));
 
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			$exam_start_time = $row["online_exam_datetime"];
 
 			$duration = $row["online_exam_duration"] . ' minute';
@@ -365,44 +353,38 @@ class Examination
 			$exam_end_time = date('Y-m-d H:i:s', $exam_end_time);
 
 			$view_exam = '';
-           
 
-			if(($current_datetime >= $exam_start_time && $current_datetime <= $exam_end_time)  )
-			{   
-				
+
+			if (($current_datetime >= $exam_start_time && $current_datetime <= $exam_end_time)) {
+
 				//exam started
 				$this->data = array(
 					':online_exam_status'	=>	'Started'
 				);
-				
+
 
 				$this->query = "
 				UPDATE online_exam_table 
 				SET online_exam_status = :online_exam_status 
-				WHERE online_exam_id = '".$row['online_exam_id']."'
+				WHERE online_exam_id = '" . $row['online_exam_id'] . "'
 				";
 
 				$this->execute_query();
-
-				
-			}
-			else
-			{
-				if(($current_datetime > $exam_end_time) )
-				{	
+			} else {
+				if (($current_datetime > $exam_end_time)) {
 					//exam completed
 					$this->data = array(
 						':online_exam_status'	=>	'Completed'
 					);
 
-					$this->query = "UPDATE online_exam_table SET online_exam_status = :online_exam_status WHERE online_exam_id = '".$row['online_exam_id']."'";
+					$this->query = "UPDATE online_exam_table SET online_exam_status = :online_exam_status WHERE online_exam_id = '" . $row['online_exam_id'] . "'";
 
 					$this->execute_query();
 
-					$this->query = "UPDATE user_exam_enroll_table SET exam_status = 'Present' WHERE exam_id = ".$row['online_exam_id']."AND user_id=".$user_id.";";
+					$this->query = "UPDATE user_exam_enroll_table SET exam_status = 'Present' WHERE exam_id = " . $row['online_exam_id'] . "AND user_id=" . $user_id . ";";
 
 					$this->execute_query();
-				}					
+				}
 			}
 			// if($_SESSION['start'])
 			// 	{
@@ -421,7 +403,7 @@ class Examination
 			// 		$this->query = "UPDATE user_exam_enroll_table SET exam_status = 'Completed',attendance_status='Present'  WHERE exam_id = '".$row['online_exam_id']."'AND user_id='".$user_id."'	";
 
 			// 		$this->execute_query();
-				    
+
 			// 	}
 		}
 	}
@@ -430,12 +412,11 @@ class Examination
 	{
 		$this->query = "
 		SELECT user_answer_option FROM user_exam_question_answer 
-		WHERE question_id = '".$question_id."' 
-		AND user_id = '".$user_id."'
+		WHERE question_id = '" . $question_id . "' 
+		AND user_id = '" . $user_id . "'
 		";
 		$result = $this->query_result();
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row["user_answer_option"];
 		}
 	}
@@ -444,13 +425,12 @@ class Examination
 	{
 		$this->query = "
 		SELECT marks_per_right_answer FROM online_exam_table 
-		WHERE online_exam_id = '".$exam_id."' 
+		WHERE online_exam_id = '" . $exam_id . "' 
 		";
 
 		$result = $this->query_result();
 
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row['marks_per_right_answer'];
 		}
 	}
@@ -459,13 +439,12 @@ class Examination
 	{
 		$this->query = "
 		SELECT marks_per_wrong_answer FROM online_exam_table 
-		WHERE online_exam_id = '".$exam_id."' 
+		WHERE online_exam_id = '" . $exam_id . "' 
 		";
 
 		$result = $this->query_result();
 
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row['marks_per_wrong_answer'];
 		}
 	}
@@ -474,13 +453,12 @@ class Examination
 	{
 		$this->query = "
 		SELECT answer_option FROM question_table 
-		WHERE question_id = '".$question_id."' 
+		WHERE question_id = '" . $question_id . "' 
 		";
 
 		$result = $this->query_result();
 
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row['answer_option'];
 		}
 	}
@@ -489,11 +467,10 @@ class Examination
 	{
 		$this->query = "
 		SELECT online_exam_status FROM online_exam_table 
-		WHERE online_exam_id = '".$exam_id."' 
+		WHERE online_exam_id = '" . $exam_id . "' 
 		";
 		$result = $this->query_result();
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row["online_exam_status"];
 		}
 	}
@@ -506,11 +483,8 @@ class Examination
 		AND user_id = '$user_id'
 		";
 		$result = $this->query_result();
-		foreach($result as $row)
-		{
+		foreach ($result as $row) {
 			return $row["attendance_status"];
 		}
 	}
 }
-
-?>

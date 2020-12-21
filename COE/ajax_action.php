@@ -164,7 +164,7 @@ if (isset($_POST['page'])) {
 			$output = array();
 
 			$exam->query = "
-			SELECT * FROM online_exam_table ;			";
+			SELECT * FROM online_exam_table ORDER BY online_exam_id DESC;";
 
 			if (isset($_POST['search']['value'])) {
 				$exam->query .= 'online_exam_title LIKE "%' . $_POST["search"]["value"] . '%" ';
@@ -229,12 +229,12 @@ if (isset($_POST['page'])) {
 
 				$sub_array[] = $row['online_exam_duration'] . ' Minute';
 
-				$sub_array[] = $row['total_question'] . ' Question';
+				// $sub_array[] = $row['total_question'] . ' Question';
 
-				$sub_array[] = $row['marks_per_right_answer'] . ' Mark';
+				// $sub_array[] = $row['marks_per_right_answer'] . ' Mark';
 
 
-				$sub_array[] = '-' . $row['marks_per_wrong_answer'] . ' Mark';
+				// $sub_array[] = '-' . $row['marks_per_wrong_answer'] . ' Mark';
 
 				$status = '';
 				$edit_button = '';
@@ -274,8 +274,7 @@ if (isset($_POST['page'])) {
 					';
 				} else {
 					$question_button = '
-					<a href="q			WHERE  
-					uestion.php?code=' . $row['online_exam_code'] . '" class="btn btn-warning btn-sm">View Question</a>
+					<a href="question.php?code=' . $row['online_exam_code'] . '" class="btn btn-warning btn-sm">View Question</a>
 					';
 				}
 
@@ -313,11 +312,11 @@ if (isset($_POST['page'])) {
 				':online_exam_title'	=>	$exam->clean_data($_POST['online_exam_title']),
 				':online_exam_datetime'	=>	$_POST['online_exam_datetime'] . ':00',
 				':online_exam_duration'	=>	$_POST['online_exam_duration'],
-				':total_question'		=>	$_POST['total_question'],
+				// ':total_question'		=>	$_POST['total_question'],
 				':user_year'			=>	$_POST['exam_year'],
 				':user_course'			=>	$_POST['exam_course'],
-				':marks_per_right_answer' =>	$_POST['marks_per_right_answer'],
-				':marks_per_wrong_answer' =>	$_POST['marks_per_wrong_answer'],
+				// ':marks_per_right_answer' =>	$_POST['marks_per_right_answer'],
+				// ':marks_per_wrong_answer' =>	$_POST['marks_per_wrong_answer'],
 				':online_exam_created_on' =>	$current_datetime,
 				':online_exam_status'	=>	'Pending',
 				':online_exam_code'		=>	$exam_code
@@ -325,8 +324,8 @@ if (isset($_POST['page'])) {
 
 			$exam->query = "
 			INSERT INTO online_exam_table 
-			(admin_id, user_year, user_course, online_exam_title, online_exam_datetime, online_exam_duration, total_question, marks_per_right_answer, marks_per_wrong_answer, online_exam_created_on, online_exam_status, online_exam_code) 
-			VALUES (:admin_id, :user_year, :user_course, :online_exam_title, :online_exam_datetime, :online_exam_duration, :total_question, :marks_per_right_answer, :marks_per_wrong_answer, :online_exam_created_on, :online_exam_status, :online_exam_code)
+			(admin_id, user_year, user_course, online_exam_title, online_exam_datetime, online_exam_duration, online_exam_created_on, online_exam_status, online_exam_code) 
+			VALUES (:admin_id, :user_year, :user_course, :online_exam_title, :online_exam_datetime, :online_exam_duration, :online_exam_created_on, :online_exam_status, :online_exam_code)
 			";
 			$examid = "";
 			$exam->execute_query();

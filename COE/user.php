@@ -184,7 +184,7 @@ include('header.php');
 		event.preventDefault();
 
 
-		$('#online_staff_id').attr('required', 'required');
+		$('#online_exam_course').attr('required', 'required');
 
 		$('#online_exam_year').attr('required', 'required');
 

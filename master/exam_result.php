@@ -2,15 +2,15 @@
 
 include('header.php');
 
-// source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
+
 
 ?>
 <br />
 <nav aria-label="breadcrumb">
-  	<ol class="breadcrumb">
-    	<li class="breadcrumb-item"><a href="exam.php">Exam List</a></li>
-    	<li class="breadcrumb-item active" aria-current="page">Exam Result</li>
-  	</ol>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="exam.php">Exam List</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Exam Result</li>
+	</ol>
 </nav>
 <div class="card">
 	<div class="card-header">
@@ -42,22 +42,24 @@ include('header.php');
 </div>
 
 <script>
+	$(document).ready(function() {
 
-$(document).ready(function(){
+		var code = "<?php echo $_GET["code"]; ?>";
 
-	var code = "<?php echo $_GET["code"];?>";
+		var dataTable = $('#result_table').DataTable({
+			"processing": true,
+			"serverSide": true,
+			"order": [],
+			"ajax": {
+				url: "ajax_action.php",
+				type: "POST",
+				data: {
+					action: 'fetch',
+					page: 'exam_result',
+					code: code
+				}
+			}
+		});
 
-	var dataTable = $('#result_table').DataTable({
-		"processing" : true,
-		"serverSide" : true,
-		"order" : [],
-		"ajax" : {
-			url:"ajax_action.php",
-			type:"POST",
-			data:{action:'fetch', page:'exam_result', code:code}
-		}
 	});
-
-});
-
 </script>

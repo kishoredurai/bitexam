@@ -30,12 +30,12 @@ include('../include/db.php');
 						<th>Student Year</th>
 						<th>Student Course</th>
 						<th>Duration</th>
-						<th>Total Question</th>
-						<th>Right Answer Mark</th>
-						<th>Wrong Answer Mark</th>
+						<!-- <th>Total Question</th> -->
+						<!-- <th>Right Answer Mark</th>
+						<th>Wrong Answer Mark</th> -->
 						<th>Status</th>
-						<th>Question</th>
-						<th>Enrolled student</th>
+						<!-- <th>Question</th> -->
+						<!-- <th>Enrolled student</th> -->
 						<!-- <th>Result</th>
 						<th>Action</th> -->
 					</tr>
@@ -326,7 +326,7 @@ $(document).ready(function(){
 		},
 		"columnDefs":[
 			{
-				"targets":[7,8,9],
+				"targets":[0,6],
 				"orderable":false,
 			},
 		],
@@ -552,20 +552,16 @@ $(document).ready(function(){
 	});
 
 	var editor = textboxio.replace('.question_textarea');
-	// editor.message('info', 3000, 'This editor can be used to add images, mathematical symbols and also you can change font size, font style, etc.');
+	//editor.message('info', 3000, 'This editor can be used to add images, mathematical symbols and also you can change font size, font style, etc.');
 	
 
 });
 
 </script>
-<script>
-function myFunction() {
-  setTimeout(function(), 3000);
-}
-</script>
-<script>
-	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <style>
 	.question_textarea {
 	margin:10px 0;

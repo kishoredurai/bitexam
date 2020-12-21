@@ -1,7 +1,6 @@
 <?php
 
-//pdf_exam_result.php // source code modified by jacksonsilass@gmail.com +255 763169695 from weblessons
-
+//pdf_exam_result.php 
 include("Examination.php");
 
 require_once('../class/pdf.php');
@@ -26,7 +25,7 @@ if(isset($_GET["code"]))
 	foreach($results as $rows)
 	{
 	$output .= '<h3>Exam Title :&nbsp;&nbsp;&nbsp;&nbsp;'.$rows["online_exam_title"].'<br><b>Exam Date and Time : </b>'.$rows["online_exam_datetime"].'<br><b>Student Year : 
-	</b>'.$rows["user_year"].'<br><b>User Course : </b>'.$rows["user_course"].'<br><b>Exam Duration (min): </b>'.$rows["online_exam_duration"].'<br><b>Total Question : </b>'.$rows["total_question"].'<br><hr><br><br>';
+	</b>'.$rows["user_year"].'<br><b>User Course : </b>'.$rows["user_course"].'<br><b>Exam Duration (min): </b>'.$rows["online_exam_duration"];
     }
 
 	$output .= '
@@ -113,5 +112,3 @@ if(isset($_GET["code"]))
 
 	exit(0);
 }
-
-?>

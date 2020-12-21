@@ -48,6 +48,8 @@ if(isset($_REQUEST['del']))
 						<th>Course ID</th>
 						<th>Course Name</th>
 						<th>Created Date</th>
+						<th>Action</th>
+
 					</tr>
                 </thead>
                 <tbody>
@@ -63,7 +65,7 @@ foreach($result as $row)
                 <td><?php echo $row['course_id'];?></td>
 				<td><?php echo $row['course_name'];?></td>
 				<td><?php echo $row['create_date'];?></td>
-				<!-- <td><a class="btn danger" href="course.php?del=<?php echo $row['course_id'];?>">delete</a></td> -->
+				<td><a class="btn danger" href="course.php?del=<?php echo $row['course_id'];?>">Delete</a></td>
                 </tr>
                 </tbody>
                 <?php }  ?>

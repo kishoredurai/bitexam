@@ -18,7 +18,7 @@ include('header.php');
 				<form method="post" id="exam_form">
 					<div class="row">
 
-						<div class="col-12 col-md-4" >
+						<div class="col-12 col-md-4">
 							<select name="staff_id" id="online_exam_course" class="form-control">
 								<option value="">Select</option>
 								<?php
@@ -147,7 +147,7 @@ include('header.php');
 
 		});
 
-		
+
 		$(document).on('click', '.details', function() {
 			var user_id = $(this).attr('id');
 			$.ajax({
@@ -244,5 +244,4 @@ include('header.php');
 		});
 
 	});
-	
 </script>
