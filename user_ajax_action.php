@@ -730,12 +730,14 @@ if (isset($_POST['page'])) {
 					// die(print_r($questions_in_section));
 
 					foreach($questions_in_section as $question){
-						$color = 'bg-primary';
-						if (in_array($question['question_id'], $question_ids)){
-							$color = 'bg-success';
+						$color = 'btn-primary';
+						// var_dump(in_array($question['question_id'], $question_ids));
+						if (in_array($question['question_id'], $question_ids) !== false){
+							$color = 'btn-success';
+							// var_dump($color);
 						};
 						$output .= '<div class="col-md-2" style="margin-bottom:24px;">
-					<button type="button" class="btn'. $color .' btn-primary btn-lg question_navigation" data-question_id="' . $question['question_id'] . '">' . $question['question_number'] . '</button>
+					<button type="button" class="btn '. $color .' btn-lg question_navigation" data-question_id="' . $question['question_id'] . '">' . $question['question_number'] . '</button>
 				</div>';
 					};
 
@@ -743,37 +745,37 @@ if (isset($_POST['page'])) {
 				</div>';
 			}
 
-			$count = 1;
-			foreach ($result as $row) {
-				$question = $row["question_id"];
-				$exam->query = "
-				SELECT * FROM user_exam_question_answer 
-				WHERE exam_id = '" . $_POST["exam_id"] . "' and  user_id = '" . $_SESSION["user_id"] . "' and question_id = '" . $question . "' and user_answer_option= '0'
-				";
-				$results = $exam->query_result();
+			// $count = 1;
+			// foreach ($result as $row) {
+			// 	$question = $row["question_id"];
+			// 	$exam->query = "
+			// 	SELECT * FROM user_exam_question_answer 
+			// 	WHERE exam_id = '" . $_POST["exam_id"] . "' and  user_id = '" . $_SESSION["user_id"] . "' and question_id = '" . $question . "' and user_answer_option= '0'
+			// 	";
+			// 	$results = $exam->query_result();
 
-				$total_row = $exam->total_row();
+			// 	$total_row = $exam->total_row();
 
-				if ($total_row == 1) {
-					$output .= '
-				<div class="col-md-2" style="margin-bottom:24px;">
-					<button type="button" class="btn btn-primary btn-lg question_navigation" data-question_id="' . $question . '">' . $count . '</button>
-				</div>
-				';
-					$count++;
-				} else {
-					$output .= '
-				<div class="col-md-2" style="margin-bottom:24px;">
-					<button type="button" class="btn btn-success btn-lg question_navigation" data-question_id="' . $question . '">' . $count . '</button>
-				</div>
-				';
-					$count++;
-				}
-			}
-			$output .= '
-				</div>
-			</div></div>
-			';
+			// 	if ($total_row == 1) {
+			// 		$output .= '
+			// 	<div class="col-md-2" style="margin-bottom:24px;">
+			// 		<button type="button" class="btn btn-primary btn-lg question_navigation" data-question_id="' . $question . '">' . $count . '</button>
+			// 	</div>
+			// 	';
+			// 		$count++;
+			// 	} else {
+			// 		$output .= '
+			// 	<div class="col-md-2" style="margin-bottom:24px;">
+			// 		<button type="button" class="btn btn-success btn-lg question_navigation" data-question_id="' . $question . '">' . $count . '</button>
+			// 	</div>
+			// 	';
+			// 		$count++;
+			// 	}
+			// }
+			// $output .= '
+			// 	</div>
+			// </div></div>
+			// ';
 			echo $output;
 		}
 
