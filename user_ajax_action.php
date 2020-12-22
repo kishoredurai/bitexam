@@ -531,7 +531,7 @@ if (isset($_POST['page'])) {
 			foreach ($result as $row) {
 				$cnt = $cnt + 1;
 				$output .= '
-				<h1>' . $row["question_title"] . '</h1>
+				<h1> Question ' . $row["question_number"] . ': ' . $row["question_title"] . '</h1>
 				
 				<hr />
 				<br />
@@ -736,9 +736,9 @@ if (isset($_POST['page'])) {
 							$color = 'btn-success';
 							// var_dump($color);
 						};
-						$output .= '<div class="col-md-2" style="margin-bottom:24px;">
-					<button type="button" class="btn '. $color .' btn-lg question_navigation" data-question_id="' . $question['question_id'] . '">' . $question['question_number'] . '</button>
-				</div>';
+						$output .= '<span class="col-md-1" style="margin-bottom:24px;">
+					<button type="button" class="btn '. $color .' question_navigation" data-question_id="' . $question['question_id'] . '">' . $question['question_number'] . '</button>
+				</span>';
 					};
 
 				$output .= '</div>

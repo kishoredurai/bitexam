@@ -284,7 +284,7 @@ if (isset($_POST['page'])) {
 
 				// $sub_array[] = $question_button;
 
-				// $sub_array[] = '<a href="exam_enroll.php?code=' . $row['online_exam_code'] . '" class="btn warning btn-sm">Enrolled</a>';
+				$sub_array[] = '<a href="exam_enroll.php?code=' . $row['online_exam_code'] . '" class="btn success btn-sm">Enrolled</a>';
 
 				// $sub_array[] = $result_button;
 
@@ -639,12 +639,16 @@ if (isset($_POST['page'])) {
 			$exam->data = array(
 				':question_title'		=>	$_POST['question_title'],
 				':answer_option'		=>	$_POST['answer_option'],
-				':question_id'			=>	$_POST['question_id']
+				':question_id'			=>	$_POST['question_number'],
+				':correct_mark'			=>  $_POST['correct_mark'],
+				':wrong_mark'			=>  $_POST['wrong_mark']
 			);
+
+			// die(print_r($exam->data));
 
 			$exam->query = "
 			UPDATE question_table 
-			SET question_title = :question_title, answer_option = :answer_option 
+			SET question_title = :question_title, answer_option = :answer_option, correct_mark = :correct_mark, wrong_mark = :wrong_mark
 			WHERE question_id = :question_id
 			";
 
@@ -652,7 +656,7 @@ if (isset($_POST['page'])) {
 
 			for ($count = 1; $count <= 4; $count++) {
 				$exam->data = array(
-					':question_id'		=>	$_POST['question_id'],
+					':question_id'		=>	$_POST['question_number'],
 					':option_number'	=>	$count,
 					':option_title'		=>	$_POST['option_title_' . $count]
 				);

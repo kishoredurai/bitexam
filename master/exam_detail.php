@@ -186,7 +186,7 @@ $_SESSION['exam_id'] = $exam_id;
         </div>
     </div>
 
-    <?php echo '<a href="exam_enroll.php?code=' . $_GET['code'] . '" class="">View attendance</a>'; ?>
+    
     <div class="row" style="height: 100vh;">
 
         <div class="col-md-7 h-75 m-2">
@@ -335,9 +335,12 @@ $_SESSION['exam_id'] = $exam_id;
 
     fetch_sections();
 
+    var question_data;
+    var question_button;
     function question_fetch() {
         $(document).on('click', '.question', function() {
             // console.log(this);
+            question_button = this;
             question_number = $(this).attr('id');
             section_id = $(this).attr('section');
             $('#section_id').val(section_id);
@@ -352,10 +355,12 @@ $_SESSION['exam_id'] = $exam_id;
             .done(function(data) {
                 var question_content = 'Add question to view';
                 data = JSON.parse(data);
-                console.log(data);
+                question_data = data;
+                // console.log(data);
                 if(data.question){
-                    question_content = `<h3>Question ${data.question.question_number}</h3>\n`;
-                    question_content += data.question.question_title;
+                    question_content = `<button type="button" class="btn btn-primary edit_question float-right" question_id="${data.question.question_id}">Edit Question</button>`;
+                    question_content += `<h3>Question ${data.question.question_number}</h3>\n`;
+                    question_content += `<h6>${data.question.question_title}</h6>`;
                     question_content += '<h6>Options</h6>\n';
                     data.options.forEach(
                         option => {
@@ -363,7 +368,7 @@ $_SESSION['exam_id'] = $exam_id;
                             question_content += `<p>Option ${option.option_number}: ${option.option_title}<p>\n`;
                         }
                     )
-                    question_content += `<h6>Correct option: ${data.question.answer_option}<h6>`;
+                    question_content += `<h6>Correct option: ${data.question.answer_option}</h6>`;
                     question_content += `<p>Marks for correct answer: ${data.question.correct_mark}</p>`;
                     question_content += `<p>Marks for wrong answer: ${data.question.wrong_mark}</p>`;
                     document.getElementById('question_view').innerHTML = question_content;
@@ -376,6 +381,26 @@ $_SESSION['exam_id'] = $exam_id;
             
         });
     }
+
+    $(document).on('click', '.edit_question', function(){
+        question = question_data.question;
+        console.log($(this).attr('question_id'));
+        $('#questionModal').modal('show');
+        editor.content.set(question.question_title);
+        question_data.options.forEach(
+            option => {
+                // console.log(option);
+                document.getElementById(`option_title_${option.option_number}`).value = option.option_title;
+            }
+        );
+
+        $(`#answer_option option[value=${question.answer_option}]`).attr('selected', 'selected');
+        document.getElementById('correct_mark').value = question.correct_mark;
+        document.getElementById('wrong_mark').value = question.wrong_mark;
+        document.getElementById('question_button_action').value = 'Edit';
+        document.getElementById('question_hidden_action').value = 'Edit';
+        document.getElementById('question_number').value = question.question_id;
+    });
 
     $('#question_form').parsley();
 
@@ -421,7 +446,7 @@ $_SESSION['exam_id'] = $exam_id;
 					if(data.success)
 					{   
 						// alert("Question Added successfully");
-						swal("Good job!", "Question added successfully", "success");
+						swal("Good job!", "Successful", "success");
 						
 						$('#message_operation').html('<div class="alert alert-success">'+data.success+'</div>');
 
@@ -434,6 +459,9 @@ $_SESSION['exam_id'] = $exam_id;
 
 					$('#question_button_action').val('Add');
                     fetch_sections();
+                    $(question_button).click();
+
+                
 				}
 			});
         }

@@ -35,7 +35,7 @@ include('../include/db.php');
 						<th>Wrong Answer Mark</th> -->
 						<th>Status</th>
 						<!-- <th>Question</th> -->
-						<!-- <th>Enrolled student</th> -->
+						<th>Enrolled student</th>
 						<!-- <th>Result</th>
 						<th>Action</th> -->
 					</tr>
@@ -326,7 +326,7 @@ $(document).ready(function(){
 		},
 		"columnDefs":[
 			{
-				"targets":[0,6],
+				"targets":[0,7],
 				"orderable":false,
 			},
 		],

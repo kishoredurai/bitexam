@@ -160,7 +160,7 @@ if (isset($_POST["submit"])) {
 					</div>
 
 					<div class="modal-footer">
-						<input type="hidden" name="online_exam_id" id="online_exam_id" />
+						<input type="hidden" name="user_id" id="user_id" />
 
 						<input type="hidden" name="page" value="user" />
 
@@ -399,7 +399,7 @@ if (isset($_POST["submit"])) {
 						<th>User Rollno</th>
 						<th>Year</th>
 						<th>Course </th>
-						<th>Action</th>
+						<th>Details</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -563,12 +563,12 @@ if (isset($_POST["submit"])) {
 				$.ajax({
 					url: "ajax_action.php",
 					method: "POST",
-					data:$(this).serialize(),
+					data: $(this).serialize(),
 					dataType: "json",
 					beforeSend: function() {
 						$('#button_action').attr('disabled', 'disabled');
 						$('#button_action').val('Validate...');
-						alert("DATA SENT");
+						swal("Good job!", " Successfully! Done", "success");
 					},
 					success: function(data) {
 						if (data.success) {
@@ -590,7 +590,55 @@ if (isset($_POST["submit"])) {
 		});
 
 
+		var user_id = '';
 
+		$(document).on('click', '.edit', function() {
+			user_id = $(this).attr('id');
+
+			rest_form();
+
+			$.ajax({
+				url: "ajax_action.php",
+				method: "POST",
+				data: {
+					action: 'edit_fetch',
+					user_id: user_id,
+					page: 'user'
+				},
+				dataType: "json",
+				success: function(data) {
+					$('#user_name').val(data.user_name);
+
+					$('#user_rollno').val(data.user_rollno);
+
+					$('#user_year').val(data.user_year);
+
+					$('#user_course').val(data.user_course);
+
+					$('#user_gender').val(data.user_gender);
+
+					$('#user_dob').val(data.user_dob);
+
+					$('#user_email_address').val(data.user_email_address);
+
+					$('#user_mobile_no').val(data.user_mobile_no);
+
+					$('#user_address').val(data.user_address);
+
+					$('#user_id').val(user_id);
+
+					$('#modal_title').text('Edit User Details');
+
+					$('#button_action').val('Edit');
+
+					$('#action').val('Edit');
+
+					
+
+					$('#user_modal').modal('show');
+				}
+			})
+		});
 
 
 

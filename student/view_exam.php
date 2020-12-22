@@ -492,6 +492,8 @@ function stop(){
 			var question_id = $(this).data('question_id');
 			load_question(question_id);
 			question_navigation();
+			// console.log($(this).parent().parent().parent().addClass('bg-primary'));
+			// console.log(this);
 		});
 
 		function load_user_details() {
