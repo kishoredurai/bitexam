@@ -375,6 +375,8 @@ if (isset($_POST['page'])) {
 			";
 			$result = $exam->query_result();
 			foreach ($result as $row) {
+
+
 				$exam->data = array(
 					':user_id'				=>	$_SESSION['user_id'],
 					':exam_id'				=>	$_POST['exam_id'],
@@ -826,16 +828,21 @@ if (isset($_POST['page'])) {
 
 			$exam_wrong_answer_mark = $exam->Get_question_wrong_answer_mark($_POST['exam_id']);
 
-			$orignal_answer = $exam->Get_question_answer_option($_POST['question_id']);
+			$option_marks = $exam->Get_question_answer_option($_POST['question_id']);
+
+			$orignal_answer = $option_marks['answer_option'];
+
+			// die(var_dump($option_marks, $_POST));
 
 			$marks = 0;
 
 			if ($orignal_answer == $_POST['answer_option']) {
-				$marks = '+' . $exam_right_answer_mark;
+				$marks = (int)$option_marks['correct_mark'];
 			} else {
-				$marks = '-' . $exam_wrong_answer_mark;
+				$marks = (int)$option_marks['wrong_mark'];
 			}
 
+			// die(var_dump($marks));
 			$exam->data = array(
 				':user_answer_option'	=>	$_POST['answer_option'],
 				':marks'				=>	$marks

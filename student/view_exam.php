@@ -1,7 +1,9 @@
 <div id="start_button"  class="card-body" ><button class="btn yellow btn-sm" style="color:black;" onclick="toggleFullScreen()">start</button></div>
 <head>
 	<script src='https://meet.jit.si/external_api.js'></script>
-	<div id="jitsi-container" style="padding-right:20px" align="right"></div>
+	<div class="container" style="max-width: 100%; overflow: scroll;">
+		<div id="jitsi-container" style="padding-right:20px" align="right"></div>
+	</div>
 
 
 	<!-- <script type="text/javascript"> 
@@ -214,7 +216,7 @@ function stop(){
 	?>
 
 		<div class="row">
-			<div class="col-md-8" onmousedown="return false" onselectstart="return false">
+			<div class="col-12 col-md-8" onmousedown="return false" onselectstart="return false">
 				<div class="card border border-success">
 					<div class="card-header">Online Exam</div>
 					<div class="card-body">

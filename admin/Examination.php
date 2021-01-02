@@ -439,7 +439,7 @@ class Examination
 	function Get_question_answer_option($question_id)
 	{
 		$this->query = "
-		SELECT answer_option FROM question_table 
+		SELECT answer_option, correct_mark, wrong_mark FROM question_table 
 		WHERE question_id = '".$question_id."' 
 		";
 
@@ -447,7 +447,7 @@ class Examination
 
 		foreach($result as $row)
 		{
-			return $row['answer_option'];
+			return $row;
 		}
 	}
 
